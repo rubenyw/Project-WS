@@ -30,6 +30,10 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        api_hit: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         role: {
             type: DataTypes.STRING,
             allowNull: false,
