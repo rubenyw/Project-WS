@@ -1,9 +1,15 @@
 const User = require("../models/User");
 
-const register = (req, res) => {};
-const login = (req, res) => {};
+const registerSender = (req, res) => {
+    return res.status(200).send("HALO");
+};
+const loginSender = (req, res) => {};
+const registerTraveller = (req, res) => {};
+const loginTraveller = (req, res) => {};
 
 module.exports = {
-    register,
-    login,
+    registerSender,
+    registerTraveller,
+    loginSender,
+    loginTraveller,
 };
