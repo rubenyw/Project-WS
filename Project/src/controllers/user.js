@@ -1,4 +1,22 @@
 const User = require("../models/User");
+const Joi = require("joi");
+
+const registerSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+    email: Joi.string()
+        .email({ tlds: { allow: false } })
+        .required(),
+    nomor_hp: Joi.string()
+        .min(10)
+        .max(14)
+        .pattern(/^[0-9]+$/)
+        .required(),
+});
+
+module.exports = {
+    registerSchema,
+};
 
 const registerSender = async (req, res) => {
     try {
@@ -14,7 +32,10 @@ const registerSender = async (req, res) => {
         // Generate the API key
         const api_key = generateApiKey(10);
 
+        // Other Variables
         const api_hit = 0;
+        const saldo = 0;
+        const role = "Sender";
 
         // Create a new user in the database
         const newUser = await User.create({
@@ -24,6 +45,8 @@ const registerSender = async (req, res) => {
             no_hp: nomor_hp,
             api_key,
             api_hit,
+            saldo,
+            role,
         });
 
         res.status(201).json({ api_key });
