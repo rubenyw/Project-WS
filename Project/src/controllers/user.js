@@ -1,6 +1,11 @@
 const User = require("../models/User");
 const Joi = require("joi");
 
+const loginSchema = Joi.object({
+    username: Joi.string().alphanum().min(3).max(30).required(),
+    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+});
+
 const registerSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),
     password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
@@ -55,7 +60,36 @@ const registerSender = async (req, res) => {
         res.status(500).json({ error: "An error occurred while creating the user." });
     }
 };
-const loginSender = (req, res) => {};
+const loginSender = async (req, res) => {
+    try {
+        const { error, value } = loginSchema.validate(req.body);
+
+        if (error) {
+            res.status(400).json({ error: error.details[0].message });
+            return;
+        }
+
+        const { username, password } = value;
+
+        // Find the user in the database
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            res.status(404).json({ error: "User not found." });
+            return;
+        }
+
+        if (password == user.password) {
+            res.status(401).json({ error: "Invalid password." });
+            return;
+        }
+
+        res.status(200).json({ api_key: user.api_key });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while processing the login." });
+    }
+};
 const registerTraveller = (req, res) => {};
 const loginTraveller = (req, res) => {};
 
