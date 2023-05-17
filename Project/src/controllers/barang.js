@@ -36,6 +36,25 @@ const requestKirimBarang = async (req, res) => {
 
     try {
         await schema.validateAsync(req.body);
+        const { nama_barang, berat_barang, asal_barang, tujuan_barang } =
+            req.body;
+        const newAsalBarang = await Kota.findOne({
+            where: {
+                nama: asal_barang,
+            },
+        });
+        const newTujuanBarang = await Kota.findOne({
+            where: {
+                nama: tujuan_barang,
+            },
+        });
+        // const newBarang = await Barang.create({
+        //     nama: nama_barang,
+        //     berat: berat_barang,
+        //     id_kota_keberangkatan: newAsalBarang.id,
+        //     id_kota_tujuan: newTujuanBarang.id,
+        // });
+        return res.status(200).json({ message: "test" });
     } catch (error) {
         return res.status(404).json({
             status: 404,
