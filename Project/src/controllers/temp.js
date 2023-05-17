@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 const express = require("express");
 const Joi = require("joi");
 
-const Temp = require("../models/temp");
+const Temp = require("../models/Barang");
 
 const tempQuery = async (req, res) => {
     const result = await axios.get("https://api.rajaongkir.com/starter/city");
