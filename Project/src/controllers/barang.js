@@ -12,6 +12,7 @@ const checkAsalKota = async (asal_barang) => {
             nama: asal_barang.toUpperCase(),
         },
     });
+
     if (!result) throw new Error("Asal Kota tidak ditemukan");
 };
 
@@ -21,7 +22,8 @@ const checkTujuanKota = async (tujuan_barang) => {
             nama: tujuan_barang.toUpperCase(),
         },
     });
-    if (!result) throw new Error("Asal Kota tidak ditemukan");
+    console.log(result);
+    if (!result) throw new Error("Tujuan Kota tidak ditemukan");
 };
 
 const requestKirimBarang = async (req, res) => {
