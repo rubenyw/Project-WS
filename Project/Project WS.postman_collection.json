@@ -130,6 +130,14 @@
 						"header": []
 					},
 					"response": []
+				},
+				{
+					"name": "edit kirim barang",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
