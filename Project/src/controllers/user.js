@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Rating = require("../models/Rating");
 const Barang = require("../models/Barang");
+const Kota = require("../models/Kota");
 const Joi = require("joi");
 
 const loginSchema = Joi.object({
@@ -227,9 +228,21 @@ const loginTraveller = async (req, res) => {
 
 const sendBarang = async (req, res) => {
     const { nama_barang, berat_barang, tempat_asal, tujuan } = req.body;
+    const kotaAsal = await Kota.findOne({
+        where: { nama: tempat_asal },
+    });
+    const kotaTujuan = await Kota.findOne({
+        where: { nama: tujuan },
+    });
+    console.log(kotaAsal);
+    console.log(kotaTujuan);
+    // return res.status(200).json({ message: "test" });
     // const newBarang = await Barang.create({
     //     nama: nama_barang,
     //     berat: berat_barang,
+    //     id,
+    //     _kota_keberangkatan: kotaAsal.id,
+    //     id_kota_tujuan: kotaTujuan.id,
     // });
 };
 
