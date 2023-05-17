@@ -23,6 +23,8 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+create databse project_ws;
+use project_ws;
 --
 -- Table structure for table `barang`
 --
