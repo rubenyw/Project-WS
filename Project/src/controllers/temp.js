@@ -5,11 +5,13 @@ const Joi = require("joi");
 const Temp = require("../models/temp");
 
 const tempQuery = async (req, res) => {
-  return res.status(201).json({
-    msg: "Haii",
-  });
+    const result = await axios.get("https://api.rajaongkir.com/starter/city");
+
+    return res.status(201).json({
+        msg: "Ha",
+    });
 };
 
 module.exports = {
-  tempQuery,
+    tempQuery,
 };

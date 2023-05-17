@@ -18,4 +18,8 @@ router.post("/sender/request", sendBarang);
 
 // Router untuk barang
 
+// Router untuk debuggin sementara
+const { tempQuery } = require("../controllers/temp");
+router.get("/bug", tempQuery);
+
 module.exports = router;
