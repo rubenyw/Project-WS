@@ -23,7 +23,7 @@ const {
 
 // Router untuk barang
 router.post("/sender/requestKirimBarang", requestKirimBarang);
-router.post("/sender/requestEditBarang", requestEditBarang);
+router.put("/sender/requestEditBarang", requestEditBarang);
 
 // Router untuk debuggin sementara
 const { tempQuery } = require("../controllers/temp");
