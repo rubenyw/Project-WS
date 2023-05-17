@@ -7,7 +7,6 @@ const {
     registerTraveller,
     loginSender,
     loginTraveller,
-    sendBarang,
 } = require("../controllers/user");
 
 // Router untuk Akun
