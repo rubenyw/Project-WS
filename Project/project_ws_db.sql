@@ -27,9 +27,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `barang`
 --
 
-create database project_ws;
-use database project_ws;
-
 CREATE TABLE `barang` (
   `id` int(11) NOT NULL,
   `id_sender` int(11) NOT NULL,
