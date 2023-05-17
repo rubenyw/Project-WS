@@ -21,7 +21,7 @@ const tempQuery = async (req, res) => {
             if (element.type == "Kota")
                 await Kota.create({
                     id: element.city_id,
-                    nama: element.city_name,
+                    nama: element.city_name.toUpperCase(),
                 });
         }
         return res.status(201).json({
