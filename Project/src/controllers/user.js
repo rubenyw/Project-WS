@@ -59,7 +59,14 @@ const registerSender = async (req, res) => {
             role,
         });
 
-        return res.status(201).json({ api_key });
+        // return res.status(201).json({ api_key });
+        return res.status(201).json({
+            body: {
+                username: newUser.username,
+                api_key: newUser.api_key,
+                role: newUser.role,
+            },
+        });
     } catch (error) {
         console.error(error);
         return res
@@ -134,7 +141,14 @@ const registerTraveller = async (req, res) => {
             role,
         });
 
-        res.status(201).json({ api_key });
+        // res.status(201).json({ api_key });
+        return res.status(201).json({
+            body: {
+                username: newUser.username,
+                api_key: newUser.api_key,
+                role: newUser.role,
+            },
+        });
     } catch (error) {
         console.error(error);
         return res
