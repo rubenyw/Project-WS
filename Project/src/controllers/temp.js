@@ -4,6 +4,7 @@ const Joi = require("joi");
 
 const Kota = require("../models/Kota");
 
+// Untuk insert kota
 const tempQuery = async (req, res) => {
     try {
         const result = await axios.get(
@@ -19,7 +20,7 @@ const tempQuery = async (req, res) => {
             const element = result.data.rajaongkir.results[i];
             if (element.type == "Kota")
                 await Kota.create({
-                    id: index++,
+                    id: element.city_id,
                     nama: element.city_name,
                 });
         }

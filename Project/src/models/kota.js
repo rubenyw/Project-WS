@@ -8,7 +8,6 @@ Kota.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
         },
         nama: {
             type: DataTypes.STRING,
