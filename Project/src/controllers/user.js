@@ -4,12 +4,16 @@ const Joi = require("joi");
 
 const loginSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),
-    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+    password: Joi.string()
+        .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+        .required(),
 });
 
 const registerSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),
-    password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+    password: Joi.string()
+        .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
+        .required(),
     email: Joi.string()
         .email({ tlds: { allow: false } })
         .required(),
@@ -55,10 +59,12 @@ const registerSender = async (req, res) => {
             role,
         });
 
-        res.status(201).json({ api_key });
+        return res.status(201).json({ api_key });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "An error occurred while creating the user." });
+        return res
+            .status(500)
+            .json({ error: "An error occurred while creating the user." });
     }
 };
 const loginSender = async (req, res) => {
@@ -66,8 +72,7 @@ const loginSender = async (req, res) => {
         const { error, value } = loginSchema.validate(req.body);
 
         if (error) {
-            res.status(400).json({ error: error.details[0].message });
-            return;
+            return res.status(400).json({ error: error.details[0].message });
         }
 
         const { username, password } = value;
@@ -80,24 +85,23 @@ const loginSender = async (req, res) => {
         });
 
         if (!user) {
-            res.status(404).json({ error: "User not found." });
-            return;
+            return res.status(404).json({ error: "User not found." });
         }
 
         if (password != user.password) {
-            res.status(401).json({ error: "Invalid password." });
-            return;
+            return res.status(401).json({ error: "Invalid password." });
         }
 
         if (user.role != "Sender") {
-            res.status(401).json({ error: "Bukan Sender." });
-            return;
+            return res.status(401).json({ error: "Bukan Sender." });
         }
 
-        res.status(200).json({ api_key: user.api_key });
+        return res.status(200).json({ api_key: user.api_key });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "An error occurred while processing the login." });
+        return res
+            .status(500)
+            .json({ error: "An error occurred while processing the login." });
     }
 };
 const registerTraveller = async (req, res) => {
@@ -105,8 +109,7 @@ const registerTraveller = async (req, res) => {
         const { error, value } = registerSchema.validate(req.body);
 
         if (error) {
-            res.status(400).json({ error: error.details[0].message });
-            return;
+            return res.status(400).json({ error: error.details[0].message });
         }
 
         const { username, password, email, nomor_hp } = value;
@@ -134,7 +137,9 @@ const registerTraveller = async (req, res) => {
         res.status(201).json({ api_key });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "An error occurred while creating the user." });
+        return res
+            .status(500)
+            .json({ error: "An error occurred while creating the user." });
     }
 };
 const loginTraveller = async (req, res) => {
@@ -142,8 +147,7 @@ const loginTraveller = async (req, res) => {
         const { error, value } = loginSchema.validate(req.body);
 
         if (error) {
-            res.status(400).json({ error: error.details[0].message });
-            return;
+            return res.status(400).json({ error: error.details[0].message });
         }
 
         const { username, password } = value;
@@ -156,30 +160,36 @@ const loginTraveller = async (req, res) => {
         });
 
         if (!user) {
-            res.status(404).json({ error: "User not found." });
-            return;
+            return res.status(404).json({ error: "User not found." });
         }
 
         if (password != user.password) {
-            res.status(401).json({ error: "Invalid password." });
-            return;
+            return res.status(401).json({ error: "Invalid password." });
         }
         console.log(user);
 
         if (user.role !== "Traveller") {
-            res.status(401).json({ error: "Bukan Traveller." });
-            return;
+            return res.status(401).json({ error: "Bukan Traveller." });
         }
 
         // Calculate the average rating for the user
-        const ratings = await Rating.findAll({ where: { id_traveller: user.id } });
-        const ratingsSum = ratings.reduce((acc, rating) => acc + rating.rate, 0);
+        const ratings = await Rating.findAll({
+            where: { id_traveller: user.id },
+        });
+        const ratingsSum = ratings.reduce(
+            (acc, rating) => acc + rating.rate,
+            0
+        );
         const averageRating = ratings.length ? ratingsSum / ratings.length : 0;
 
-        res.status(200).json({ api_key: user.api_key, average_rating: averageRating });
+        return res
+            .status(200)
+            .json({ api_key: user.api_key, average_rating: averageRating });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "An error occurred while processing the login." });
+        return res
+            .status(500)
+            .json({ error: "An error occurred while processing the login." });
     }
 };
 
@@ -192,7 +202,8 @@ module.exports = {
 
 // Functions
 function generateApiKey(length) {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let apiKey = "";
 
     for (let i = 0; i < length; i++) {
