@@ -1,4 +1,14 @@
-# Dokumentasi
+# NOTES
+
+## Cara Pakai API RajaOngkir di Axios
+
+```js
+const result = await axios.get("https://api.rajaongkir.com/starter/city", {
+    headers: {
+        key: "api-key-kita", // API key pas daftar akun
+    },
+});
+```
 
 ## Apa sih dokumentasi itu?
 

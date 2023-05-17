@@ -15,20 +15,20 @@ const tempQuery = async (req, res) => {
                 },
             }
         );
-        let index = 1;
         for (let i = 0; i < result.data.rajaongkir.results.length; i++) {
             const element = result.data.rajaongkir.results[i];
-            if (element.type == "Kota")
+
+            if (element.type == "Kota") {
                 await Kota.create({
                     id: element.city_id,
                     nama: element.city_name.toUpperCase(),
                 });
+            }
         }
         return res.status(201).json({
             msg: result.data.rajaongkir.results,
         });
     } catch (error) {
-        console.log(error);
         return res.status(201).json({
             msg: "Ha",
         });
