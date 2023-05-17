@@ -103,7 +103,15 @@ const loginSender = async (req, res) => {
             return res.status(401).json({ error: "Bukan Sender." });
         }
 
-        return res.status(200).json({ api_key: user.api_key });
+        // return res.status(200).json({ api_key: user.api_key });
+        return res.status(201).json({
+            body: {
+                username: user.username,
+                api_key: user.api_key,
+                saldo: user.saldo,
+                role: user.role,
+            },
+        });
     } catch (error) {
         console.error(error);
         return res
@@ -196,9 +204,18 @@ const loginTraveller = async (req, res) => {
         );
         const averageRating = ratings.length ? ratingsSum / ratings.length : 0;
 
-        return res
-            .status(200)
-            .json({ api_key: user.api_key, average_rating: averageRating });
+        // return res
+        //     .status(200)
+        //     .json({ api_key: user.api_key, average_rating: averageRating });
+        return res.status(201).json({
+            body: {
+                username: user.username,
+                api_key: user.api_key,
+                saldo: user.saldo,
+                role: user.role,
+                average_rating: averageRating,
+            },
+        });
     } catch (error) {
         console.error(error);
         return res
