@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Rating = require("../models/Rating");
+const Barang = require("../models/Barang");
 const Joi = require("joi");
 
 const loginSchema = Joi.object({
@@ -224,11 +225,20 @@ const loginTraveller = async (req, res) => {
     }
 };
 
+const sendBarang = async (req, res) => {
+    const { nama_barang, berat_barang, tempat_asal, tujuan } = req.body;
+    // const newBarang = await Barang.create({
+    //     nama: nama_barang,
+    //     berat: berat_barang,
+    // });
+};
+
 module.exports = {
     registerSender,
     registerTraveller,
     loginSender,
     loginTraveller,
+    sendBarang,
 };
 
 // Functions

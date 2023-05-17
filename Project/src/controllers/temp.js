@@ -2,7 +2,6 @@ const { default: axios } = require("axios");
 const express = require("express");
 const Joi = require("joi");
 
-const Temp = require("../models/temp");
 const Kota = require("../models/Kota");
 
 const tempQuery = async (req, res) => {
@@ -15,12 +14,14 @@ const tempQuery = async (req, res) => {
                 },
             }
         );
+        let index = 1;
         for (let i = 0; i < result.data.rajaongkir.results.length; i++) {
             const element = result.data.rajaongkir.results[i];
-            await Kota.create({
-                id: element.city_id,
-                nama: element.city_name,
-            });
+            if (element.type == "Kota")
+                await Kota.create({
+                    id: index++,
+                    nama: element.city_name,
+                });
         }
         return res.status(201).json({
             msg: result.data.rajaongkir.results,
