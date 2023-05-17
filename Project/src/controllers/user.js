@@ -236,12 +236,11 @@ const sendBarang = async (req, res) => {
     });
     console.log(kotaAsal);
     console.log(kotaTujuan);
-    // return res.status(200).json({ message: "test" });
+    return res.status(200).json({ message: "test" });
     // const newBarang = await Barang.create({
     //     nama: nama_barang,
     //     berat: berat_barang,
-    //     id,
-    //     _kota_keberangkatan: kotaAsal.id,
+    //     id_kota_keberangkatan: kotaAsal.id,
     //     id_kota_tujuan: kotaTujuan.id,
     // });
 };
