@@ -2,8 +2,6 @@ const axios = require("axios");
 const express = require("express");
 const Joi = require("joi");
 
-const Temp = require("../models/temp");
-
 const testing = async (req, res) => {
     const params = {
         access_key: "f078f1a3e7b655b235383bee99b191a0",

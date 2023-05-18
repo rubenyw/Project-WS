@@ -23,7 +23,7 @@ const { tempQuery } = require("../controllers/temp");
 router.get("/bug", tempQuery);
 
 // testing API, nanti Delete
-const { testing } = require("../controllers/test");
+const { testing } = require("../controllers/temp_testapi.js");
 router.post("/test", testing);
 
 module.exports = router;
