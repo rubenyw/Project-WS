@@ -88,6 +88,8 @@ const requestEditBarang = async (req, res) => {
             msg: error.toString(),
         });
     }
+
+    const brng = await Barang.findAll();
 };
 
 module.exports = {
