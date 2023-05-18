@@ -25,6 +25,8 @@ const testing = async (req, res) => {
                         arrivalAirport: x["arrival"]["airport"],
                         arrivalIATA: x["arrival"]["iata"],
                         flightStatus: x["flight_status"],
+                        estimatedArrival: x["arrival"]["estimated"],
+                        actualDeparture: x["departure"]["actual"],
                     };
                     flightsInAir.push(flightInfo); // Add flight information to the array
                 }
