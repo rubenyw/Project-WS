@@ -1,13 +1,9 @@
-const Joi = require("joi");
+const { topup } = require("../validation/saldo");
 
 const topup_saldo = async (req, res) => {};
 const topup_kuota = async (req, res) => {
-    const schema = Joi.object({
-        password: Joi.string().required(),
-        jumlah: Joi.number().required().min(1000),
-    });
     try {
-        await schema.validateAsync(req.body);
+        await topup.validateAsync(req.body);
     } catch (error) {
         return res.status(404).json({
             status: 404,
