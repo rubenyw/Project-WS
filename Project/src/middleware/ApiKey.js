@@ -19,7 +19,7 @@ const checkApiKey = async (req, res, next) => {
             msg: "Invalid API Key",
         });
     }
-
+    console.log(user);
     req.pengguna = user;
     next();
 };

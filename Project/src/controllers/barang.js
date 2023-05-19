@@ -1,38 +1,11 @@
 const Joi = require("joi");
-
-const Kota = require("../models/Kota");
 const Barang = require("../models/Barang");
 
-const checkAsalKota = async (asal_barang) => {
-    const result = await Kota.findOne({
-        where: {
-            nama: asal_barang.toUpperCase(),
-        },
-    });
+const { kirim, edit } = require("../validation/barang");
 
-    if (!result) throw new Error("Asal Kota tidak ditemukan");
-};
-
-const checkTujuanKota = async (tujuan_barang) => {
-    const result = await Kota.findOne({
-        where: {
-            nama: tujuan_barang.toUpperCase(),
-        },
-    });
-    console.log(result);
-    if (!result) throw new Error("Tujuan Kota tidak ditemukan");
-};
-
-const requestKirimBarang = async (req, res) => {
-    const schema = Joi.object({
-        nama_barang: Joi.string().required(),
-        berat_barang: Joi.number().required(),
-        asal_barang: Joi.string().required().external(checkAsalKota),
-        tujuan_barang: Joi.string().required().external(checkTujuanKota),
-    });
-
+const kirim_barang = async (req, res) => {
     try {
-        await schema.validateAsync(req.body);
+        await kirim.validateAsync(req.body);
     } catch (error) {
         return res.status(404).json({
             status: 404,
@@ -47,7 +20,7 @@ const requestKirimBarang = async (req, res) => {
     });
 };
 
-const requestEditBarang = async (req, res) => {
+const edit_barang = async (req, res) => {
     let id_kirimBarang = req.query.id_kirimBarang;
     const barang = await Barang.findByPk(id_kirimBarang);
     if (!barang) {
@@ -57,15 +30,8 @@ const requestEditBarang = async (req, res) => {
         });
     }
 
-    const schema = Joi.object({
-        nama_barang: Joi.string().required(),
-        berat_barang: Joi.number().required(),
-        asal_barang: Joi.string().required(),
-        tujuan_barang: Joi.string().required(),
-    });
-
     try {
-        await schema.validateAsync(req.body);
+        await edit.validateAsync(req.body);
     } catch (error) {
         return res.status(404).json({
             status: 404,
@@ -76,7 +42,18 @@ const requestEditBarang = async (req, res) => {
     const brng = await Barang.findAll();
 };
 
+const lacak_barang = async (req, res) => {};
+const batalkan_barang = async (req, res) => {};
+const lihat_request = async (req, res) => {};
+const terima_request = async (req, res) => {};
+const complete_request = async (req, res) => {};
+
 module.exports = {
-    requestKirimBarang,
-    requestEditBarang,
+    kirim_barang,
+    edit_barang,
+    lacak_barang,
+    batalkan_barang,
+    lihat_request,
+    terima_request,
+    complete_request,
 };
