@@ -39,6 +39,10 @@ const edit_barang = async (req, res) => {
     }
 
     const brng = await Barang.findAll();
+    return res.status(202).json({
+        status: 202,
+        msg: "SUCCEED",
+    });
 };
 
 const lacak_barang = async (req, res) => {};

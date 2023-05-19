@@ -1,5 +1,3 @@
-const Joi = require("joi");
-
 const cek_harga_durasi = async (req, res) => {};
 const set_perjalanan = async (req, res) => {};
 const lihat_riwayat = async (req, res) => {};
