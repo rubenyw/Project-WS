@@ -1,10 +1,7 @@
-const { default: axios } = require("axios");
-const express = require("express");
 const Joi = require("joi");
 
 const Kota = require("../models/Kota");
 const Barang = require("../models/Barang");
-const { Op } = require("sequelize");
 
 const checkAsalKota = async (asal_barang) => {
     const result = await Kota.findOne({
