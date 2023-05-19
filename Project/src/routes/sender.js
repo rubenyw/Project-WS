@@ -10,9 +10,9 @@ const { kirim_barang, edit_barang } = require("../controllers/barang"); // Varia
 
 const {
     topup_kuota,
-    setRequestPerjalanan,
-    lihatRequestPerjalanan,
-    rating,
+    topup_saldo,
+    cek_saldo,
+    tarik_saldo,
 } = require("../controllers/saldo"); // Variabel function untuk request kuota dan perjalan
 
 // Router untuk Register Login Sender
