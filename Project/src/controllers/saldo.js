@@ -1,5 +1,6 @@
 const { kuota, saldo } = require("../validation/saldo");
 
+// STEVEN PUNYA
 const topup_saldo = async (req, res) => {
     try {
         await saldo.validateAsync(req.body);
@@ -11,6 +12,7 @@ const topup_saldo = async (req, res) => {
     }
 };
 
+// RUBEN PUNYA
 const topup_kuota = async (req, res) => {
     try {
         await kuota.validateAsync(req.body);
@@ -40,7 +42,11 @@ const topup_kuota = async (req, res) => {
         },
     });
 };
+
+// RD PUNYA
 const cek_saldo = async (req, res) => {};
+
+// SIMON PUNYA
 const tarik_saldo = async (req, res) => {};
 
 module.exports = {

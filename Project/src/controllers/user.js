@@ -3,6 +3,7 @@ const Rating = require("../models/Rating");
 
 const { registerSchema, loginSchema } = require("../validation/user");
 
+// STEVEN PUNYA
 const registerSender = async (req, res) => {
     try {
         const { error, value } = registerSchema.validate(req.body);
@@ -48,6 +49,8 @@ const registerSender = async (req, res) => {
             .json({ error: "An error occurred while creating the user." });
     }
 };
+
+// STEVEN PUNYA
 const loginSender = async (req, res) => {
     try {
         const { error, value } = loginSchema.validate(req.body);
@@ -93,6 +96,8 @@ const loginSender = async (req, res) => {
             .json({ error: "An error occurred while processing the login." });
     }
 };
+
+// STEVEN PUNYA
 const registerTraveller = async (req, res) => {
     try {
         const { error, value } = registerSchema.validate(req.body);
@@ -138,6 +143,8 @@ const registerTraveller = async (req, res) => {
             .json({ error: "An error occurred while creating the user." });
     }
 };
+
+// STEVEN PUNYA
 const loginTraveller = async (req, res) => {
     try {
         const { error, value } = loginSchema.validate(req.body);
