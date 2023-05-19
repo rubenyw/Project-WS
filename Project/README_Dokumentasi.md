@@ -13,9 +13,42 @@
     });
     ```
 
-## Apa sih dokumentasi itu?
+## Pembagian Controller
 
-    -   Bila kalian lihat seperti jikan.moe, atau rajaongkir, mereka ketika menyediakan endpoint, maka mereka juga membuatkan dokumentasi tertulis mengenai bagaimana cara pakainya, methodnya apa, responsenya apa dsb
+```json
+"barang.js" : {
+	"sender/request/kirim_barang"
+	"sender/request/edit_barang"
+	"sender/request/lacak_barang"
+	"sender/request/batalkan_barang"
+	"sender/request/rating"
+	"traveller/request/lihat_request"
+	"traveller/request/terima_request"
+	"traveller/request/complete_request"
+}
+
+"perjalanan.js" : {
+	"sender/request/cek_harga_durasi"
+	"sender/request/lihat_riwayat"
+	"traveller/request/set_perjalanan"
+	"traveller/request/lihat_riwayat"
+	"traveller/complete_trip"
+}
+
+"saldo.js" : {
+	"sender/request/topup_saldo"
+	"sender/request/topup_kuota"
+	"traveller/request/cekSaldo"
+	"traveller/request/tarikSaldo"
+}
+
+"user.js" : {
+	"register/sender"
+	"register/travel"
+	"login/sender"
+	"login/traveller"
+}
+```
 
 ## Cara membuatnya gimana?
 
