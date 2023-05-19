@@ -1,3 +1,23 @@
+/*
+SQLyog Community v13.1.9 (64 bit)
+MySQL - 10.4.24-MariaDB : Database - project_ws
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`project_ws` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `project_ws`;
+
+/*Table structure for table `barang` */
+
 DROP TABLE IF EXISTS `barang`;
 
 CREATE TABLE `barang` (
@@ -184,9 +204,17 @@ CREATE TABLE `user` (
   `role` varchar(255) NOT NULL,
   `saldo` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `user` */
 
 insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hit`,`role`,`saldo`) values 
-(1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',0,'Sender',0);
+(1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',9310,'Sender',0),
+(2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
+(3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
+(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',0);
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
