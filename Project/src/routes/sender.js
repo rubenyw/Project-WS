@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 // Middleware Init
-const { checkApiKey } = require("../middleware/request"); // MIDDLEWARE CHECK APIKEY
-const { checkRoles } = require("../middleware/request"); // MIDDLEWARE CHECK Roles
-
+const { checkApiKey } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK APIKEY
+const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK Roles
 // SENDER
 const { registerSender, loginSender } = require("../controllers/user"); // Variabel function untuk Akun
 const {
