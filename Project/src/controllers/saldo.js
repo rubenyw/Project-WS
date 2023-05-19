@@ -1,8 +1,8 @@
-const { topup } = require("../validation/saldo");
+const { kuota, saldo } = require("../validation/saldo");
 
 const topup_saldo = async (req, res) => {
     try {
-        await topup.validateAsync(req.body);
+        await saldo.validateAsync(req.body);
     } catch (error) {
         return res.status(404).json({
             status: 404,
@@ -13,7 +13,7 @@ const topup_saldo = async (req, res) => {
 
 const topup_kuota = async (req, res) => {
     try {
-        await topup.validateAsync(req.body);
+        await kuota.validateAsync(req.body);
     } catch (error) {
         return res.status(404).json({
             status: 404,

@@ -12,4 +12,7 @@ const { registerTraveller, loginTraveller } = require("../controllers/user");
 router.post("/register/traveller", registerTraveller);
 router.post("/login/traveller", loginTraveller);
 
+// Middleware
+router.use("/traveller/request", [checkApiKey, checkRoles("Traveller")]);
+
 module.exports = router;
