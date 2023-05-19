@@ -220,6 +220,19 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "Top Up API HIT",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
