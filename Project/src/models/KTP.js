@@ -5,13 +5,9 @@ const User = require("./User");
 class KTP extends Model {}
 KTP.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
         id_user: {
             type: DataTypes.INTEGER,
+            primaryKey: true,
             allowNull: false,
             references: {
                 model: User,
