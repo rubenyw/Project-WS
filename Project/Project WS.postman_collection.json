@@ -105,15 +105,27 @@
 				},
 				{
 					"name": "Login Sender",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": []
 						},
 						"url": {
-							"raw": ""
+							"raw": "{{host}}/api/v1/traveller/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"login"
+							]
 						}
 					},
 					"response": []
@@ -127,7 +139,44 @@
 					"name": "request kirim barang",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nama_barang",
+									"value": "ha",
+									"type": "default"
+								},
+								{
+									"key": "berat_barang",
+									"value": "12",
+									"type": "default"
+								},
+								{
+									"key": "asal_barang",
+									"value": "Surabaya",
+									"type": "default"
+								},
+								{
+									"key": "tujuan_barang",
+									"value": "batu",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/sender/requestKirimBarang",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sender",
+								"requestKirimBarang"
+							]
+						}
 					},
 					"response": []
 				},
@@ -135,7 +184,25 @@
 					"name": "edit kirim barang",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/sender/requestEditBarang?id_barang",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sender",
+								"requestEditBarang"
+							],
+							"query": [
+								{
+									"key": "id_barang",
+									"value": null
+								}
+							]
+						}
 					},
 					"response": []
 				}
