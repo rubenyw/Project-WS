@@ -1,5 +1,3 @@
-const { default: axios } = require("axios");
-const express = require("express");
 const Joi = require("joi");
 
 const topup_apihit = async (req, res) => {
