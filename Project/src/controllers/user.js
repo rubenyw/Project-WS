@@ -1,8 +1,7 @@
+const Joi = require("joi");
+
 const User = require("../models/User");
 const Rating = require("../models/Rating");
-const Barang = require("../models/Barang");
-const Kota = require("../models/Kota");
-const Joi = require("joi");
 
 const loginSchema = Joi.object({
     username: Joi.string().alphanum().min(3).max(30).required(),

@@ -1,6 +1,4 @@
 const axios = require("axios");
-const express = require("express");
-const Joi = require("joi");
 
 const testing = async (req, res) => {
     const params = {
