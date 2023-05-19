@@ -39,15 +39,15 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/register",
+							"raw": "{{HOST}}/api/v1/register/sender",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"sender",
-								"register"
+								"register",
+								"sender"
 							]
 						}
 					},

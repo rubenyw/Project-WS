@@ -11,10 +11,10 @@ const {
 } = require("../controllers/user");
 
 // Router untuk Akun
-router.post("/sender/register", registerSender);
-router.post("/traveller/register", registerTraveller);
-router.post("/sender/login", loginSender);
-router.post("/traveller/login", loginTraveller);
+router.post("/register/sender", registerSender);
+router.post("/register/traveller", registerTraveller);
+router.post("/login/sender", loginSender);
+router.post("/login/traveller", loginTraveller);
 
 // Variabel function untuk barang
 const {
@@ -25,6 +25,20 @@ const {
 // Router untuk barang
 router.post("/sender/requestKirimBarang", requestKirimBarang);
 router.put("/sender/requestEditBarang", requestEditBarang);
+
+// Variabel function untuk request
+const {
+    topUpRequest,
+    setRequestPerjalanan,
+    lihatRequestPerjalanan,
+    rating,
+} = require("../controllers/request");
+
+// Variabel middleware untuk request
+const { checkApiKey } = require("../middleware/request");
+
+// Router untuk request
+router.post("/sender/topupRequest");
 
 // Router untuk debuggin sementara
 const { tempQuery } = require("../controllers/temp_createdatabase");
