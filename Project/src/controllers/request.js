@@ -7,4 +7,9 @@ const setRequestPerjalanan = async (req, res) => {};
 const lihatRequestPerjalanan = async (req, res) => {};
 const rating = async (req, res) => {};
 
-module.exports = { topUpRequest, rating };
+module.exports = {
+    topUpRequest,
+    setRequestPerjalanan,
+    lihatRequestPerjalanan,
+    rating,
+};
