@@ -1,4 +1,3 @@
-const Joi = require("joi");
 const Barang = require("../models/Barang");
 
 const { kirim, edit } = require("../validation/barang");
