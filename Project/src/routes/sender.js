@@ -6,14 +6,17 @@ const { checkApiKey } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK API
 const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK Roles
 // SENDER
 const { registerSender, loginSender } = require("../controllers/user"); // Variabel function untuk Akun
-const { kirim_barang, edit_barang } = require("../controllers/barang"); // Variabel function untuk request barang
+const {
+    requestKirimBarang,
+    requestEditBarang,
+} = require("../controllers/barang"); // Variabel function untuk request barang
 
 const {
-    topup_kuota,
+    topup_apihit,
     setRequestPerjalanan,
     lihatRequestPerjalanan,
     rating,
-} = require("../controllers/saldo"); // Variabel function untuk request kuota dan perjalan
+} = require("../controllers/request"); // Variabel function untuk request kuota dan perjalan
 
 // Router untuk Register Login Sender
 router.post("/register/sender", registerSender);
@@ -23,8 +26,8 @@ router.post("/login/sender", loginSender);
 router.use("/sender/request", [checkApiKey, checkRoles("Sender")]);
 
 // Router untuk request
-router.post("/sender/request/kirim_barang", kirim_barang);
-router.put("/sender/request/edit_barang", edit_barang);
-router.post("/sender/request/topup", topup_kuota);
+router.post("/sender/request/kirim_barang", requestKirimBarang);
+router.put("/sender/request/edit_barang", requestEditBarang);
+router.post("/sender/request/topup", topup_apihit);
 
 module.exports = router;

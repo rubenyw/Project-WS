@@ -1,6 +1,4 @@
 const { default: axios } = require("axios");
-const express = require("express");
-const Joi = require("joi");
 
 const Kota = require("../models/Kota");
 
