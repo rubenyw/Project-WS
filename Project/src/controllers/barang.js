@@ -63,6 +63,8 @@ const terima_request = async (req, res) => {
             msg: validationErrors,
         });
     }
+
+    let request = await Barang.findOne();
 };
 
 // SIMON PUNYA
