@@ -36,4 +36,13 @@ const checkRoles = (roles) => {
     };
 };
 
+const checkKuota = async (req, res, next) => {
+    if (req.pengguna.dataValues.api_hit == 0) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Maaf kuota anda habis",
+        });
+    }
+};
+
 module.exports = { checkApiKey, checkRoles };

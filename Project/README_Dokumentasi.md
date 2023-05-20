@@ -38,8 +38,8 @@
 "saldo.js" : {
 	"sender/request/topup_saldo"
 	"sender/request/topup_kuota"
-	"traveller/request/cekSaldo"
-	"traveller/request/tarikSaldo"
+	"traveller/request/cek_saldo"
+	"traveller/request/tarik_saldo"
 }
 
 "user.js" : {
