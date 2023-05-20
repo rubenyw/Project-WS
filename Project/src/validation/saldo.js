@@ -4,7 +4,7 @@ const kuota = Joi.object({
     password: Joi.string().required().label("User Password").messages({
         "any.required": "{{label}} perlu diisi",
     }),
-    jumlah: Joi.number().required().min(1000),
+    jumlah: Joi.number().required().min(1),
 });
 
 const saldo = Joi.object({
