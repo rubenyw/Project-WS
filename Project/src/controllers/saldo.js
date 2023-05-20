@@ -29,8 +29,17 @@ const topup_kuota = async (req, res) => {
             msg: "Password Salah",
         });
     }
+
+    const harga = Number(req.body.jumlah) * 1000;
+    if (Number(pengguna.dataValues.saldo) < Number(harga)) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Saldo tidak cukup, tolong lakukan isi ulang terlebih dahulu",
+        });
+    }
     await pengguna.update({
         api_hit: Number(pengguna.dataValues.api_hit) + Number(req.body.jumlah),
+        saldo: Number(pengguna.dataValues.saldo) - Number(harga),
     });
 
     return res.status(201).json({

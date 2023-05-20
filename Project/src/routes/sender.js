@@ -25,6 +25,6 @@ router.use("/sender/request", [checkApiKey, checkRoles("Sender")]);
 // Router untuk request
 router.post("/sender/request/kirim_barang", kirim_barang);
 router.put("/sender/request/edit_barang", edit_barang);
-router.post("/sender/request/topup", topup_kuota);
+router.post("/sender/request/topup_kuota", topup_kuota);
 
 module.exports = router;
