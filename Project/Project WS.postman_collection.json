@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e4c6de57-f84d-4022-900c-27950abc19f8",
+		"_postman_id": "5838c1ed-ce9e-42fe-a8ed-0ac0a8c1c1f6",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -174,7 +174,7 @@
 			"name": "Barang",
 			"item": [
 				{
-					"name": "request kirim barang",
+					"name": "Request Kirim Barang",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -219,7 +219,7 @@
 					"response": []
 				},
 				{
-					"name": "edit kirim barang",
+					"name": "Request Edit Barang",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -242,10 +242,14 @@
 			]
 		},
 		{
-			"name": "Request",
+			"name": "Perjalanan",
+			"item": []
+		},
+		{
+			"name": "Saldo",
 			"item": [
 				{
-					"name": "Top Up Kuota Sender",
+					"name": "Topup Kuota Sender",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -271,7 +275,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/topup",
+							"raw": "{{HOST}}/api/v1/sender/request/topup_kuota",
 							"host": [
 								"{{HOST}}"
 							],
@@ -280,7 +284,7 @@
 								"v1",
 								"sender",
 								"request",
-								"topup"
+								"topup_kuota"
 							]
 						}
 					},
