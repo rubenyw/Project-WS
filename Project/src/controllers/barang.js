@@ -5,7 +5,7 @@ const { kirim, edit } = require("../validation/barang");
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
     try {
-        await kirim.validateAsync(req.body);
+        await kirim.validateAsync(req.body, { abortEarly: false });
     } catch (error) {
         return res.status(404).json({
             status: 404,
@@ -32,7 +32,7 @@ const edit_barang = async (req, res) => {
     }
 
     try {
-        await edit.validateAsync(req.body);
+        await edit.validateAsync(req.body, , { abortEarly: false });
     } catch (error) {
         return res.status(404).json({
             status: 404,
