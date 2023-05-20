@@ -74,15 +74,15 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/login",
+							"raw": "{{HOST}}/api/v1/login/sender",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"sender",
-								"login"
+								"login",
+								"sender"
 							]
 						}
 					},
@@ -95,36 +95,74 @@
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "rubenyw",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "rubenyasonwinarta@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "nomor_hp",
+									"value": "08111111111",
+									"type": "default"
+								}
+							]
 						},
 						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login Sender",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/traveller/login",
+							"raw": "{{host}}/api/v1/register/traveller",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"traveller",
-								"login"
+								"register",
+								"traveller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Sender",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "rubenyw",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/login/traveller",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"login",
+								"traveller"
 							]
 						}
 					},
@@ -183,10 +221,10 @@
 				{
 					"name": "edit kirim barang",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{host}}/api/v1/sender/requestEditBarang?id_barang",
+							"raw": "{{host}}/api/v1/sender/request/edit_barang",
 							"host": [
 								"{{host}}"
 							],
@@ -194,13 +232,55 @@
 								"api",
 								"v1",
 								"sender",
-								"requestEditBarang"
-							],
-							"query": [
+								"request",
+								"edit_barang"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "Top Up Kuota Sender",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "gSkyFoaX2X",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
 								{
-									"key": "id_barang",
-									"value": null
+									"key": "password",
+									"value": "12345678",
+									"type": "default"
+								},
+								{
+									"key": "jumlah",
+									"value": "1330",
+									"type": "default"
 								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/sender/request/topup",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sender",
+								"request",
+								"topup"
 							]
 						}
 					},
@@ -215,20 +295,18 @@
 					"name": "test query axios",
 					"request": {
 						"method": "GET",
-						"header": []
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Request",
-			"item": [
-				{
-					"name": "Top Up API HIT",
-					"request": {
-						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/bug",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bug"
+							]
+						}
 					},
 					"response": []
 				}
