@@ -18,11 +18,13 @@ const set_perjalanan = async (req, res) => {
     const berangkat = await Kota.findOne({
         where: { nama: req.body.kota_keberangkatan },
     });
+
     if (!berangkat) Errors.push("Kota Keberangkatan tidak terdaftar");
 
     const tujuan = await Kota.findOne({
         where: { nama: req.body.kota_tujuan },
     });
+
     if (!tujuan) Errors.push("Kota Tujuan tidak terdaftar");
 
     if (Errors.length > 0) {
