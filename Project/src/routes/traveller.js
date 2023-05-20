@@ -6,8 +6,8 @@ const { checkApiKey } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK API
 const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK ROLES
 
 // TRAVELLER
-// Variabel function untuk Akun
 const { registerTraveller, loginTraveller } = require("../controllers/user");
+
 // Router untuk Akun
 router.post("/register/traveller", registerTraveller);
 router.post("/login/traveller", loginTraveller);
