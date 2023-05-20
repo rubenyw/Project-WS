@@ -17,35 +17,52 @@
 
 ```json
 "barang.js" : {
-	"sender/request/kirim_barang"
-	"sender/request/edit_barang"
-	"sender/request/lacak_barang"
-	"sender/request/batalkan_barang"
-	"sender/request/rating"
-	"traveller/request/lihat_request"
-	"traveller/request/terima_request"
-	"traveller/request/complete_request"
+	"sender/request/pay/kirim_barang"
+
+	"sender/request/pay/edit_barang"
+
+	"sender/request/free/lacak_barang"
+
+	"sender/request/pay/batalkan_barang"
+
+	"sender/request/free/rating"
+
+	"traveller/request/free/lihat_request"
+
+	"traveller/request/free/terima_request"
+
+	"traveller/request/free/complete_request"
 }
 
 "perjalanan.js" : {
-	"sender/request/cek_harga_durasi"
-	"sender/request/lihat_riwayat"
-	"traveller/request/set_perjalanan"
-	"traveller/request/lihat_riwayat"
-	"traveller/complete_trip"
+	"sender/request/pay/cek_harga_durasi"
+
+	"sender/request/free/lihat_riwayat"
+
+	"traveller/request/pay/set_perjalanan"
+
+	"traveller/request/free/lihat_riwayat"
+
+	"traveller/free/complete_trip"
 }
 
 "saldo.js" : {
-	"sender/request/topup_saldo"
-	"sender/request/topup_kuota"
-	"traveller/request/cek_saldo"
-	"traveller/request/tarik_saldo"
+	"sender/request/free/topup_saldo"
+
+	"sender/request/free/topup_kuota"
+
+	"traveller/request/free/cek_saldo"
+
+	"traveller/request/free/tarik_saldo"
 }
 
 "user.js" : {
 	"register/sender"
+
 	"register/travel"
+
 	"login/sender"
+
 	"login/traveller"
 }
 ```

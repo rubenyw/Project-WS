@@ -43,6 +43,8 @@ const checkKuota = async (req, res, next) => {
             msg: "Maaf kuota anda habis",
         });
     }
+
+    next();
 };
 
-module.exports = { checkApiKey, checkRoles };
+module.exports = { checkApiKey, checkRoles, checkKuota };
