@@ -48,10 +48,24 @@ const edit = Joi.object({
         "any.required": "{{#label}} Perlu di Isi",
         "string.external": "{{#label}} tidak valid",
     }),
-    nama_barang: Joi.string().required(),
-    berat_barang: Joi.number().required(),
-    asal_barang: Joi.string().required(),
-    tujuan_barang: Joi.string().required(),
+    nama_barang: Joi.string()
+        .required()
+        .label("Nama Barang")
+        .messages({ "any.required": "{{#label}} Perlu di Isi" }),
+    berat_barang: Joi.number()
+        .required()
+        .label("Berat Barang")
+        .messages({ "any.required": "{{#label}} Perlu di Isi" }),
+    asal_barang: Joi.string()
+        .required()
+        .external(checkAsalKota)
+        .label("Asal Barang")
+        .messages({ "any.required": "{{#label}} Perlu di Isi" }),
+    tujuan_barang: Joi.string()
+        .required()
+        .external(checkTujuanKota)
+        .label("Tujuan Barang")
+        .messages({ "any.required": "{{#label}} Perlu di Isi" }),
 });
 
 const terima = Joi.object({
