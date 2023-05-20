@@ -24,15 +24,6 @@ const kirim_barang = async (req, res) => {
 
 // STEVEN PUNYA
 const edit_barang = async (req, res) => {
-    let id_kirimBarang = req.query.id_kirimBarang;
-    const barang = await Barang.findByPk(id_kirimBarang);
-    if (!barang) {
-        return res.status(404).json({
-            status: 404,
-            msg: "Kode Barang tidak valid!",
-        });
-    }
-
     try {
         const { error, value } = await edit.validateAsync(req.body, {
             abortEarly: false,

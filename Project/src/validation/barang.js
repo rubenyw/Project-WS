@@ -44,7 +44,10 @@ const kirim = Joi.object({
 });
 
 const edit = Joi.object({
-    id_barang: Joi.string().required(),
+    id_barang: Joi.string().required().label("ID Barang").messages({
+        "any.required": "{{#label}} Perlu di Isi",
+        "string.external": "{{#label}} tidak valid",
+    }),
     nama_barang: Joi.string().required(),
     berat_barang: Joi.number().required(),
     asal_barang: Joi.string().required(),
@@ -53,7 +56,7 @@ const edit = Joi.object({
 
 const terima = Joi.object({
     id_barang: Joi.number().required().label("ID Barang").messages({
-        "any.required": "Mohon ID Barang untuk diisi terlebih dahulu",
+        "any.required": "Mohon {{#label}} Barang untuk diisi terlebih dahulu",
         "number.base": "{{#label}} harus diisi dengan benar",
     }),
 });
