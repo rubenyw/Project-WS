@@ -1,15 +1,17 @@
 const Barang = require("../models/Barang");
 
-const { kirim, edit } = require("../validation/barang");
+const { kirim, edit, terima } = require("../validation/barang");
 
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
-    try {
-        await kirim.validateAsync(req.body, { abortEarly: false });
-    } catch (error) {
+    const { error, value } = kirim.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
         return res.status(404).json({
             status: 404,
-            msg: error.toString(),
+            msg: validationErrors,
         });
     }
 
@@ -31,12 +33,14 @@ const edit_barang = async (req, res) => {
         });
     }
 
-    try {
-        await edit.validateAsync(req.body, { abortEarly: false });
-    } catch (error) {
+    const { error, value } = edit.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
         return res.status(404).json({
             status: 404,
-            msg: error.toString(),
+            msg: validationErrors,
         });
     }
 
@@ -57,7 +61,18 @@ const batalkan_barang = async (req, res) => {};
 const lihat_request = async (req, res) => {};
 
 // RUBEN PUNYA
-const terima_request = async (req, res) => {};
+const terima_request = async (req, res) => {
+    const { error, value } = terima.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
+        return res.status(404).json({
+            status: 404,
+            msg: validationErrors,
+        });
+    }
+};
 
 // SIMON PUNYA
 const complete_request = async (req, res) => {};

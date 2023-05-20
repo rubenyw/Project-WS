@@ -29,7 +29,7 @@ const checkRoles = (roles) => {
         if (roles != req.pengguna.dataValues.role) {
             return res.status(400).json({
                 status: 400,
-                msg: "NOT Sender Roles",
+                msg: `NOT ${roles} roles`,
             });
         }
         next();

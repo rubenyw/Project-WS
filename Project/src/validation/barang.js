@@ -50,7 +50,15 @@ const edit = Joi.object({
     tujuan_barang: Joi.string().required(),
 });
 
+const terima = Joi.object({
+    id_barang: Joi.number().required().label("ID Barang").messages({
+        "any.required": "Mohon ID Barang untuk diisi terlebih dahulu",
+        "number.base": "{{#label}} harus diisi dengan benar",
+    }),
+});
+
 module.exports = {
     kirim,
     edit,
+    terima,
 };

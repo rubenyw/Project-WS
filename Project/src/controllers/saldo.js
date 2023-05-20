@@ -2,26 +2,32 @@ const { kuota, saldo } = require("../validation/saldo");
 
 // STEVEN PUNYA
 const topup_saldo = async (req, res) => {
-    try {
-        await saldo.validateAsync(req.body);
-    } catch (error) {
+    const { error, value } = saldo.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
         return res.status(404).json({
             status: 404,
-            msg: error.toString(),
+            msg: validationErrors,
         });
     }
 };
 
 // RUBEN PUNYA
 const topup_kuota = async (req, res) => {
-    try {
-        await kuota.validateAsync(req.body);
-    } catch (error) {
+    const { error, value } = kuota.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
+        console.log(error);
         return res.status(404).json({
             status: 404,
-            msg: error.toString(),
+            msg: validationErrors,
         });
     }
+
     const pengguna = req.pengguna;
     if (pengguna.dataValues.password != req.body.password) {
         return res.status(404).json({
