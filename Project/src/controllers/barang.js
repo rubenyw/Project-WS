@@ -32,7 +32,7 @@ const edit_barang = async (req, res) => {
     }
 
     try {
-        await edit.validateAsync(req.body, , { abortEarly: false });
+        await edit.validateAsync(req.body, { abortEarly: false });
     } catch (error) {
         return res.status(404).json({
             status: 404,

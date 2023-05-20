@@ -39,7 +39,7 @@ const kirim = Joi.object({
     tujuan_barang: Joi.string()
         .required()
         .external(checkTujuanKota)
-        .label("Tujaun Barang")
+        .label("Tujuan Barang")
         .messages({ "any.required": "{{#label}} Perlu di Isi" }),
 });
 
