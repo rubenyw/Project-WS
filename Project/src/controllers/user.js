@@ -6,10 +6,19 @@ const { registerSchema, loginSchema } = require("../validation/user");
 // STEVEN PUNYA
 const registerSender = async (req, res) => {
     try {
-        const { error, value } = registerSchema.validate(req.body);
+        const { error, value } = registerSchema.validate(req.body, {
+            abortEarly: false,
+        });
+
         if (error) {
-            res.status(400).json({ error: error.details[0].message });
-            return;
+            console.log(error);
+            const validationErrors = error.details.map(
+                (detail) => detail.message
+            );
+            return res.status(404).json({
+                status: 404,
+                msg: validationErrors,
+            });
         }
 
         const { username, password, email, nomor_hp } = value;
@@ -53,10 +62,19 @@ const registerSender = async (req, res) => {
 // STEVEN PUNYA
 const loginSender = async (req, res) => {
     try {
-        const { error, value } = loginSchema.validate(req.body);
+        const { error, value } = loginSchema.validate(req.body, {
+            abortEarly: false,
+        });
 
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            console.log(error);
+            const validationErrors = error.details.map(
+                (detail) => detail.message
+            );
+            return res.status(404).json({
+                status: 404,
+                msg: validationErrors,
+            });
         }
 
         const { username, password } = value;
@@ -100,10 +118,19 @@ const loginSender = async (req, res) => {
 // STEVEN PUNYA
 const registerTraveller = async (req, res) => {
     try {
-        const { error, value } = registerSchema.validate(req.body);
+        const { error, value } = registerSchema.validate(req.body, {
+            abortEarly: false,
+        });
 
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            console.log(error);
+            const validationErrors = error.details.map(
+                (detail) => detail.message
+            );
+            return res.status(404).json({
+                status: 404,
+                msg: validationErrors,
+            });
         }
 
         const { username, password, email, nomor_hp } = value;
@@ -147,10 +174,19 @@ const registerTraveller = async (req, res) => {
 // STEVEN PUNYA
 const loginTraveller = async (req, res) => {
     try {
-        const { error, value } = loginSchema.validate(req.body);
+        const { error, value } = loginSchema.validate(req.body, {
+            abortEarly: false,
+        });
 
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            console.log(error);
+            const validationErrors = error.details.map(
+                (detail) => detail.message
+            );
+            return res.status(404).json({
+                status: 404,
+                msg: validationErrors,
+            });
         }
 
         const { username, password } = value;

@@ -21,7 +21,6 @@ const topup_kuota = async (req, res) => {
     });
     if (error) {
         const validationErrors = error.details.map((detail) => detail.message);
-        console.log(error);
         return res.status(404).json({
             status: 404,
             msg: validationErrors,

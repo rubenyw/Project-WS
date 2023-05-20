@@ -12,9 +12,12 @@ const kuota = Joi.object({
 
 const saldo = Joi.object({
     password: Joi.string().required().label("User Password").messages({
-        "any.required": "{{label}} perlu diisi",
+        "any.required": "password perlu diisi",
     }),
-    jumlah: Joi.number().required().min(1000),
+    jumlah: Joi.number().required().min(1000).messages({
+        "any.required": "nominal perlu diisi",
+        "number.min": "nominal pembelian minimal 1000",
+    }),
 });
 
 module.exports = {

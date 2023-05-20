@@ -4,17 +4,18 @@ const { kirim, edit, terima } = require("../validation/barang");
 
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
-    const { error, value } = kirim.validate(req.body, {
-        abortEarly: false,
-    });
-    if (error) {
-        const validationErrors = error.details.map((detail) => detail.message);
-        return res.status(404).json({
-            status: 404,
-            msg: validationErrors,
-        });
-    }
-
+    // console.log("HAI");
+    // const { error, value } = await kirim.validateAsync(req.body, {
+    //     abortEarly: false,
+    // });
+    // console.log(error);
+    // if (error) {
+    //     const validationErrors = error.details.map((detail) => detail.message);
+    //     return res.status(404).json({
+    //         status: 404,
+    //         msg: validationErrors,
+    //     });
+    // }
     const body = req.body;
     return res.status(202).json({
         status: 202,
@@ -33,16 +34,16 @@ const edit_barang = async (req, res) => {
         });
     }
 
-    const { error, value } = edit.validate(req.body, {
-        abortEarly: false,
-    });
-    if (error) {
-        const validationErrors = error.details.map((detail) => detail.message);
-        return res.status(404).json({
-            status: 404,
-            msg: validationErrors,
-        });
-    }
+    // const { error, value } = edit.validate(req.body, {
+    //     abortEarly: false,
+    // });
+    // if (error) {
+    //     const validationErrors = error.details.map((detail) => detail.message);
+    //     return res.status(404).json({
+    //         status: 404,
+    //         msg: validationErrors,
+    //     });
+    // }
 
     const brng = await Barang.findAll();
     return res.status(202).json({
