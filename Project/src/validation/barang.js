@@ -1,7 +1,5 @@
 const Joi = require("joi");
 
-const Kota = require("../models/Kota");
-
 const kirim = Joi.object({
     nama_barang: Joi.string()
         .required()
