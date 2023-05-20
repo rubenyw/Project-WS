@@ -44,6 +44,7 @@ const kirim = Joi.object({
 });
 
 const edit = Joi.object({
+    id_barang: Joi.string().required(),
     nama_barang: Joi.string().required(),
     berat_barang: Joi.number().required(),
     asal_barang: Joi.string().required(),
