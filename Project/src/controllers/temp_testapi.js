@@ -41,27 +41,24 @@ const testing = async (req, res) => {
 
 const city = async (req, res) => {
     const params = {
-        access_key: "f078f1a3e7b655b235383bee99b191a0",
+        access_key: "2b6d91693bddf6340629b8ba008124a1   ",
         offset: 0,
     };
     cek = false;
-    do {
-        const result = await axios.get(
-            "http://api.aviationstack.com/v1/cities",
-            {
-                params,
-            }
-        );
-        let data;
-        result.data.data.forEach((item) => {
-            console.log(item.city_name);
-            if (item.city_name.toUpperCase() == req.body.city.toUpperCase()) {
-                data = item;
-                cek = true;
-            }
-        });
-        params.offset += 10;
-    } while (!cek);
+    const result = await axios.get("http://api.aviationstack.com/v1/cities", {
+        params,
+    });
+    let data;
+    result.data.data.forEach((item) => {
+        console.log(item.city_name);
+        if (item.city_name.toUpperCase() == req.body.city.toUpperCase()) {
+            data = item;
+            cek = true;
+        }
+    });
+    params.offset += 10;
+    // do {
+    // } while (!cek);
     console.log(data);
     return res.status(201).json({
         status: 201,
