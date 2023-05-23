@@ -16,13 +16,13 @@ const set_perjalanan = async (req, res) => {
     }
     let Errors = [];
     const berangkat = await Kota.findOne({
-        where: { nama: req.body.kota_keberangkatan },
+        where: { nama: req.body.kota_keberangkatan.toUpperCase() },
     });
 
     if (!berangkat) Errors.push("Kota Keberangkatan tidak terdaftar");
 
     const tujuan = await Kota.findOne({
-        where: { nama: req.body.kota_tujuan },
+        where: { nama: req.body.kota_tujuan.toUpperCase() },
     });
 
     if (!tujuan) Errors.push("Kota Tujuan tidak terdaftar");
