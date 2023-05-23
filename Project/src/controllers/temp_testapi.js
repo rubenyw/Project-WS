@@ -8,13 +8,13 @@ const testing = async (req, res) => {
 
     const flightsInAir = []; // Array to store flights in the air
 
-    await axios
+    const result = await axios
         .get("http://api.aviationstack.com/v1/flights", { params })
         .then((response) => {
             const apiResponse = response.data;
             console.log(apiResponse);
             for (const x of apiResponse.data) {
-                if (x["flight_status"] && x["live"] != null) {
+                if (x["flight_status"]) {
                     const flightInfo = {
                         airline: x["airline"]["name"],
                         flightCode: x["flight"]["iata"],
@@ -39,6 +39,9 @@ const testing = async (req, res) => {
     });
 };
 
+const test_airport = async (req, res) => {};
+
 module.exports = {
     testing,
+    test_airport,
 };
