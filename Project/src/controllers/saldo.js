@@ -52,7 +52,11 @@ const topup_kuota = async (req, res) => {
         body: {
             nama: pengguna.dataValues.username,
             api_hit: pengguna.dataValues.api_hit,
-            msg: "Berhasil menambah api_hit",
+            msg: {
+                message: `Berhasil menambah api_hit sebanyak ${req.body.jumlah} kuota`,
+                saldo: `Saldo anda sekarang ${pengguna.saldo}`,
+                kuota: `Kuota anda sekarang ${pengguna.api_hit}`,
+            },
         },
     });
 };
