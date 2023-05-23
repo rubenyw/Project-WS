@@ -49,8 +49,28 @@ const terima = Joi.object({
     }),
 });
 
+const rate = Joi.object({
+    id_barang: Joi.number().required().label("ID Barang").messages({
+        "any.required": "Mohon {{#label}} Barang untuk diisi terlebih dahulu",
+        "number.base": "{{#label}} harus diisi dengan benar",
+    }),
+    rating: Joi.number()
+        .required()
+        .min(1)
+        .max(10)
+        .label("Rating Barang")
+        .messages({
+            "any.required":
+                "Mohon {{#label}} Barang untuk diisi terlebih dahulu",
+            "number.base": "{{#label}} harus diisi dengan benar",
+            "number.min": "{{#label}} rating paling kecil hanya bisa diisi 1",
+            "number.max": "{{#label}} rating paling besar hanya bisa diisi 10",
+        }),
+});
+
 module.exports = {
     kirim,
     edit,
     terima,
+    rate,
 };

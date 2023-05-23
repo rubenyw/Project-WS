@@ -1,6 +1,6 @@
 const Barang = require("../models/Barang");
 
-const { kirim, edit, terima } = require("../validation/barang");
+const { kirim, edit, terima, rate } = require("../validation/barang");
 
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
@@ -71,7 +71,18 @@ const terima_request = async (req, res) => {
 const complete_request = async (req, res) => {};
 
 // RUBEN PUNYA
-const rating = async (req, res) => {};
+const rating = async (req, res) => {
+    const { error, value } = rate.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
+        return res.status(404).json({
+            status: 404,
+            msg: validationErrors,
+        });
+    }
+};
 
 module.exports = {
     kirim_barang,
