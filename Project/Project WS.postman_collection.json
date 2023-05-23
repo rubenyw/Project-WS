@@ -383,9 +383,16 @@
 			"item": [
 				{
 					"name": "test query axios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
 							"raw": "{{host}}/api/v1/bug",
 							"host": [
@@ -410,7 +417,7 @@
 							"urlencoded": [
 								{
 									"key": "flight_code",
-									"value": "JT948",
+									"value": "LH1101",
 									"type": "text"
 								}
 							]
@@ -424,6 +431,72 @@
 								"api",
 								"v1",
 								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "search",
+									"value": "surabaya",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/city",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "search",
+									"value": "Andorra",
+									"type": "default",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/country",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"country"
 							]
 						}
 					},

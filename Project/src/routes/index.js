@@ -7,7 +7,9 @@ const { tempQuery } = require("../controllers/temp_createdatabase");
 router.get("/bug", tempQuery);
 
 // testing API, nanti Delete
-const { testing } = require("../controllers/temp_testapi.js");
+const { testing, city, country } = require("../controllers/temp_testapi.js");
 router.post("/test", testing);
+router.post("/city", city);
+router.post("/country", country);
 
 module.exports = router;

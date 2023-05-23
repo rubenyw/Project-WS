@@ -39,9 +39,39 @@ const testing = async (req, res) => {
     });
 };
 
-const test_airport = async (req, res) => {};
+const city = async (req, res) => {
+    let params = req.body;
+    params.access_key = "f078f1a3e7b655b235383bee99b191a0";
+
+    const result = await axios.get("http://api.aviationstack.com/v1/cities", {
+        params,
+    });
+    console.log(result);
+    return res.status(201).json({
+        status: 201,
+        result: result.data,
+    });
+};
+
+const country = async (req, res) => {
+    let params = req.body;
+    params.access_key = "f078f1a3e7b655b235383bee99b191a0";
+
+    const result = await axios.get(
+        "http://api.aviationstack.com/v1/countries",
+        {
+            params,
+        }
+    );
+    console.log(result);
+    return res.status(201).json({
+        status: 201,
+        result: result.data,
+    });
+};
 
 module.exports = {
     testing,
-    test_airport,
+    city,
+    country,
 };
