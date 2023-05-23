@@ -15,7 +15,10 @@
 
 ## Cara pakai validation supaya bisa di stack
 
+-   ini File Controller
+
     ```js
+    const { rate } = require("../validation/barang");
     const { error, value } = rate.validate(req.body, {
         abortEarly: false,
     });
@@ -28,7 +31,34 @@
     }
     ```
 
-## Pembagian Controller
+-   ini File Validation
+
+    ```js
+    const rate = Joi.object({
+        id_barang: Joi.number().required().label("ID Barang").messages({
+            "any.required":
+                "Mohon {{#label}} Barang untuk diisi terlebih dahulu",
+            "number.base": "{{#label}} harus diisi dengan benar",
+        }),
+        rating: Joi.number()
+            .required()
+            .min(1)
+            .max(10)
+            .label("Rating Barang")
+            .messages({
+                "any.required":
+                    "Mohon {{#label}} Barang untuk diisi terlebih dahulu",
+                "number.base": "{{#label}} harus diisi dengan benar",
+                "number.min":
+                    "{{#label}} rating paling kecil hanya bisa diisi 1",
+                "number.max":
+                    "{{#label}} rating paling besar hanya bisa diisi 10",
+            }),
+    });
+    module.exports = { rate };
+    ```
+
+Pembagian Controller
 
 ```json
 "barang.js" : {
