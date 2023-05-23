@@ -1,36 +1,38 @@
 const { Model, DataTypes } = require("sequelize");
 const db = require("../databases/database");
 
-class Barang extends Model {}
+class Perjalanan extends Model {}
 
-Barang.init(
+Perjalanan.init(
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
         },
-        id_sender: {
+        id_traveller: {
             type: DataTypes.INTEGER,
         },
-        nama: {
+        id_kota_keberangkatan: {
+            type: DataTypes.INTEGER,
+        },
+        id_kota_tujuan: {
+            type: DataTypes.INTEGER,
+        },
+        durasi: {
+            type: DataTypes.INTEGER,
+        },
+        status: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        berat: {
-            type: DataTypes.INTEGER,
-        },
-        harga: {
-            type: DataTypes.INTEGER,
         },
     },
     {
         sequelize: db,
-        modelName: "Barang",
-        tableName: "Barang",
+        modelName: "Perjalanan",
+        tableName: "Perjalanan",
         timestamps: false,
     }
 );
 
 module.exports = {
-    Barang,
+    Perjalanan,
 };
