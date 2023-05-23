@@ -305,7 +305,30 @@
 		},
 		{
 			"name": "Perjalanan",
-			"item": []
+			"item": [
+				{
+					"name": "Request Set Perjalanan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/traveller/request/pay/set_perjalanan",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"request",
+								"pay",
+								"set_perjalanan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Saldo",
@@ -380,10 +403,28 @@
 				{
 					"name": "testing",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "flight_code",
+									"value": "JT948",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{HOST}}/api/v1/test",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"test"
+							]
 						}
 					},
 					"response": []

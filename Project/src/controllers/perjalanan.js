@@ -1,4 +1,5 @@
 const Kota = require("../models/Kota");
+const Perjalanan = require("../models/Perjalanan");
 const { set } = require("../validation/perjalanan");
 
 // RD PUNYA
@@ -33,6 +34,13 @@ const set_perjalanan = async (req, res) => {
             msg: Errors,
         });
     }
+    const pengguna = req.pengguna;
+    const status = "ONGOING";
+    const result = await Perjalanan.create({
+        id_traveller: pengguna.dataValues.id,
+        id_kota_keberangkatan: berangkat.dataValues.id,
+        id_kota_tujuan: tujuan.dataValues.id,
+    });
 };
 
 // RD PUNYA
