@@ -1,4 +1,5 @@
 const Barang = require("../models/Barang");
+const Rating = require("../models/Rating");
 
 const { kirim, edit, terima, rate } = require("../validation/barang");
 
@@ -82,6 +83,22 @@ const rating = async (req, res) => {
             msg: validationErrors,
         });
     }
+
+    const result = await Rating.findByPk(req.body.id_barang);
+    if (!result) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Barang not Found!",
+        });
+    }
+    result.update({
+        rate: req.body.rating,
+    });
+
+    return res.status(200).json({
+        status: 200,
+        msg: result,
+    });
 };
 
 module.exports = {
@@ -92,4 +109,5 @@ module.exports = {
     lihat_request,
     terima_request,
     complete_request,
+    rating,
 };

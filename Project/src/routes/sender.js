@@ -7,7 +7,7 @@ const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK Role
 const { checkKuota } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK Roles
 // SENDER
 const { registerSender, loginSender } = require("../controllers/user"); // Variabel function untuk Akun
-const { kirim_barang, edit_barang } = require("../controllers/barang"); // Variabel function untuk request barang
+const { kirim_barang, edit_barang, rating } = require("../controllers/barang"); // Variabel function untuk request barang
 const { topup_kuota, topup_saldo } = require("../controllers/saldo"); // Variabel function untuk request saldo
 
 // Router untuk Register Login Sender
@@ -22,5 +22,6 @@ router.use("/sender/request/pay", [checkKuota]);
 router.post("/sender/request/pay/kirim_barang", kirim_barang);
 router.put("/sender/request/pay/edit_barang", edit_barang);
 router.post("/sender/request/free/topup_kuota", topup_kuota);
+router.post("/sender/request/free/rating", rating);
 
 module.exports = router;
