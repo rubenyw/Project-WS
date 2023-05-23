@@ -242,8 +242,43 @@
 				{
 					"name": "Request Rating",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "gSkyFoaX2X",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_barang",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "rating",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/sender/request/free/rating",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sender",
+								"request",
+								"free",
+								"rating"
+							]
+						}
 					},
 					"response": []
 				}
@@ -277,13 +312,13 @@
 								},
 								{
 									"key": "jumlah",
-									"value": "1330",
+									"value": "8",
 									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/topup_kuota",
+							"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
 							"host": [
 								"{{HOST}}"
 							],
@@ -292,6 +327,7 @@
 								"v1",
 								"sender",
 								"request",
+								"free",
 								"topup_kuota"
 							]
 						}
