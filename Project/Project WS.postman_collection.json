@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5838c1ed-ce9e-42fe-a8ed-0ac0a8c1c1f6",
+		"_postman_id": "7a3d55b9-b15e-4843-b0ad-c9779ee3e2d2",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -238,6 +238,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Request Rating",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -318,7 +326,10 @@
 					"name": "testing",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
