@@ -8,6 +8,7 @@ Perjalanan.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         id_traveller: {
             type: DataTypes.INTEGER,
@@ -33,6 +34,4 @@ Perjalanan.init(
     }
 );
 
-module.exports = {
-    Perjalanan,
-};
+module.exports = Perjalanan;

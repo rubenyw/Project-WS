@@ -40,6 +40,13 @@ const set_perjalanan = async (req, res) => {
         id_traveller: pengguna.dataValues.id,
         id_kota_keberangkatan: berangkat.dataValues.id,
         id_kota_tujuan: tujuan.dataValues.id,
+        status,
+        durasi: 0,
+    });
+
+    return res.status(200).json({
+        status: 201,
+        result,
     });
 };
 
