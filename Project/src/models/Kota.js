@@ -8,9 +8,18 @@ Kota.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrementIdentity: true,
         },
         nama: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        id_rajaongkir: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+        },
+        id_flightapi: {
+            type: DataTypes.INTEGER(11),
             allowNull: false,
         },
     },
