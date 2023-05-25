@@ -65,7 +65,7 @@ const terima_request = async (req, res) => {
         });
     }
 
-    let request = await Barang.findOne();
+    let request = await Barang.findOne({ where: { id: req.body.id_barang } });
 };
 
 // SIMON PUNYA

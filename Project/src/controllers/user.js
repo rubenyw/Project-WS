@@ -47,13 +47,6 @@ const registerSender = async (req, res) => {
             role: newUser.role,
         },
     });
-    try {
-    } catch (error) {
-        console.error(error);
-        return res
-            .status(500)
-            .json({ error: "An error occurred while processing the login." });
-    }
 };
 
 // STEVEN PUNYA
@@ -101,13 +94,6 @@ const loginSender = async (req, res) => {
             role: user.role,
         },
     });
-    try {
-    } catch (error) {
-        console.error(error);
-        return res
-            .status(500)
-            .json({ error: "An error occurred while processing the login." });
-    }
 };
 
 // STEVEN PUNYA
@@ -155,13 +141,6 @@ const registerTraveller = async (req, res) => {
             role: newUser.role,
         },
     });
-    try {
-    } catch (error) {
-        console.error(error);
-        return res
-            .status(500)
-            .json({ error: "An error occurred while creating the user." });
-    }
 };
 
 // STEVEN PUNYA
@@ -220,13 +199,6 @@ const loginTraveller = async (req, res) => {
             average_rating: averageRating,
         },
     });
-    try {
-    } catch (error) {
-        console.error(error);
-        return res
-            .status(500)
-            .json({ error: "An error occurred while processing the login." });
-    }
 };
 
 module.exports = {

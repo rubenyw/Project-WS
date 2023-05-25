@@ -1,34 +1,25 @@
 const { Model, DataTypes } = require("sequelize");
 const db = require("../databases/database");
 
-class Barang extends Model {}
+class Temp extends Model {}
 
-Barang.init(
+Temp.init(
     {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
         },
-        id_sender: {
-            type: DataTypes.INTEGER,
-        },
         nama: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        berat: {
-            type: DataTypes.INTEGER,
-        },
-        harga: {
-            type: DataTypes.INTEGER,
-        },
     },
     {
         sequelize: db,
-        modelName: "Barang",
-        tableName: "Barang",
+        modelName: "Temp",
+        tableName: "Temp",
         timestamps: false,
     }
 );
 
-module.exports = Barang;
+module.exports = Temp;
