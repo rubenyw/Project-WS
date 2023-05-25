@@ -35,13 +35,18 @@ const set_perjalanan = async (req, res) => {
         });
     }
     const pengguna = req.pengguna;
+    const id_traveller = pengguna.dataValues.id;
+    const id_kota_keberangkatan = berangkat.dataValues.id;
+    const id_kota_tujuan = tujuan.dataValues.id;
     const status = "ONGOING";
+    const durasi = 0;
+
     const result = await Perjalanan.create({
-        id_traveller: pengguna.dataValues.id,
-        id_kota_keberangkatan: berangkat.dataValues.id,
-        id_kota_tujuan: tujuan.dataValues.id,
+        id_traveller,
+        id_kota_keberangkatan,
+        id_kota_tujuan,
         status,
-        durasi: 0,
+        durasi,
     });
 
     return res.status(200).json({
