@@ -41,45 +41,42 @@ const testing = async (req, res) => {
 
 const city = async (req, res) => {
     const params = {
-        access_key: "2b6d91693bddf6340629b8ba008124a1   ",
-        offset: 0,
+        access_key: "7639c0479301fe4cb3fff6fc87308683",
+        limit: 10000,
     };
     cek = false;
     const result = await axios.get("http://api.aviationstack.com/v1/cities", {
         params,
     });
-    let data;
+    let data = [];
     result.data.data.forEach((item) => {
-        console.log(item.city_name);
-        if (item.city_name.toUpperCase() == req.body.city.toUpperCase()) {
-            data = item;
-            cek = true;
-        }
+        if (item.country_iso2 == "ID") data.push(item);
     });
-    params.offset += 10;
-    // do {
-    // } while (!cek);
     console.log(data);
     return res.status(201).json({
         status: 201,
-        result: result.data,
+        data,
     });
 };
 
 const country = async (req, res) => {
-    let params = req.body;
-    params.access_key = "f078f1a3e7b655b235383bee99b191a0";
-
+    let params = {
+        access_key: "7639c0479301fe4cb3fff6fc87308683",
+        limit: 300,
+    };
     const result = await axios.get(
         "http://api.aviationstack.com/v1/countries",
         {
             params,
         }
     );
-    console.log(result);
+    let hasil = [];
+    result.data.data.forEach((element) => {
+        if (element.country_name == "Indonesia") hasil = element;
+    });
     return res.status(201).json({
         status: 201,
-        result: result.data,
+        hasil,
     });
 };
 
