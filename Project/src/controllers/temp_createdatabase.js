@@ -36,7 +36,6 @@ const insertAviation = async (req, res) => {
     const result = await axios.get("http://api.aviationstack.com/v1/cities", {
         params,
     });
-    console.log(result);
     let array = [];
     for (let i = 0; i < result.data.data.length; i++) {
         const element = result.data.data[i];
