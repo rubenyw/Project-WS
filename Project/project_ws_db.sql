@@ -1,216 +1,474 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 05:26 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+/*
+SQLyog Community v13.1.9 (64 bit)
+MySQL - 10.4.24-MariaDB : Database - project_ws
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`project_ws` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 
---
--- Database: `project_ws`
---
+USE `project_ws`;
 
--- --------------------------------------------------------
+/*Table structure for table `aviation` */
 
---
--- Table structure for table `barang`
---
+DROP TABLE IF EXISTS `aviation`;
+
+CREATE TABLE `aviation` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `aviation` */
+
+insert  into `aviation`(`id`,`nama`) values 
+(17,'APALAPSILI'),
+(45,'ATAMBUA'),
+(97,'AEK GODANG'),
+(121,'ANGGI'),
+(148,'AMAHAI'),
+(208,'ASTRAKSETRA'),
+(250,'MATARAM'),
+(257,'AMBON'),
+(345,'ALOR ISLAND'),
+(351,'ARSO'),
+(437,'ATAURO'),
+(497,'AYAWASI'),
+(591,'BANJARMASIN'),
+(596,'BANDUNG'),
+(616,'TANJUNG REDEP'),
+(707,'BIAK'),
+(729,'BOLAANG'),
+(733,'BENJINA'),
+(745,'BAJAWA'),
+(763,'BENGKULU'),
+(813,'BIMA'),
+(878,'BALIKPAPAN'),
+(956,'BATAM'),
+(958,'BANDA ACEH'),
+(971,'BATU LICIN'),
+(982,'BOKONDINI'),
+(994,'BAUBAU'),
+(1040,'BABO'),
+(1042,'BADE'),
+(1050,'BATOM'),
+(1055,'BONTANG'),
+(1074,'BUNYU'),
+(1139,'CIREBON'),
+(1441,'CEPU'),
+(1593,'CILACAP'),
+(1748,'JAMBI'),
+(1751,'JAYAPURA'),
+(1807,'DOBO'),
+(1832,'DENPASAR'),
+(1842,'DABRA'),
+(1867,'DATADAWAI'),
+(1885,'DUMAI'),
+(2023,'ELELIM'),
+(2048,'ENDE'),
+(2147,'EWER'),
+(2148,'ENAROTALI'),
+(2245,'FAK FAK'),
+(2299,'NUMFOOR'),
+(2397,'GAG ISLAND'),
+(2452,'GEBE'),
+(2549,'GALELA'),
+(2574,'GUNUNGSITOLI'),
+(2660,'GORONTALO'),
+(3115,'ILLAGA'),
+(3169,'INANWATAN'),
+(3245,'ILU'),
+(3379,'JAKARTA'),
+(3406,'YOGYAKARTA'),
+(3490,'KAU'),
+(3496,'KARUBAGA'),
+(3510,'KOTABARU'),
+(3512,'KAMBUAYA'),
+(3518,'KAMUR'),
+(3522,'KON'),
+(3541,'KENDARI'),
+(3558,'KEISAH'),
+(3565,'KEPI'),
+(3573,'KEBAR'),
+(3698,'KELUANG'),
+(3719,'KIMAM'),
+(3738,'KAIMANA'),
+(3759,'KOTABANGUN'),
+(3779,'KOKONAO'),
+(3807,'KERINCI'),
+(3861,'KETAPANG'),
+(3915,'KARIMUNJAWA'),
+(3975,'LABUHA'),
+(4000,'LABUAN BAJO'),
+(4013,'LONG BAWAN'),
+(4117,'LEREH'),
+(4132,'MULIA'),
+(4152,'LARANTUKA'),
+(4180,'KELILA'),
+(4243,'PRAYA'),
+(4269,'LONG APUNG'),
+(4314,'LHOKSUMAWE'),
+(4315,'LHOK SUKON'),
+(4357,'LANGGUR'),
+(4358,'LUWUK'),
+(4375,'LEWOLEBA'),
+(4401,'LUNYUK'),
+(4429,'MANGOLE'),
+(4492,'MANADO'),
+(4504,'MINDIPTANA'),
+(4528,'MEULABOH'),
+(4529,'MEDAN'),
+(4649,'MAMUJU'),
+(4653,'MANGUNJAYA'),
+(4669,'MERAUKE'),
+(4675,'MANOKWARI'),
+(4684,'MALANG'),
+(4726,'MELANGGUANE'),
+(4757,'MAUMERE'),
+(4777,'MUKO-MUKO'),
+(4857,'MASALEMBO'),
+(4904,'MUTING'),
+(4957,'MATAK'),
+(4973,'MASAMBA'),
+(5047,'BANAINA'),
+(5049,'NAHA'),
+(5054,'NAMLEA'),
+(5077,'NABIRE'),
+(5093,'BANDANAIRA'),
+(5171,'SINAK'),
+(5217,'NUNUKAN'),
+(5242,'NANGAPINOH'),
+(5257,'NAMROLE'),
+(5285,'BINTUNI'),
+(5294,'NATUNA RANAI'),
+(5360,'OBANO'),
+(5449,'OKSIBIL'),
+(5453,'OKABA'),
+(5504,'MOANAMANI'),
+(5580,'PITU'),
+(5692,'PALIBELO'),
+(5697,'PONDOK CABE'),
+(5723,'PADANG'),
+(5727,'PENDOPO'),
+(5778,'PANGKALPINANG'),
+(5849,'PANGKALANBUUN'),
+(5855,'PEKANBARU'),
+(5858,'PALANGKARAYA'),
+(5870,'PALEMBANG'),
+(5879,'PALU'),
+(5916,'PONTIANAK'),
+(5960,'PULAU PANJANG'),
+(5968,'PASIR PANGARAYAN'),
+(6018,'POSO'),
+(6027,'PUTUSSIBAU'),
+(6070,'POMALA'),
+(6102,'PURWOKERTO'),
+(6252,'RAHA'),
+(6303,'MERDEY'),
+(6351,'RENGAT'),
+(6391,'ROKOT'),
+(6392,'SIPORA'),
+(6493,'RANSIKI'),
+(6506,'RUTENG'),
+(6507,'ROTI'),
+(6518,'YURUF'),
+(6567,'SANGIR'),
+(6580,'SAWU'),
+(6590,'SABANG'),
+(6657,'SENGGEH'),
+(6662,'SUNGAI PAKNING'),
+(6709,'SANGGATA'),
+(6759,'SINGKEP'),
+(6765,'SIBISA'),
+(6859,'SAMPIT'),
+(6897,'SOLO CITY'),
+(6911,'SORONG'),
+(6948,'SINTANG'),
+(6954,'SANANA'),
+(6957,'SOROAKO'),
+(6972,'SEMARANG'),
+(6974,'SAMARINDA'),
+(7038,'SURABAYA'),
+(7051,'SUMENEP'),
+(7097,'SUMBAWA'),
+(7113,'SAUMLAKI'),
+(7159,'SENIPAH'),
+(7197,'TALIABU'),
+(7212,'TUMBANG SAMBA'),
+(7349,'TEMBAGAPURA'),
+(7363,'TANJUNG BALAI'),
+(7365,'TANJUNG WARUKIN'),
+(7371,'TANJUNG PANDAN'),
+(7372,'TANJUNG SELOR'),
+(7381,'BANDAR LAMPUNG'),
+(7408,'TOLITOLI'),
+(7426,'TAMBOLAKA'),
+(7430,'TANAHMERAH'),
+(7446,'TIOM'),
+(7449,'TANAH GROGOT'),
+(7457,'TANJUNG PINANG'),
+(7504,'TAPAKTUAN'),
+(7529,'TARAKAN'),
+(7564,'TANJUNG SANTAN'),
+(7565,'TASIKMALAYA'),
+(7571,'TERNATE'),
+(7581,'TANA TORAJA'),
+(7632,'TEMINABUAN'),
+(7673,'UBRUB'),
+(7706,'ZUGAPA'),
+(7774,'BUOL'),
+(7780,'UJUNG PANDANG'),
+(8044,'WARIS'),
+(8053,'WAHAI'),
+(8084,'WAGETHE'),
+(8095,'WAINGAPU'),
+(8156,'WAMENA'),
+(8209,'WASIOR'),
+(9115,'SENGGO'),
+(9217,'STEENKOOL'),
+(9291,'SERUI'),
+(9293,'SARMI');
+
+/*Table structure for table `barang` */
+
+DROP TABLE IF EXISTS `barang`;
 
 CREATE TABLE `barang` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_sender` int(11) NOT NULL,
+  `id_traveller` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `berat` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_kota_keberangkatan` int(11) NOT NULL,
+  `id_kota_tujuan` int(11) NOT NULL,
+  `durasi` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_sender` (`id_sender`),
+  KEY `id_traveller` (`id_traveller`),
+  KEY `id_kota_keberangkatan` (`id_kota_keberangkatan`),
+  KEY `id_kota_tujuan` (`id_kota_tujuan`),
+  CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_sender`) REFERENCES `user` (`id`),
+  CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`id_traveller`) REFERENCES `user` (`id`),
+  CONSTRAINT `barang_ibfk_3` FOREIGN KEY (`id_kota_keberangkatan`) REFERENCES `kota` (`id`),
+  CONSTRAINT `barang_ibfk_4` FOREIGN KEY (`id_kota_tujuan`) REFERENCES `kota` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+/*Data for the table `barang` */
 
---
--- Table structure for table `barangperjalanan`
---
+/*Table structure for table `kota` */
 
-CREATE TABLE `barangperjalanan` (
-  `id` int(11) NOT NULL,
-  `id_perjalanan` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kota`
---
+DROP TABLE IF EXISTS `kota`;
 
 CREATE TABLE `kota` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) NOT NULL,
+  `id_rajaongkir` int(11) DEFAULT NULL,
+  `id_flightapi` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=600 DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `kota`
---
+/*Data for the table `kota` */
 
-INSERT INTO `kota` (`id`, `nama`) VALUES
-(14, 'AMBON'),
-(19, 'BALIKPAPAN'),
-(20, 'BANDA ACEH'),
-(21, 'BANDAR LAMPUNG'),
-(23, 'BANDUNG'),
-(34, 'BANJAR'),
-(35, 'BANJARBARU'),
-(36, 'BANJARMASIN'),
-(48, 'BATAM'),
-(51, 'BATU'),
-(53, 'BAU-BAU'),
-(55, 'BEKASI'),
-(62, 'BENGKULU'),
-(69, 'BIMA'),
-(70, 'BINJAI'),
-(73, 'BITUNG'),
-(75, 'BLITAR'),
-(79, 'BOGOR'),
-(89, 'BONTANG'),
-(93, 'BUKITTINGGI'),
-(106, 'CILEGON'),
-(107, 'CIMAHI'),
-(109, 'CIREBON'),
-(114, 'DENPASAR'),
-(115, 'DEPOK'),
-(120, 'DUMAI'),
-(130, 'GORONTALO'),
-(137, 'GUNUNGSITOLI'),
-(151, 'JAKARTA BARAT'),
-(152, 'JAKARTA PUSAT'),
-(153, 'JAKARTA SELATAN'),
-(154, 'JAKARTA TIMUR'),
-(155, 'JAKARTA UTARA'),
-(156, 'JAMBI'),
-(158, 'JAYAPURA'),
-(179, 'KEDIRI'),
-(182, 'KENDARI'),
-(204, 'KOTAMOBAGU'),
-(213, 'KUPANG'),
-(230, 'LANGSA'),
-(235, 'LHOKSEUMAWE'),
-(242, 'LUBUK LINGGAU'),
-(248, 'MADIUN'),
-(250, 'MAGELANG'),
-(254, 'MAKASSAR'),
-(256, 'MALANG'),
-(267, 'MANADO'),
-(276, 'MATARAM'),
-(278, 'MEDAN'),
-(283, 'METRO'),
-(290, 'MOJOKERTO'),
-(318, 'PADANG'),
-(321, 'PADANG PANJANG'),
-(323, 'PADANG SIDEMPUAN'),
-(324, 'PAGAR ALAM'),
-(326, 'PALANGKA RAYA'),
-(327, 'PALEMBANG'),
-(328, 'PALOPO'),
-(329, 'PALU'),
-(334, 'PANGKAL PINANG'),
-(336, 'PAREPARE'),
-(337, 'PARIAMAN'),
-(343, 'PASURUAN'),
-(345, 'PAYAKUMBUH'),
-(349, 'PEKALONGAN'),
-(350, 'PEKANBARU'),
-(353, 'PEMATANG SIANTAR'),
-(365, 'PONTIANAK'),
-(367, 'PRABUMULIH'),
-(370, 'PROBOLINGGO'),
-(384, 'SABANG'),
-(386, 'SALATIGA'),
-(387, 'SAMARINDA'),
-(394, 'SAWAH LUNTO'),
-(399, 'SEMARANG'),
-(403, 'SERANG'),
-(407, 'SIBOLGA'),
-(415, 'SINGKAWANG'),
-(421, 'SOLOK'),
-(425, 'SORONG'),
-(429, 'SUBULUSSALAM'),
-(431, 'SUKABUMI'),
-(442, 'SUNGAIPENUH'),
-(444, 'SURABAYA'),
-(445, 'SURAKARTA (SOLO)'),
-(456, 'TANGERANG'),
-(457, 'TANGERANG SELATAN'),
-(459, 'TANJUNG BALAI'),
-(462, 'TANJUNG PINANG'),
-(467, 'TARAKAN'),
-(469, 'TASIKMALAYA'),
-(470, 'TEBING TINGGI'),
-(473, 'TEGAL'),
-(477, 'TERNATE'),
-(478, 'TIDORE KEPULAUAN'),
-(485, 'TOMOHON'),
-(488, 'TUAL'),
-(501, 'YOGYAKARTA');
+insert  into `kota`(`id`,`nama`,`id_rajaongkir`,`id_flightapi`) values 
+(1,'AMBON',14,257),
+(2,'BALIKPAPAN',19,878),
+(3,'BANDA ACEH',20,958),
+(4,'BANDAR LAMPUNG',21,7381),
+(5,'BANDUNG',23,596),
+(8,'BANJARMASIN',36,591),
+(9,'BATAM',48,956),
+(13,'BENGKULU',62,763),
+(14,'BIMA',69,813),
+(19,'BONTANG',89,1055),
+(23,'CIREBON',109,1139),
+(24,'DENPASAR',114,1832),
+(26,'DUMAI',120,1885),
+(27,'GORONTALO',130,2660),
+(28,'GUNUNGSITOLI',137,2574),
+(34,'JAMBI',156,1748),
+(35,'JAYAPURA',158,1751),
+(37,'KENDARI',182,3541),
+(46,'MALANG',256,4684),
+(47,'MANADO',267,4492),
+(48,'MATARAM',276,250),
+(49,'MEDAN',278,4529),
+(52,'PADANG',318,5723),
+(57,'PALEMBANG',327,5870),
+(59,'PALU',329,5879),
+(66,'PEKANBARU',350,5855),
+(68,'PONTIANAK',365,5916),
+(71,'SABANG',384,6590),
+(73,'SAMARINDA',387,6974),
+(75,'SEMARANG',399,6972),
+(80,'SORONG',425,6911),
+(84,'SURABAYA',444,7038),
+(88,'TANJUNG BALAI',459,7363),
+(89,'TANJUNG PINANG',462,7457),
+(90,'TARAKAN',467,7529),
+(91,'TASIKMALAYA',469,7565),
+(94,'TERNATE',477,7571),
+(98,'YOGYAKARTA',501,3406);
 
--- --------------------------------------------------------
+/*Table structure for table `ktp` */
 
---
--- Table structure for table `ktp`
---
+DROP TABLE IF EXISTS `ktp`;
 
 CREATE TABLE `ktp` (
   `id_user` int(11) NOT NULL,
   `foto_ktp` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `ktp_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+/*Data for the table `ktp` */
 
---
--- Table structure for table `perjalanan`
---
+/*Table structure for table `rajaongkir` */
 
-CREATE TABLE `perjalanan` (
+DROP TABLE IF EXISTS `rajaongkir`;
+
+CREATE TABLE `rajaongkir` (
   `id` int(11) NOT NULL,
-  `id_traveller` int(11) NOT NULL,
-  `id_kota_keberangkatan` int(11) NOT NULL,
-  `id_kota_tujuan` int(11) NOT NULL,
-  `durasi` int(11) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nama` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+/*Data for the table `rajaongkir` */
 
---
--- Table structure for table `rating`
---
+insert  into `rajaongkir`(`id`,`nama`) values 
+(14,'AMBON'),
+(19,'BALIKPAPAN'),
+(20,'BANDA ACEH'),
+(21,'BANDAR LAMPUNG'),
+(23,'BANDUNG'),
+(34,'BANJAR'),
+(35,'BANJARBARU'),
+(36,'BANJARMASIN'),
+(48,'BATAM'),
+(51,'BATU'),
+(53,'BAU-BAU'),
+(55,'BEKASI'),
+(62,'BENGKULU'),
+(69,'BIMA'),
+(70,'BINJAI'),
+(73,'BITUNG'),
+(75,'BLITAR'),
+(79,'BOGOR'),
+(89,'BONTANG'),
+(93,'BUKITTINGGI'),
+(106,'CILEGON'),
+(107,'CIMAHI'),
+(109,'CIREBON'),
+(114,'DENPASAR'),
+(115,'DEPOK'),
+(120,'DUMAI'),
+(130,'GORONTALO'),
+(137,'GUNUNGSITOLI'),
+(151,'JAKARTA BARAT'),
+(152,'JAKARTA PUSAT'),
+(153,'JAKARTA SELATAN'),
+(154,'JAKARTA TIMUR'),
+(155,'JAKARTA UTARA'),
+(156,'JAMBI'),
+(158,'JAYAPURA'),
+(179,'KEDIRI'),
+(182,'KENDARI'),
+(204,'KOTAMOBAGU'),
+(213,'KUPANG'),
+(230,'LANGSA'),
+(235,'LHOKSEUMAWE'),
+(242,'LUBUK LINGGAU'),
+(248,'MADIUN'),
+(250,'MAGELANG'),
+(254,'MAKASSAR'),
+(256,'MALANG'),
+(267,'MANADO'),
+(276,'MATARAM'),
+(278,'MEDAN'),
+(283,'METRO'),
+(290,'MOJOKERTO'),
+(318,'PADANG'),
+(321,'PADANG PANJANG'),
+(323,'PADANG SIDEMPUAN'),
+(324,'PAGAR ALAM'),
+(326,'PALANGKA RAYA'),
+(327,'PALEMBANG'),
+(328,'PALOPO'),
+(329,'PALU'),
+(334,'PANGKAL PINANG'),
+(336,'PAREPARE'),
+(337,'PARIAMAN'),
+(343,'PASURUAN'),
+(345,'PAYAKUMBUH'),
+(349,'PEKALONGAN'),
+(350,'PEKANBARU'),
+(353,'PEMATANG SIANTAR'),
+(365,'PONTIANAK'),
+(367,'PRABUMULIH'),
+(370,'PROBOLINGGO'),
+(384,'SABANG'),
+(386,'SALATIGA'),
+(387,'SAMARINDA'),
+(394,'SAWAH LUNTO'),
+(399,'SEMARANG'),
+(403,'SERANG'),
+(407,'SIBOLGA'),
+(415,'SINGKAWANG'),
+(421,'SOLOK'),
+(425,'SORONG'),
+(429,'SUBULUSSALAM'),
+(431,'SUKABUMI'),
+(442,'SUNGAIPENUH'),
+(444,'SURABAYA'),
+(445,'SURAKARTA (SOLO)'),
+(456,'TANGERANG'),
+(457,'TANGERANG SELATAN'),
+(459,'TANJUNG BALAI'),
+(462,'TANJUNG PINANG'),
+(467,'TARAKAN'),
+(469,'TASIKMALAYA'),
+(470,'TEBING TINGGI'),
+(473,'TEGAL'),
+(477,'TERNATE'),
+(478,'TIDORE KEPULAUAN'),
+(485,'TOMOHON'),
+(488,'TUAL'),
+(501,'YOGYAKARTA');
+
+/*Table structure for table `rating` */
+
+DROP TABLE IF EXISTS `rating`;
 
 CREATE TABLE `rating` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_sender` int(11) NOT NULL,
   `id_traveller` int(11) NOT NULL,
-  `rate` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `rate` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_sender` (`id_sender`),
+  KEY `id_traveller` (`id_traveller`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`id_sender`) REFERENCES `user` (`id`),
+  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`id_traveller`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
+/*Data for the table `rating` */
 
---
--- Table structure for table `user`
---
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -218,120 +476,19 @@ CREATE TABLE `user` (
   `api_key` varchar(255) NOT NULL,
   `api_hit` int(11) NOT NULL,
   `role` varchar(255) NOT NULL,
-  `saldo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `saldo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `user`
---
+/*Data for the table `user` */
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `no_hp`, `api_key`, `api_hit`, `role`, `saldo`) VALUES
-(1, 'test1', '12345678', 'test1@gmail.com', '0123456789', 'gSkyFoaX2X', 9310, 'Sender', 0),
-(2, 'test1', '12345678', 'test1@gmail.com', '0123456789', 'aw5w1QD044', 0, 'Sender', 0),
-(3, 'test1', '12345678', 'test1@gmail.com', '0123456789', 'o5yY2FOrt8', 0, 'Sender', 0),
-(4, 'rubenyw', '12345', 'rubenyasonwinarta@gmail.com', '08111111111', 'FlKZoqcmWL', 0, 'Traveller', 0);
+insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hit`,`role`,`saldo`) values 
+(1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',9310,'Sender',0),
+(2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
+(3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
+(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',0);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `barang`
---
-ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `barangperjalanan`
---
-ALTER TABLE `barangperjalanan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kota`
---
-ALTER TABLE `kota`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `ktp`
---
-ALTER TABLE `ktp`
-  ADD PRIMARY KEY (`id_user`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indexes for table `perjalanan`
---
-ALTER TABLE `perjalanan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `rating`
---
-ALTER TABLE `rating`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_sender` (`id_sender`),
-  ADD KEY `id_traveller` (`id_traveller`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `barang`
---
-ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `barangperjalanan`
---
-ALTER TABLE `barangperjalanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kota`
---
-ALTER TABLE `kota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=600;
-
---
--- AUTO_INCREMENT for table `rating`
---
-ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `ktp`
---
-ALTER TABLE `ktp`
-  ADD CONSTRAINT `ktp_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `rating`
---
-ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`id_sender`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`id_traveller`) REFERENCES `user` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

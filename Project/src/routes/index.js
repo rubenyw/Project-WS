@@ -4,13 +4,15 @@ const router = express.Router();
 
 // Router untuk debuggin sementara
 const {
-    tempQuery,
-    aviationQuery,
-    update,
+    insertRajaOngkir,
+    insertAviation,
+    insertKota,
 } = require("../controllers/temp_createdatabase");
-router.get("/bug", tempQuery);
-router.get("/create", aviationQuery);
-router.get("/update", update);
+router.get("/raja_ongkir", insertRajaOngkir);
+router.get("/aviation", insertAviation);
+router.get("/kota", insertKota);
+// router.get("/create", aviationQuery);
+// router.get("/update", update);
 
 // testing API, nanti Delete
 const { testing, city, country } = require("../controllers/temp_testapi.js");

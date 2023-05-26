@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7a3d55b9-b15e-4843-b0ad-c9779ee3e2d2",
+		"_postman_id": "7810fca5-0bb7-4299-bec1-ea17a91efdbc",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -382,7 +382,33 @@
 			"name": "Test Bug",
 			"item": [
 				{
-					"name": "test query axios",
+					"name": "insert raja ongkir",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/raja_ongkir",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"raja_ongkir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "insert aviation",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -408,9 +434,12 @@
 					"response": []
 				},
 				{
-					"name": "testing",
+					"name": "insert kota",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "urlencoded",
@@ -423,80 +452,14 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/test",
+							"raw": "{{host}}/api/v1/kota",
 							"host": [
-								"{{HOST}}"
+								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"test"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "test city",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "search",
-									"value": "surabaya",
-									"type": "default",
-									"disabled": true
-								},
-								{
-									"key": "limit",
-									"value": "1",
-									"type": "default",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{HOST}}/api/v1/city",
-							"host": [
-								"{{HOST}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"city"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "test country",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "search",
-									"value": "Andorra",
-									"type": "default",
-									"disabled": true
-								}
-							]
-						},
-						"url": {
-							"raw": "{{HOST}}/api/v1/country",
-							"host": [
-								"{{HOST}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"country"
+								"kota"
 							]
 						}
 					},
