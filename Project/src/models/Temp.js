@@ -9,7 +9,7 @@ Temp.init(
             type: DataTypes.INTEGER,
             primaryKey: true,
         },
-        nama: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },

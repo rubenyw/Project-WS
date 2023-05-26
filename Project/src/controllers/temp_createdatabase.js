@@ -1,6 +1,7 @@
 const { default: axios } = require("axios");
 
 const Kota = require("../models/Kota");
+const Temp = require("../models/Temp");
 
 // Untuk insert kota
 const tempQuery = async (req, res) => {
@@ -60,6 +61,55 @@ const tempQuery = async (req, res) => {
     }
 };
 
+const aviationQuery = async (req, res) => {
+    const params = {
+        access_key: "7639c0479301fe4cb3fff6fc87308683",
+        limit: 10000,
+    };
+
+    const result = await axios.get("http://api.aviationstack.com/v1/cities", {
+        params,
+    });
+
+    let array = [];
+    for (let i = 0; i < result.data.data.length; i++) {
+        const element = result.data.data[i];
+        if (element.country_iso2 == "ID") {
+            const temp = await Temp.create({
+                id: element.city_id,
+                name: element.city_name.toUpperCase(),
+            });
+            array.push(temp);
+        }
+    }
+
+    return res.status(200).json(array);
+};
+
+const update = async (req, res) => {
+    const kota = await Kota.findAll();
+    const temp = await Temp.findAll();
+
+    for (let i = 0; i < kota.length; i++) {
+        const item = kota[i];
+        for (let j = 0; j < temp.length; j++) {
+            const element = temp[j];
+            if (item.dataValues.nama == element.dataValues.name) {
+                console.log(true);
+                cek = await item.update({
+                    id_flightapi: element.dataValues.city_name,
+                });
+                console.log(cek);
+                break;
+            }
+        }
+    }
+
+    return res.status(200).json(kota);
+};
+
 module.exports = {
     tempQuery,
+    aviationQuery,
+    update,
 };
