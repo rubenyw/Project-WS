@@ -242,28 +242,29 @@ insert  into `aviation`(`id`,`nama`,`iata_code`) values
 DROP TABLE IF EXISTS `barang`;
 
 CREATE TABLE `barang` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_sender` int(11) NOT NULL,
-  `id_traveller` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `berat` int(11) NOT NULL,
-  `id_kota_keberangkatan` int(11) NOT NULL,
-  `id_kota_tujuan` int(11) NOT NULL,
-  `durasi` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_sender` (`id_sender`),
-  KEY `id_traveller` (`id_traveller`),
-  KEY `id_kota_keberangkatan` (`id_kota_keberangkatan`),
-  KEY `id_kota_tujuan` (`id_kota_tujuan`),
-  CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_sender`) REFERENCES `user` (`id`),
-  CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`id_traveller`) REFERENCES `user` (`id`),
-  CONSTRAINT `barang_ibfk_3` FOREIGN KEY (`id_kota_keberangkatan`) REFERENCES `kota` (`id`),
-  CONSTRAINT `barang_ibfk_4` FOREIGN KEY (`id_kota_tujuan`) REFERENCES `kota` (`id`)
+  `id` int(11) NOT NULL,
+  `id_sender` int(11) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `berat` int(11) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `barang` */
+
+/*Table structure for table `barangperjalanan` */
+
+DROP TABLE IF EXISTS `barangperjalanan`;
+
+CREATE TABLE `barangperjalanan` (
+  `id` int(11) NOT NULL,
+  `id_perjalanan` int(11) DEFAULT NULL,
+  `id_barang` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `barangperjalanan` */
 
 /*Table structure for table `kota` */
 
@@ -333,6 +334,22 @@ CREATE TABLE `ktp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `ktp` */
+
+/*Table structure for table `perjalanan` */
+
+DROP TABLE IF EXISTS `perjalanan`;
+
+CREATE TABLE `perjalanan` (
+  `id` int(11) NOT NULL,
+  `id_traveller` int(11) DEFAULT NULL,
+  `id_kota_keberangkatan` int(11) DEFAULT NULL,
+  `id_kota_tujuan` int(11) DEFAULT NULL,
+  `durasi` int(11) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `perjalanan` */
 
 /*Table structure for table `rajaongkir` */
 
