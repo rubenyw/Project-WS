@@ -1,6 +1,9 @@
+const { default: axios } = require("axios");
 const Kota = require("../models/Kota");
 const Perjalanan = require("../models/Perjalanan");
 const { set } = require("../validation/perjalanan");
+const Aviation = require("../models/Aviation");
+const Rajaongkir = require("../models/Rajaongkir");
 
 // RD PUNYA
 const cek_harga_durasi = async (req, res) => {};
@@ -34,12 +37,34 @@ const set_perjalanan = async (req, res) => {
             msg: Errors,
         });
     }
+
+    const arrival = await Aviation.findByPk(tujuan.dataValues.id_flightapi);
+    const departure = await Aviation.findByPk(
+        berangkat.dataValues.id_flightapi
+    );
+
+    const params = {
+        access_key: "7639c0479301fe4cb3fff6fc87308683",
+        limit: 10000,
+        arr_iata: arrival.dataValues.iata_code,
+        dep_iata: departure.dataValues.iata_code,
+    };
+
+    const temp = await axios.get("http://api.aviationstack.com/v1/flights", {
+        params,
+    });
+
+    if (temp.data.pagination.total == 0) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Belum ada penerbangan dengan rute ini",
+        });
+    }
     const pengguna = req.pengguna;
     const id_traveller = pengguna.dataValues.id;
     const id_kota_keberangkatan = berangkat.dataValues.id;
     const id_kota_tujuan = tujuan.dataValues.id;
     const status = "ONGOING";
-    const durasi = 0;
 
     const result = await Perjalanan.create({
         id_traveller,
@@ -51,7 +76,7 @@ const set_perjalanan = async (req, res) => {
 
     return res.status(200).json({
         status: 201,
-        result,
+        temp: temp.data,
     });
 };
 
