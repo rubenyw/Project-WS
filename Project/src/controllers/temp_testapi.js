@@ -40,9 +40,11 @@ const testing = async (req, res) => {
 };
 
 const city = async (req, res) => {
+    console.log("success");
     const params = {
         access_key: "7639c0479301fe4cb3fff6fc87308683",
         limit: 10000,
+        city_id: 1,
     };
     cek = false;
     const result = await axios.get("http://api.aviationstack.com/v1/cities", {

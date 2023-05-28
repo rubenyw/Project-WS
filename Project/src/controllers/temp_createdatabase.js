@@ -43,6 +43,7 @@ const insertAviation = async (req, res) => {
             const temp = await Aviation.create({
                 id: element.city_id,
                 nama: element.city_name.toUpperCase(),
+                iata_code: element.iata_code,
             });
             array.push(temp);
         }
@@ -71,7 +72,7 @@ const insertKota = async (req, res) => {
             }
         }
     }
-
+    console.log(rajaongkir.length + " " + array.length);
     return res.status(200).json(array);
 };
 

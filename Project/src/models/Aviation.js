@@ -13,6 +13,10 @@ Aviation.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        iata_code: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
     {
         sequelize: db,
