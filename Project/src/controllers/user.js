@@ -90,8 +90,6 @@ const loginSender = async (req, res) => {
         body: {
             username: user.username,
             api_key: user.api_key,
-            saldo: user.saldo,
-            role: user.role,
         },
     });
 };
@@ -194,8 +192,6 @@ const loginTraveller = async (req, res) => {
         body: {
             username: user.username,
             api_key: user.api_key,
-            saldo: user.saldo,
-            role: user.role,
             average_rating: averageRating,
         },
     });
