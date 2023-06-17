@@ -18,11 +18,9 @@ BarangPerjalanan.init(
     {
         sequelize: db,
         modelName: "BarangPerjalanan",
-        tableName: "BarangPerjalanan",
+        tableName: "barangperjalanan",
         timestamps: false,
     }
 );
 
-module.exports = {
-    BarangPerjalanan,
-};
+module.exports = BarangPerjalanan;
