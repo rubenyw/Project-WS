@@ -47,10 +47,12 @@ const edit_barang = async (req, res) => {
 };
 
 // STEVEN PUNYA
-const lacak_barang = async (req, res) => {};
+const lacak_barang = async (req, res) => {
+    
+};
 
 // RD PUNYA
-//sementara (blm login)
+//sementara 
 const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
     await Barang.destroy({
@@ -96,8 +98,20 @@ const terima_request = async (req, res) => {
     let request = await Barang.findOne({ where: { id: req.body.id_barang } });
 };
 
-// SIMON PUNYA
-const complete_request = async (req, res) => {};
+// RD PUNYA
+// cmn di database
+const complete_request = async (req, res) => {
+    const barang = req.body.id_barang;
+    let databarang = await Barang.findOne({
+        where: {
+            id: barang
+        }
+    });
+    databarang.update ({
+        status: "DONE"
+    })
+    return res.status(200).send({ message: `${barang} telah selesai dikirim` });
+};
 
 // RUBEN PUNYA
 const rating = async (req, res) => {

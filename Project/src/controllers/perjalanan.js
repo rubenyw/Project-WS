@@ -2,11 +2,16 @@ const { default: axios } = require("axios");
 const Kota = require("../models/Kota");
 const Perjalanan = require("../models/Perjalanan");
 const { set } = require("../validation/perjalanan");
+const Barang = require("../models/Barang");
+const Rating = require("../models/Rating");
+const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Aviation = require("../models/Aviation");
 const Rajaongkir = require("../models/Rajaongkir");
 
 // RD PUNYA
-const cek_harga_durasi = async (req, res) => {};
+const cek_harga_durasi = async (req, res) => {
+
+};
 
 // RUBEN PUNYA
 const set_perjalanan = async (req, res) => {
@@ -81,8 +86,15 @@ const set_perjalanan = async (req, res) => {
 };
 
 // RD PUNYA
+//blm selesai
 const sender_lihat_riwayat = async (req, res) => {
-    
+    console.log(req.pengguna);
+    const listbarang = await Barang.findAll({
+        attributes: ['id','id_sender', 'nama'],
+        where: {
+            id_sender: req.pengguna.dataValues.id
+        }
+    });
 };
 
 //BLM PUNYA
