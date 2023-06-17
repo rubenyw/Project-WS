@@ -87,6 +87,12 @@ const rating = async (req, res) => {
     }
 
     let cek_barang = await Barang.findByPk(req.body.id_barang);
+    if (cek_barang.dataValues.id_sender != req.pengguna.dataValues.id) {
+        return res.status(404).json({
+            status: 404,
+            msg: `Barang bukan milik anda`,
+        });
+    }
     if (!cek_barang) {
         return res.status(404).json({
             status: 404,
@@ -103,6 +109,28 @@ const rating = async (req, res) => {
             msg: `Barang belum diangkut dalam perjalanan`,
         });
     }
+    if (cek_barang.dataValues.status == "PENDING") {
+        return res.status(400).json({
+            status: 404,
+            msg: `Barang masih belum diambil`,
+        });
+    }
+
+    let perjalanan = await Perjalanan.findByPk(
+        cek_barang.dataValues.id_perjalanan
+    );
+    if (perjalanan.dataValues.status == "ONGOING") {
+        return res.status(400).json({
+            status: 404,
+            msg: `Barang masih dalam perjalanan`,
+        });
+    }
+
+    const result = await Rating.create({
+        id_sender: req.user.dataValues.id,
+        id_traveller: perjalanan.dataValues.id_traveller,
+        rate: req.body.rating,
+    });
 
     return res.status(200).json({
         status: 200,
