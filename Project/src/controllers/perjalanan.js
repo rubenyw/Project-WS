@@ -87,7 +87,7 @@ const set_perjalanan = async (req, res) => {
 // RD PUNYA
 //blm selesai
 const sender_lihat_riwayat = async (req, res) => {
-    console.log(req.pengguna);
+
     const listbarang = await Barang.findAll({
         attributes: ["id", "id_sender", "nama"],
         where: {
