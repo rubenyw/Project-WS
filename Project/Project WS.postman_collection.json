@@ -420,14 +420,14 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/bug",
+							"raw": "{{host}}/api/v1/aviation",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"bug"
+								"aviation"
 							]
 						}
 					},
@@ -462,6 +462,33 @@
 								"kota"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "test city",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/city",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"city"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "test flight code",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
