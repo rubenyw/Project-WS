@@ -49,10 +49,22 @@ const edit_barang = async (req, res) => {
 const lacak_barang = async (req, res) => {};
 
 // RD PUNYA
-const batalkan_barang = async (req, res) => {};
+//sementara (blm login)
+const batalkan_barang = async (req, res) => {
+    const barang = req.body.id_barang;
+    await Barang.destroy({
+        where: {
+            id: barang
+        }
+    });
+
+    return res.status(200).send({ message: `Kiriman dibatalkan` });
+};
 
 // RD PUNYA
-const lihat_request = async (req, res) => {};
+const lihat_request = async (req, res) => {
+    
+};
 
 // RUBEN PUNYA
 const terima_request = async (req, res) => {
