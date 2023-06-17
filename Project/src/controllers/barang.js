@@ -1,5 +1,7 @@
 const Barang = require("../models/Barang");
 const Rating = require("../models/Rating");
+const Perjalanan = require("../models/Perjalanan");
+const BarangPerjalanan = require("../models/BarangPerjalanan");
 
 const { kirim, edit, terima, rate } = require("../validation/barang");
 
@@ -84,16 +86,23 @@ const rating = async (req, res) => {
         });
     }
 
-    const result = await Rating.findByPk(req.body.id_barang);
-    if (!result) {
+    let cek_barang = await Barang.findByPk(req.body.id_barang);
+    if (!cek_barang) {
         return res.status(404).json({
             status: 404,
-            msg: "Barang not Found!",
+            msg: `Tidak ditemukan barang dengan ID '${req.body.id_barang}`,
         });
     }
-    result.update({
-        rate: req.body.rating,
+
+    cek_barang = await BarangPerjalanan.findOne({
+        where: { id_barang: req.body.id_barang },
     });
+    if (!cek_barang) {
+        return res.status(404).json({
+            status: 404,
+            msg: `Barang belum diangkut dalam perjalanan`,
+        });
+    }
 
     return res.status(200).json({
         status: 200,
