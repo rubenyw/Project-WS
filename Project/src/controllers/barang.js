@@ -99,16 +99,16 @@ const rating = async (req, res) => {
     }
 
     let cek_barang = await Barang.findByPk(req.body.id_barang);
-    if (cek_barang.dataValues.id_sender != req.pengguna.dataValues.id) {
-        return res.status(404).json({
-            status: 404,
-            msg: `Barang bukan milik anda`,
-        });
-    }
     if (!cek_barang) {
         return res.status(404).json({
             status: 404,
             msg: `Tidak ditemukan barang dengan ID '${req.body.id_barang}`,
+        });
+    }
+    if (cek_barang.dataValues.id_sender != req.pengguna.dataValues.id) {
+        return res.status(404).json({
+            status: 404,
+            msg: `Barang bukan milik anda`,
         });
     }
 
