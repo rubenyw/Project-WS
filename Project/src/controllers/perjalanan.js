@@ -9,9 +9,7 @@ const Aviation = require("../models/Aviation");
 const Rajaongkir = require("../models/Rajaongkir");
 
 // RD PUNYA
-const cek_harga_durasi = async (req, res) => {
-
-};
+const cek_harga_durasi = async (req, res) => {};
 
 // RUBEN PUNYA
 const set_perjalanan = async (req, res) => {
@@ -58,7 +56,7 @@ const set_perjalanan = async (req, res) => {
     const temp = await axios.get("http://api.aviationstack.com/v1/flights", {
         params,
     });
-
+    console.log(temp.data.data[0]);
     if (temp.data.pagination.total == 0) {
         return res.status(404).json({
             status: 404,
@@ -70,6 +68,7 @@ const set_perjalanan = async (req, res) => {
     const id_kota_keberangkatan = berangkat.dataValues.id;
     const id_kota_tujuan = tujuan.dataValues.id;
     const status = "ONGOING";
+    const durasi = temp.data.data[0].actual_runway;
 
     const result = await Perjalanan.create({
         id_traveller,
@@ -81,7 +80,7 @@ const set_perjalanan = async (req, res) => {
 
     return res.status(200).json({
         status: 201,
-        temp: temp.data,
+        result,
     });
 };
 
@@ -90,10 +89,10 @@ const set_perjalanan = async (req, res) => {
 const sender_lihat_riwayat = async (req, res) => {
     console.log(req.pengguna);
     const listbarang = await Barang.findAll({
-        attributes: ['id','id_sender', 'nama'],
+        attributes: ["id", "id_sender", "nama"],
         where: {
-            id_sender: req.pengguna.dataValues.id
-        }
+            id_sender: req.pengguna.dataValues.id,
+        },
     });
 };
 

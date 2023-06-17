@@ -24,7 +24,7 @@ Barang.init(
         },
         status: {
             type: DataTypes.STRING,
-            defaultValue: "PENDING"
+            defaultValue: "PENDING",
         },
     },
     {
