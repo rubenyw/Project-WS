@@ -57,8 +57,8 @@ const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
     await Barang.destroy({
         where: {
-            id: barang
-        }
+            id: barang,
+        },
     });
 
     return res.status(200).send({ message: `Kiriman dibatalkan` });
@@ -66,18 +66,16 @@ const batalkan_barang = async (req, res) => {
 
 // RD PUNYA
 const lihat_request = async (req, res) => {
-
     const listbarang = await Barang.findAll({
-        attributes: ['id','id_sender', 'nama'],
+        attributes: ["id", "id_sender", "nama"],
         where: {
-            status: "PENDING"
-        }
+            status: "PENDING",
+        },
     });
     for (let index = 0; index < listbarang.length; index++) {
         const element = listbarang[index];
-        let user = await User.findByPk(element.dataValues.id_sender)
-        listbarang[index].dataValues.Nama_Sender = user.username
-        
+        let user = await User.findByPk(element.dataValues.id_sender);
+        listbarang[index].dataValues.Nama_Sender = user.username;
     }
     return res.status(200).send({ message: listbarang });
 };
@@ -139,20 +137,10 @@ const rating = async (req, res) => {
             msg: `Barang bukan milik anda`,
         });
     }
-
-    cek_barang = await BarangPerjalanan.findOne({
-        where: { id_barang: req.body.id_barang },
-    });
-    if (!cek_barang) {
+    if (cek_barang.dataValues.status == "PENDING") {
         return res.status(404).json({
             status: 404,
             msg: `Barang belum diangkut dalam perjalanan`,
-        });
-    }
-    if (cek_barang.dataValues.status == "PENDING") {
-        return res.status(400).json({
-            status: 404,
-            msg: `Barang masih belum diambil`,
         });
     }
 
