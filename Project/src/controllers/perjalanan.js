@@ -81,12 +81,14 @@ const set_perjalanan = async (req, res) => {
 };
 
 // RD PUNYA
-const sender_lihat_riwayat = async (req, res) => {};
+const sender_lihat_riwayat = async (req, res) => {
+    
+};
 
-// SIMON PUNYA
+//BLM PUNYA
 const traveller_lihat_riwayat = async (req, res) => {};
 
-// SIMON PUNYA
+// BLM PUNYA
 const complete_trip = async (req, res) => {};
 
 module.exports = {

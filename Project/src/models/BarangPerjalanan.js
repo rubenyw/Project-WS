@@ -5,14 +5,15 @@ class BarangPerjalanan extends Model {}
 
 BarangPerjalanan.init(
     {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+        },
         id_perjalanan: {
             type: DataTypes.INTEGER,
         },
         id_barang: {
             type: DataTypes.INTEGER,
-        },
-        status: {
-            type: DataTypes.STRING,
         },
     },
     {

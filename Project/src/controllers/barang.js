@@ -4,6 +4,7 @@ const Perjalanan = require("../models/Perjalanan");
 const BarangPerjalanan = require("../models/BarangPerjalanan");
 
 const { kirim, edit, terima, rate } = require("../validation/barang");
+const User = require("../models/User");
 
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
@@ -63,7 +64,20 @@ const batalkan_barang = async (req, res) => {
 
 // RD PUNYA
 const lihat_request = async (req, res) => {
-    
+
+    const listbarang = await Barang.findAll({
+        attributes: ['id','id_sender', 'nama'],
+        where: {
+            status: "PENDING"
+        }
+    });
+    for (let index = 0; index < listbarang.length; index++) {
+        const element = listbarang[index];
+        let user = await User.findByPk(element.dataValues.id_sender)
+        listbarang[index].dataValues.Nama_Sender = user.username
+        
+    }
+    return res.status(200).send({ message: listbarang });
 };
 
 // RUBEN PUNYA

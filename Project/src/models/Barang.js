@@ -22,6 +22,10 @@ Barang.init(
         harga: {
             type: DataTypes.INTEGER,
         },
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "PENDING"
+        },
     },
     {
         sequelize: db,
