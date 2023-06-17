@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0bb96724-7f14-429c-9cf7-9f8fd5eab7b1",
+		"_postman_id": "70cd31ca-cb59-4884-b0cf-1a43eb4c1d29",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -414,6 +414,17 @@
 				},
 				{
 					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Rating",
 					"request": {
 						"method": "GET",
 						"header": []
