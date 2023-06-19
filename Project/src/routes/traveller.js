@@ -9,6 +9,7 @@ const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK ROLE
 const { registerTraveller, loginTraveller } = require("../controllers/user");
 const { terima_request } = require("../controllers/barang");
 const { set_perjalanan, complete_trip } = require("../controllers/perjalanan");
+const { tarik_saldo } = require("../controllers/saldo");
 
 // Router untuk Akun
 router.post("/register/traveller", registerTraveller);
@@ -23,4 +24,7 @@ router.post("/traveller/request/free/terima_request", terima_request);
 // Router untuk perjalanan
 router.post("/traveller/request/pay/set_perjalanan", set_perjalanan);
 router.put("/traveller/request/free/complete_trip", complete_trip);
+
+// Router untuk saldo
+router.post("/traveller/request/free/tarik_saldo", tarik_saldo);
 module.exports = router;

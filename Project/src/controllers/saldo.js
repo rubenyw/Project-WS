@@ -110,8 +110,43 @@ const topup_kuota = async (req, res) => {
 // RD PUNYA
 const cek_saldo = async (req, res) => {};
 
-// SIMON PUNYA
-const tarik_saldo = async (req, res) => {};
+// RUBEN PUNYA
+const tarik_saldo = async (req, res) => {
+    const { error, value } = saldo.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
+        return res.status(404).json({
+            status: 404,
+            msg: validationErrors,
+        });
+    }
+
+    if (req.body.password != req.pengguna.dataValues.password) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Wrong Password!",
+        });
+    }
+
+    if (req.body.jumlah > req.pengguna.dataValues.saldo) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Saldo anda tidak mencukupi",
+        });
+    }
+    req.pengguna.update({
+        saldo: Number(req.pengguna.dataValues.saldo) - Number(req.body.jumlah),
+    });
+    return res.status(201).json({
+        status: 201,
+        msg: {
+            message: `Berhasil menarik saldo sebesar Rp ${req.body.jumlah}`,
+            saldo: `Saldo anda sekarang ${req.pengguna.dataValues.saldo}`,
+        },
+    });
+};
 
 module.exports = {
     topup_kuota,
