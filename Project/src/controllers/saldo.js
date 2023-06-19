@@ -1,4 +1,6 @@
 const { kuota, saldo } = require("../validation/saldo");
+const User = require("../models/User");
+const { literal } = require("sequelize");
 
 // STEVEN PUNYA
 const topup_saldo = async (req, res) => {
@@ -12,6 +14,50 @@ const topup_saldo = async (req, res) => {
             msg: validationErrors,
         });
     }
+
+    let api_key = req.headers["x-auth-token"];
+    const { password, jumlah } = req.body;
+
+    // Find User
+    const user = await User.findOne({
+        where: {
+            api_key: api_key,
+        },
+    });
+
+    if (user == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "User not found!",
+        });
+    }
+    if (user.password != password) {
+        return res.status(401).json({
+            status: 401,
+            msg: "Password is incorrect!",
+        });
+    }
+
+    // Tambah Saldo
+    let currentUser = await User.update(
+        {
+            saldo: literal("saldo + " + jumlah),
+        },
+        {
+            where: {
+                id: user.id,
+            },
+        }
+    );
+
+    return res.status(201).json({
+        status: 201,
+        body: {
+            nama: user.username,
+            saldo: Number(user.saldo) + Number(jumlah),
+            message: "Topup Saldo Berhasil!",
+        },
+    });
 };
 
 // RUBEN PUNYA
