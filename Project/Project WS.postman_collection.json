@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "70cd31ca-cb59-4884-b0cf-1a43eb4c1d29",
+		"_postman_id": "67516ec3-c101-468d-b481-470425804d75",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -302,7 +302,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Request Batalkan Barang",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -340,7 +340,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Request Lihat Request",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -375,7 +375,7 @@
 					"response": []
 				},
 				{
-					"name": "Selesaikan request",
+					"name": "Request Complete Request",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -411,25 +411,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": ""
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Request Rating",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			]
 		},
@@ -453,6 +434,38 @@
 								"request",
 								"pay",
 								"set_perjalanan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Complete Trip",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/traveller/request/free/complete_trip",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"request",
+								"free",
+								"complete_trip"
 							]
 						}
 					},
@@ -503,6 +516,14 @@
 								"topup_kuota"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tarik Saldo",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
