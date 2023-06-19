@@ -2,6 +2,8 @@ const Barang = require("../models/Barang");
 const Rating = require("../models/Rating");
 const Perjalanan = require("../models/Perjalanan");
 const BarangPerjalanan = require("../models/BarangPerjalanan");
+const Rajaongkir = require("../models/Rajaongkir");
+const axios = require("axios");
 
 const { kirim, edit, terima, rate } = require("../validation/barang");
 const User = require("../models/User");
@@ -20,9 +22,90 @@ const kirim_barang = async (req, res) => {
         });
     }
 
+    // Insert Barang
+    const { nama_barang, berat_barang, asal_barang, tujuan_barang } = req.body;
+    let api_key = req.headers["x-auth-token"];
+
+    // Find User
+    const user = await User.findOne({
+        where: {
+            api_key: api_key,
+        }, // Only retrieve the id column
+    });
+
+    let berat_gram = berat_barang * 1000;
+
+    // Find Kota
+    let asal_id = await Rajaongkir.findOne({
+        where: {
+            nama: asal_barang,
+        },
+        attributes: ["id"],
+    });
+    let tujuan_id = await Rajaongkir.findOne({
+        where: {
+            nama: tujuan_barang,
+        },
+        attributes: ["id"],
+    });
+
+    if (asal_id == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Kota Asal Barang tidak ditemukan",
+        });
+    }
+    if (tujuan_id == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Kota Tujuan Barang tidak ditemukan",
+        });
+    }
+    asal_id = asal_id.id;
+    tujuan_id = tujuan_id.id;
+
+    // Find Harga
+    const options = {
+        method: "post",
+        url: "https://api.rajaongkir.com/starter/cost",
+        headers: { key: "151b960f3d5589e2784650bc5c992e89", "content-type": "application/x-www-form-urlencoded" },
+        data: "origin=" + asal_id + "&destination=" + tujuan_id + "&weight=" + berat_gram + "&courier=jne",
+    };
+
+    let harga_barang = 0;
+
+    async function fetchTotalHarga() {
+        try {
+            const response = await axios(options);
+            const parsedBody = response.data;
+            console.log(response);
+            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+
+            for (const x of parsedBody.rajaongkir.results[0].costs) {
+                if (harga_barang > x.cost[0].value) {
+                    harga_barang = x.cost[0].value;
+                }
+            }
+
+            return harga_barang;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    harga_barang = await fetchTotalHarga();
+
+    // Insert DB
+    const newBarang = await Barang.create({
+        id_sender: user.id,
+        nama: nama_barang,
+        berat: berat_barang,
+        harga: harga_barang,
+        status: "PENDING",
+    });
+
     return res.status(202).json({
         status: 202,
-        msg: "SUCCEED",
+        msg: "Berhasil Menambahkan Barang Dengan ID : " + newBarang.id,
     });
 };
 
@@ -47,12 +130,10 @@ const edit_barang = async (req, res) => {
 };
 
 // STEVEN PUNYA
-const lacak_barang = async (req, res) => {
-    
-};
+const lacak_barang = async (req, res) => {};
 
 // RD PUNYA
-//sementara 
+//sementara
 const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
     await Barang.destroy({
@@ -102,12 +183,12 @@ const complete_request = async (req, res) => {
     const barang = req.body.id_barang;
     let databarang = await Barang.findOne({
         where: {
-            id: barang
-        }
+            id: barang,
+        },
     });
-    databarang.update ({
-        status: "DONE"
-    })
+    databarang.update({
+        status: "DONE",
+    });
     return res.status(200).send({ message: `${barang} telah selesai dikirim` });
 };
 
@@ -144,9 +225,7 @@ const rating = async (req, res) => {
         });
     }
 
-    let perjalanan = await Perjalanan.findByPk(
-        cek_barang.dataValues.id_perjalanan
-    );
+    let perjalanan = await Perjalanan.findByPk(cek_barang.dataValues.id_perjalanan);
     if (perjalanan.dataValues.status == "ONGOING") {
         return res.status(400).json({
             status: 404,

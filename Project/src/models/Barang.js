@@ -8,6 +8,7 @@ Barang.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         id_sender: {
             type: DataTypes.INTEGER,
