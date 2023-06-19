@@ -249,7 +249,7 @@ CREATE TABLE `barang` (
   `harga` int(11) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'PENDING',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barang` */
 
@@ -262,16 +262,13 @@ insert  into `barang`(`id`,`id_sender`,`nama`,`berat`,`harga`,`status`) values
 DROP TABLE IF EXISTS `barangperjalanan`;
 
 CREATE TABLE `barangperjalanan` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_perjalanan` int(11) DEFAULT NULL,
   `id_barang` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barangperjalanan` */
-
-insert  into `barangperjalanan`(`id`,`id_perjalanan`,`id_barang`) values 
-(0,NULL,NULL);
 
 /*Table structure for table `kota` */
 
@@ -347,19 +344,19 @@ CREATE TABLE `ktp` (
 DROP TABLE IF EXISTS `perjalanan`;
 
 CREATE TABLE `perjalanan` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_traveller` int(11) DEFAULT NULL,
   `id_kota_keberangkatan` int(11) DEFAULT NULL,
   `id_kota_tujuan` int(11) DEFAULT NULL,
   `durasi` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `perjalanan` */
 
 insert  into `perjalanan`(`id`,`id_traveller`,`id_kota_keberangkatan`,`id_kota_tujuan`,`durasi`,`status`) values 
-(0,NULL,444,51,NULL,'PENDING');
+(1,NULL,444,51,NULL,'PENDING');
 
 /*Table structure for table `rajaongkir` */
 
