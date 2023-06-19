@@ -14,6 +14,14 @@ const set = Joi.object({
     }),
 });
 
+const checkFlight = Joi.object({
+    id_perjalanan: Joi.number().required().label("ID Perjalanan").messages({
+        "any.required": "{{#label}} perlu diisi",
+        "number.empty": "{{#label}} field tidak boleh kosong",
+    }),
+});
+
 module.exports = {
     set,
+    checkFlight,
 };

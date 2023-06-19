@@ -1,7 +1,8 @@
 const { default: axios } = require("axios");
+const { set, checkFlight } = require("../validation/perjalanan");
+
 const Kota = require("../models/Kota");
 const Perjalanan = require("../models/Perjalanan");
-const { set } = require("../validation/perjalanan");
 const Barang = require("../models/Barang");
 const Rating = require("../models/Rating");
 const BarangPerjalanan = require("../models/BarangPerjalanan");
@@ -87,7 +88,6 @@ const set_perjalanan = async (req, res) => {
 // RD PUNYA
 //blm selesai
 const sender_lihat_riwayat = async (req, res) => {
-
     const listbarang = await Barang.findAll({
         attributes: ["id", "id_sender", "nama"],
         where: {
@@ -99,8 +99,59 @@ const sender_lihat_riwayat = async (req, res) => {
 //BLM PUNYA
 const traveller_lihat_riwayat = async (req, res) => {};
 
-// BLM PUNYA
-const complete_trip = async (req, res) => {};
+// RUBEN PUNYA
+const complete_trip = async (req, res) => {
+    const { error, value } = checkFlight.validate(req.body, {
+        abortEarly: false,
+    });
+    if (error) {
+        const validationErrors = error.details.map((detail) => detail.message);
+        return res.status(404).json({
+            status: 404,
+            msg: validationErrors,
+        });
+    }
+
+    const check = await Perjalanan.findByPk(req.body.id_perjalanan);
+    if (!check) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Perjalanan tidak terdaftar",
+        });
+    }
+
+    if (req.pengguna.dataValues.id != check.dataValues.id_traveller) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Anda tidak terdaftar dalam perjalanan ini",
+        });
+    }
+
+    let result = await Perjalanan.findByPk(req.body.id_perjalanan);
+    result.update({ status: "DONE" });
+    result.save();
+
+    let barangperjalanan = await BarangPerjalanan.findAll({
+        where: { id_perjalanan: req.body.id_perjalanan },
+    });
+
+    let body = {};
+    body.result = result;
+    body.update = [];
+    console.log(body);
+    for (let i = 0; i < barangperjalanan.length; i++) {
+        const element = barangperjalanan[i];
+        let temp = await Barang.findByPk(element.dataValues.id_barang);
+        temp.update({ status: "DONE" });
+        temp.save();
+        body.update.push(temp);
+    }
+
+    return res.status(201).json({
+        status: 201,
+        body,
+    });
+};
 
 module.exports = {
     cek_harga_durasi,
