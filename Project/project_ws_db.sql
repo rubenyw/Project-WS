@@ -249,13 +249,17 @@ CREATE TABLE `barang` (
   `harga` int(11) DEFAULT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'PENDING',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barang` */
 
 insert  into `barang`(`id`,`id_sender`,`nama`,`berat`,`harga`,`status`) values 
 (1,1,'botol',14,5000,'PENDING'),
-(2,1,'tepak',3,5000,'PENDING');
+(2,1,'tepak',3,5000,'PENDING'),
+(8,1,'ha',12,132000,'DONE'),
+(9,1,'ha',12,132000,'DONE'),
+(10,1,'ha',12,132000,'DONE'),
+(11,1,'ha',12,132000,'DONE');
 
 /*Table structure for table `barangperjalanan` */
 
@@ -266,9 +270,15 @@ CREATE TABLE `barangperjalanan` (
   `id_perjalanan` int(11) DEFAULT NULL,
   `id_barang` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barangperjalanan` */
+
+insert  into `barangperjalanan`(`id`,`id_perjalanan`,`id_barang`) values 
+(2,2,8),
+(3,2,9),
+(4,2,10),
+(5,2,11);
 
 /*Table structure for table `kota` */
 
@@ -351,12 +361,16 @@ CREATE TABLE `perjalanan` (
   `durasi` int(11) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `perjalanan` */
 
 insert  into `perjalanan`(`id`,`id_traveller`,`id_kota_keberangkatan`,`id_kota_tujuan`,`durasi`,`status`) values 
-(1,NULL,444,51,NULL,'PENDING');
+(1,4,444,51,NULL,'PENDING'),
+(2,4,444,51,NULL,'DONE'),
+(3,4,444,51,NULL,'PENDING'),
+(4,4,444,51,NULL,'PENDING'),
+(5,4,444,51,NULL,'PENDING');
 
 /*Table structure for table `rajaongkir` */
 
@@ -511,7 +525,7 @@ insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hi
 (1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',9310,'Sender',0),
 (2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
 (3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
-(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',0);
+(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',780000);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
