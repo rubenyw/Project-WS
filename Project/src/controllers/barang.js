@@ -70,8 +70,18 @@ const kirim_barang = async (req, res) => {
     const options = {
         method: "post",
         url: "https://api.rajaongkir.com/starter/cost",
-        headers: { key: KEY_RAJAONGKIR, "content-type": "application/x-www-form-urlencoded" },
-        data: "origin=" + asal_id + "&destination=" + tujuan_id + "&weight=" + berat_gram + "&courier=jne",
+        headers: {
+            key: KEY_RAJAONGKIR,
+            "content-type": "application/x-www-form-urlencoded",
+        },
+        data:
+            "origin=" +
+            asal_id +
+            "&destination=" +
+            tujuan_id +
+            "&weight=" +
+            berat_gram +
+            "&courier=jne",
     };
 
     let harga_barang = 0;
@@ -81,7 +91,8 @@ const kirim_barang = async (req, res) => {
             const response = await axios(options);
             const parsedBody = response.data;
             console.log(response);
-            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+            let harga_barang =
+                parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
 
             for (const x of parsedBody.rajaongkir.results[0].costs) {
                 if (harga_barang > x.cost[0].value) {
@@ -173,10 +184,18 @@ const edit_barang = async (req, res) => {
         },
     });
 
-    let nama_barang = req.body.nama_barang ? req.body.nama_barang : getBarang.nama;
-    let berat_barang = req.body.berat_barang ? req.body.berat_barang : getBarang.berat;
-    let asal_barang = req.body.asal_barang ? req.body.asal_barang : getPerjalanan.id_kota_keberangkatan;
-    let tujuan_barang = req.body.tujuan_barang ? req.body.tujuan_barang : getPerjalanan.id_kota_tujuan;
+    let nama_barang = req.body.nama_barang
+        ? req.body.nama_barang
+        : getBarang.nama;
+    let berat_barang = req.body.berat_barang
+        ? req.body.berat_barang
+        : getBarang.berat;
+    let asal_barang = req.body.asal_barang
+        ? req.body.asal_barang
+        : getPerjalanan.id_kota_keberangkatan;
+    let tujuan_barang = req.body.tujuan_barang
+        ? req.body.tujuan_barang
+        : getPerjalanan.id_kota_tujuan;
 
     if (req.body.asal_barang) {
         let asal_id = await Rajaongkir.findOne({
@@ -214,8 +233,18 @@ const edit_barang = async (req, res) => {
     const options = {
         method: "post",
         url: "https://api.rajaongkir.com/starter/cost",
-        headers: { key: KEY_RAJAONGKIR, "content-type": "application/x-www-form-urlencoded" },
-        data: "origin=" + asal_barang + "&destination=" + tujuan_barang + "&weight=" + berat_gram + "&courier=jne",
+        headers: {
+            key: KEY_RAJAONGKIR,
+            "content-type": "application/x-www-form-urlencoded",
+        },
+        data:
+            "origin=" +
+            asal_barang +
+            "&destination=" +
+            tujuan_barang +
+            "&weight=" +
+            berat_gram +
+            "&courier=jne",
     };
 
     let harga_barang = 0;
@@ -225,7 +254,8 @@ const edit_barang = async (req, res) => {
             const response = await axios(options);
             const parsedBody = response.data;
             console.log(parsedBody);
-            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+            let harga_barang =
+                parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
 
             for (const x of parsedBody.rajaongkir.results[0].costs) {
                 if (harga_barang > x.cost[0].value) {
@@ -369,7 +399,9 @@ const rating = async (req, res) => {
         });
     }
 
-    let perjalanan = await Perjalanan.findByPk(cek_barang.dataValues.id_perjalanan);
+    let perjalanan = await Perjalanan.findByPk(
+        cek_barang.dataValues.id_perjalanan
+    );
     if (perjalanan.dataValues.status == "ONGOING") {
         return res.status(400).json({
             status: 404,
