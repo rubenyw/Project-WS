@@ -8,6 +8,8 @@ const axios = require("axios");
 const { kirim, edit, terima, rate } = require("../validation/barang");
 const User = require("../models/User");
 
+const KEY_RAJAONGKIR = "151b960f3d5589e2784650bc5c992e89";
+
 // STEVEN PUNYA
 const kirim_barang = async (req, res) => {
     const { error, value } = kirim.validate(req.body, {
@@ -68,7 +70,7 @@ const kirim_barang = async (req, res) => {
     const options = {
         method: "post",
         url: "https://api.rajaongkir.com/starter/cost",
-        headers: { key: "151b960f3d5589e2784650bc5c992e89", "content-type": "application/x-www-form-urlencoded" },
+        headers: { key: KEY_RAJAONGKIR, "content-type": "application/x-www-form-urlencoded" },
         data: "origin=" + asal_id + "&destination=" + tujuan_id + "&weight=" + berat_gram + "&courier=jne",
     };
 
@@ -94,13 +96,26 @@ const kirim_barang = async (req, res) => {
     }
     harga_barang = await fetchTotalHarga();
 
-    // Insert DB
+    // Insert DB Barang
     const newBarang = await Barang.create({
         id_sender: user.id,
         nama: nama_barang,
         berat: berat_barang,
         harga: harga_barang,
         status: "PENDING",
+    });
+
+    // Insert DB Perjalanan (Pending)
+    const newPerjalanan = await Perjalanan.create({
+        id_kota_keberangkatan: asal_id,
+        id_kota_tujuan: tujuan_id,
+        status: "PENDING",
+    });
+
+    // Insert DB BarangPerjalanan
+    await BarangPerjalanan.create({
+        id_perjalanan: newPerjalanan.id,
+        id_barang: newBarang.id,
     });
 
     return res.status(202).json({
@@ -122,10 +137,139 @@ const edit_barang = async (req, res) => {
             msg: validationErrors,
         });
     }
+    const { id_barang } = req.body;
+
+    let getBarang = await Barang.findOne({
+        where: {
+            id: id_barang,
+        },
+    });
+
+    // Check if exist
+    if (getBarang == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Barang tidak ditemukkan",
+        });
+    }
+    // Check if "PENDING"
+    if (getBarang.status != "PENDING") {
+        return res.status(404).json({
+            status: 404,
+            msg: "Barang tidak bisa di edit karena sudah diambil traveller",
+        });
+    }
+
+    // Get BarangPerjalanan
+    let getBarangPerjalanan = await BarangPerjalanan.findOne({
+        where: {
+            id_barang: getBarang.id,
+        },
+    });
+    // Get Perjalanan
+    let getPerjalanan = await Perjalanan.findOne({
+        where: {
+            id: getBarangPerjalanan.id_perjalanan,
+        },
+    });
+
+    let nama_barang = req.body.nama_barang ? req.body.nama_barang : getBarang.nama;
+    let berat_barang = req.body.berat_barang ? req.body.berat_barang : getBarang.berat;
+    let asal_barang = req.body.asal_barang ? req.body.asal_barang : getPerjalanan.id_kota_keberangkatan;
+    let tujuan_barang = req.body.tujuan_barang ? req.body.tujuan_barang : getPerjalanan.id_kota_tujuan;
+
+    if (req.body.asal_barang) {
+        let asal_id = await Rajaongkir.findOne({
+            where: {
+                nama: asal_barang,
+            },
+            attributes: ["id"],
+        });
+        if (asal_id == null) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Kota Asal Barang tidak ditemukan",
+            });
+        }
+        asal_barang = asal_id.id;
+    }
+    if (req.body.tujuan_barang) {
+        let tujuan_id = await Rajaongkir.findOne({
+            where: {
+                nama: tujuan_barang,
+            },
+            attributes: ["id"],
+        });
+        if (tujuan_id == null) {
+            return res.status(404).json({
+                status: 404,
+                msg: "Kota Tujuan Barang tidak ditemukan",
+            });
+        }
+        tujuan_barang = tujuan_id.id;
+    }
+
+    let berat_gram = berat_barang * 1000;
+    // Update Harga
+    const options = {
+        method: "post",
+        url: "https://api.rajaongkir.com/starter/cost",
+        headers: { key: KEY_RAJAONGKIR, "content-type": "application/x-www-form-urlencoded" },
+        data: "origin=" + asal_barang + "&destination=" + tujuan_barang + "&weight=" + berat_gram + "&courier=jne",
+    };
+
+    let harga_barang = 0;
+
+    async function fetchTotalHarga() {
+        try {
+            const response = await axios(options);
+            const parsedBody = response.data;
+            console.log(parsedBody);
+            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+
+            for (const x of parsedBody.rajaongkir.results[0].costs) {
+                if (harga_barang > x.cost[0].value) {
+                    harga_barang = x.cost[0].value;
+                }
+            }
+
+            return harga_barang;
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    harga_barang = await fetchTotalHarga();
+
+    // Update Barang
+    await Barang.update(
+        {
+            nama: nama_barang,
+            berat: berat_barang,
+            harga: harga_barang,
+        },
+        {
+            where: {
+                id: getBarang.id,
+            },
+        }
+    );
+
+    // Update Perjalanan
+    await Perjalanan.update(
+        {
+            id_kota_keberangkatan: asal_barang,
+            id_kota_tujuan: tujuan_barang,
+        },
+        {
+            where: {
+                id: getPerjalanan.id,
+            },
+        }
+    );
 
     return res.status(202).json({
         status: 202,
-        msg: "SUCCEED",
+        msg: "Barang telah diubah!",
     });
 };
 

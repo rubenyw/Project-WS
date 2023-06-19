@@ -8,6 +8,7 @@ BarangPerjalanan.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         id_perjalanan: {
             type: DataTypes.INTEGER,
