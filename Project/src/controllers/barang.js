@@ -276,13 +276,25 @@ const lacak_barang = async (req, res) => {
 //sementara
 const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
-    await Barang.destroy({
+    let databarang = await BarangPerjalanan.findOne({
         where: {
             id: barang,
         },
     });
-
-    return res.status(200).send({ message: `Kiriman dibatalkan` });
+    if(databarang){
+        return res.status(400).send({ message: `kiriman sudah diambil traveller` });
+    }else{
+        let barangnya = await Barang.findOne({
+            where: {
+                id: barang,
+            },
+        });
+        barangnya.update({
+            status: "CANCELLED",
+        });
+    
+        return res.status(200).send({ message: `Kiriman dibatalkan` });
+    };
 };
 
 // RD PUNYA
