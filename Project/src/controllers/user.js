@@ -3,6 +3,62 @@ const { registerSchema, loginSchema } = require("../validation/user");
 const User = require("../models/User");
 const Rating = require("../models/Rating");
 
+const multer = require("multer");
+const fs = require("fs");
+const path = require("path");
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        const folderName = `uploads/${req.body.username}`;
+
+        if (!fs.existsSync(folderName)) {
+            fs.mkdirSync(folderName, { recursive: true });
+        }
+
+        callback(null, folderName);
+    },
+    filename: (req, file, callback) => {
+        const fileExtension = path.extname(file.originalname).toLowerCase();
+        callback(null, `${id}.png`);
+    },
+});
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 50000000, // dalam byte jadi 1000 = 1kb 1000000 = 1mb
+    },
+    fileFilter: (req, file, callback) => {
+        // buat aturan dalam bentuk regex, mengenai extension apa saja yang diperbolehkan
+        const rules = /jpeg|jpg|png|gif/;
+
+        const fileExtension = path.extname(file.originalname).toLowerCase();
+        const fileMimeType = file.mimetype;
+
+        const cekExt = rules.test(fileExtension);
+        const cekMime = rules.test(fileMimeType);
+
+        if (cekExt && cekMime) {
+            callback(null, true);
+        } else {
+            callback(null, false);
+            return callback(new multer.MulterError("Tipe file harus .gif, .png, .jpg atau .jpeg", file.fieldname));
+        }
+    },
+});
+
+const uploadKTP = (req, res) => {
+    const uploadingFile = upload.single("foto_ktp");
+    uploadingFile(req, res, (err) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).send((err.message || err.code) + " pada field " + err.field);
+        }
+        const body = req.body;
+        return res.status(200).json(body);
+    });
+};
+
 // STEVEN PUNYA
 const registerSender = async (req, res) => {
     const { error, value } = registerSchema.validate(req.body, {
@@ -202,6 +258,7 @@ module.exports = {
     registerTraveller,
     loginSender,
     loginTraveller,
+    uploadKTP,
 };
 
 // Functions
