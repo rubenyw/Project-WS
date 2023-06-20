@@ -6,11 +6,11 @@ const Rating = require("../models/Rating");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const KTP = require("../models/KTP");
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        const folderName = `uploads/${req.body.username}`;
-
+        const folderName = `./src/uploads`;
         if (!fs.existsSync(folderName)) {
             fs.mkdirSync(folderName, { recursive: true });
         }
@@ -18,15 +18,15 @@ const storage = multer.diskStorage({
         callback(null, folderName);
     },
     filename: (req, file, callback) => {
-        const fileExtension = path.extname(file.originalname).toLowerCase();
-        callback(null, `${id}.png`);
+        callback(null, `${req.body.id}.png`);
+        req.foto_ktp = `${req.body.id}.png`;
     },
 });
 
 const upload = multer({
     storage: storage,
     limits: {
-        fileSize: 50000000, // dalam byte jadi 1000 = 1kb 1000000 = 1mb
+        fileSize: 5000000000, // dalam byte jadi 1000 = 1kb 1000000 = 1mb
     },
     fileFilter: (req, file, callback) => {
         // buat aturan dalam bentuk regex, mengenai extension apa saja yang diperbolehkan
@@ -47,15 +47,38 @@ const upload = multer({
     },
 });
 
-const uploadKTP = (req, res) => {
+const uploadKTP = async (req, res) => {
+    //     console.log(req.body);
+    //     const ktp = await KTP.findByPk(req.body);
+    //     const user = await User.findByPk(req.data.id);
+    //     console.log(req.body);
+    //     if (!user) {
+    //         return res.status(404).json({
+    //             status: 404,
+    //             msg: "SIAPA ANDA??",
+    //         });
+    //     }
+    // if (user && !ktp) {
     const uploadingFile = upload.single("foto_ktp");
-    uploadingFile(req, res, (err) => {
+    uploadingFile(req, res, async (err) => {
         if (err) {
             console.log(err);
             return res.status(400).send((err.message || err.code) + " pada field " + err.field);
         }
         const body = req.body;
+        const user = await User.findByPk(req.body.id);
+        const ktp = await KTP.create({
+            id_user: req.body.id,
+            foto_ktp: req.foto_ktp,
+            status: "DONE",
+        });
         return res.status(200).json(body);
+    });
+    // }
+
+    return res.status(400).json({
+        status: 400,
+        msg: "Anda sudah mengupload KTP anda!",
     });
 };
 
