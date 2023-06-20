@@ -492,16 +492,15 @@ const rating = async (req, res) => {
         });
     }
     if (cek_barang.status == "PENDING") {
-        return res.status(404).json({
-            status: 404,
+        return res.status(400).json({
+            status: 400,
             msg: `Barang belum diangkut dalam perjalanan`,
         });
     }
 
-    let perjalanan = await Perjalanan.findByPk(cek_barang.id_perjalanan);
-    if (perjalanan.status == "ONGOING") {
+    if (cek_barang.status == "ONGOING") {
         return res.status(400).json({
-            status: 404,
+            status: 400,
             msg: `Barang masih dalam perjalanan`,
         });
     }
