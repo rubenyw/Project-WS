@@ -112,14 +112,14 @@ const set_perjalanan = async (req, res) => {
         });
     }
 
-    const arrival = await Aviation.findByPk(tujuan.dataValues.id_flightapi);
-    const departure = await Aviation.findByPk(berangkat.dataValues.id_flightapi);
+    const arrival = await Aviation.findByPk(tujuan.id_flightapi);
+    const departure = await Aviation.findByPk(berangkat.id_flightapi);
 
     const params = {
         access_key: "7639c0479301fe4cb3fff6fc87308683",
         limit: 10000,
-        arr_iata: arrival.dataValues.iata_code,
-        dep_iata: departure.dataValues.iata_code,
+        arr_iata: arrival.iata_code,
+        dep_iata: departure.iata_code,
     };
 
     const temp = await axios.get("http://api.aviationstack.com/v1/flights", {
@@ -133,9 +133,9 @@ const set_perjalanan = async (req, res) => {
         });
     }
     const pengguna = req.pengguna;
-    const id_traveller = pengguna.dataValues.id;
-    const id_kota_keberangkatan = berangkat.dataValues.id;
-    const id_kota_tujuan = tujuan.dataValues.id;
+    const id_traveller = pengguna.id;
+    const id_kota_keberangkatan = berangkat.id;
+    const id_kota_tujuan = tujuan.id;
     const status = "ONGOING";
 
     const departureTime = new Date(temp.data.data[0].departure.scheduled);
@@ -145,7 +145,7 @@ const set_perjalanan = async (req, res) => {
 
     const waktu_keberangkatan = departureTime;
 
-    const result = await Perjalanan.create({
+    const hasil = await Perjalanan.create({
         id_traveller,
         id_kota_keberangkatan,
         id_kota_tujuan,
@@ -153,6 +153,15 @@ const set_perjalanan = async (req, res) => {
         durasi,
         waktu_keberangkatan,
     });
+
+    const result = {
+        "ID Penerbangan": hasil.id,
+        "Nama Traveller": (await User.findByPk(hasil.id_traveller)).nama,
+        Departure: (await Kota.findByPk(hasil.id_kota_keberangkatan)).nama,
+        Arrival: (await Kota.findByPk(hasil.id_kota_tujuan)).nama,
+        "Estimasi Perjalanan": durasi + " menit",
+        "Waktu Keberangkatan": waktu_keberangkatan.toUTCString(),
+    };
 
     return res.status(200).json({
         status: 201,
@@ -172,17 +181,17 @@ const sender_lihat_riwayat = async (req, res) => {
     const listbarang = await Barang.findAll({
         attributes: ["id", "id_sender", "nama"],
         where: {
-            id_sender: req.pengguna.dataValues.id,
+            id_sender: req.pengguna.id,
         },
     });
 
-    const belum = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "PENDING" } });
-    const sedng = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "ONGOING" } });
-    const sudah = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "DONE" } });
-    const cancl = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "CANCELLED" } });
+    const belum = await Barang.findAll({ where: { id_sender: req.pengguna.id, status: "PENDING" } });
+    const sedng = await Barang.findAll({ where: { id_sender: req.pengguna.id, status: "ONGOING" } });
+    const sudah = await Barang.findAll({ where: { id_sender: req.pengguna.id, status: "DONE" } });
+    const cancl = await Barang.findAll({ where: { id_sender: req.pengguna.id, status: "CANCELLED" } });
 
     let result = {
-        nama: req.pengguna.dataValues.username,
+        nama: req.pengguna.username,
         "barang belum diangkut": [],
         "barang sedang diangkut": [],
         "barang sudah dikirim": [],
@@ -190,35 +199,35 @@ const sender_lihat_riwayat = async (req, res) => {
 
     for (let i = 0; i < belum.length; i++) {
         const element = belum[i];
-        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
-        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const tujuaaaan = await Kota.findByPk(element.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.id_kota_tujuan);
         result["barang belum diangkut"].push({
-            "nama barang": element.dataValues.nama,
-            "berat barang": element.dataValues.berat,
-            "harga barang": element.dataValues.berat,
-            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+            "nama barang": element.nama,
+            "berat barang": element.berat,
+            "harga barang": element.berat,
+            rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
     for (let i = 0; i < sedng.length; i++) {
         const element = sedng[i];
-        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
-        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const tujuaaaan = await Kota.findByPk(element.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.id_kota_tujuan);
         result["barang sedang diangkut"].push({
-            "nama barang": element.dataValues.nama,
-            "berat barang": element.dataValues.berat,
-            "harga barang": element.dataValues.berat,
-            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+            "nama barang": element.nama,
+            "berat barang": element.berat,
+            "harga barang": element.berat,
+            rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
     for (let i = 0; i < sudah.length; i++) {
         const element = sudah[i];
-        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
-        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const tujuaaaan = await Kota.findByPk(element.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.id_kota_tujuan);
         result["barang sudah dikirim"].push({
-            "nama barang": element.dataValues.nama,
-            "berat barang": element.dataValues.berat,
-            "harga barang": element.dataValues.berat,
-            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+            "nama barang": element.nama,
+            "berat barang": element.berat,
+            "harga barang": element.berat,
+            rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
 
@@ -233,30 +242,30 @@ const lihat_listbarang_traveller = async (req, res) => {};
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {
     const perjalanan = await Perjalanan.findAll({
-        where: { id_traveller: req.pengguna.dataValues.id, status: "DONE" },
+        where: { id_traveller: req.pengguna.id, status: "DONE" },
     });
 
     let result = [];
     for (let i = 0; i < perjalanan.length; i++) {
-        const time = perjalanan[i].dataValues.waktu_keberangkatan.toISOString().split(".")[0].replace("T", " ");
-        const kota_berangkat = await Kota.findByPk(perjalanan[i].dataValues.id_kota_keberangkatan);
-        const kota_tujuan = await Kota.findByPk(perjalanan[i].dataValues.id_kota_tujuan);
+        const time = perjalanan[i].waktu_keberangkatan.toISOString().split(".")[0].replace("T", " ");
+        const kota_berangkat = await Kota.findByPk(perjalanan[i].id_kota_keberangkatan);
+        const kota_tujuan = await Kota.findByPk(perjalanan[i].id_kota_tujuan);
 
         result.push({
-            kota_berangkat: kota_berangkat.dataValues.nama,
-            kota_tujuan: kota_tujuan.dataValues.nama,
+            kota_berangkat: kota_berangkat.nama,
+            kota_tujuan: kota_tujuan.nama,
             barang: [],
         });
 
-        const barangperjalanan = await BarangPerjalanan.findAll({ where: { id_perjalanan: perjalanan[i].dataValues.id } });
+        const barangperjalanan = await BarangPerjalanan.findAll({ where: { id_perjalanan: perjalanan[i].id } });
         for (let j = 0; j < barangperjalanan.length; j++) {
-            const barang = await Barang.findByPk(barangperjalanan[j].dataValues.id_barang);
-            const user = await User.findByPk(barang.dataValues.id_sender);
+            const barang = await Barang.findByPk(barangperjalanan[j].id_barang);
+            const user = await User.findByPk(barang.id_sender);
             result[i].barang.push({
-                nama_barang: barang.dataValues.nama,
-                berat_barang: barang.dataValues.berat,
-                harga_barang: barang.dataValues.harga,
-                pengirim_barang: user.dataValues.username,
+                nama_barang: barang.nama,
+                berat_barang: barang.berat,
+                harga_barang: barang.harga,
+                pengirim_barang: user.username,
             });
         }
     }
@@ -287,7 +296,14 @@ const complete_trip = async (req, res) => {
         });
     }
 
-    if (req.pengguna.dataValues.id != check.dataValues.id_traveller) {
+    if (check.status == "DONE") {
+        return res.status(400).json({
+            status: 400,
+            msg: "Perjalanan sudah tidak aktif",
+        });
+    }
+
+    if (req.pengguna.id != check.id_traveller) {
         return res.status(400).json({
             status: 400,
             msg: "Anda tidak terdaftar dalam perjalanan ini",
@@ -308,7 +324,7 @@ const complete_trip = async (req, res) => {
     console.log(body);
     for (let i = 0; i < barangperjalanan.length; i++) {
         const element = barangperjalanan[i];
-        let temp = await Barang.findByPk(element.dataValues.id_barang);
+        let temp = await Barang.findByPk(element.id_barang);
         temp.update({ status: "DONE" });
         temp.save();
         body.update.push(temp);

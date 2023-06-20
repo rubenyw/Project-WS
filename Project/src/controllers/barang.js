@@ -361,12 +361,27 @@ const lihat_request = async (req, res) => {
             status: "PENDING",
         },
     });
+
+    let result = [];
     for (let index = 0; index < listbarang.length; index++) {
         const element = listbarang[index];
         let user = await User.findByPk(element.dataValues.id_sender);
-        listbarang[index].dataValues.Nama_Sender = user.username;
+        let awal = await Kota.findByPk(element.id_kota_keberangkatan);
+        let last = await Kota.findByPk(element.id_kota_tujuan);
+
+        result.push({
+            "ID Barang": listbarang[index].id,
+            nama: listbarang[index].nama,
+            berat: listbarang[index].berat,
+            harga: listbarang[index].harga,
+            "Kota Keberangkatan": awal.nama,
+            "Kota Tujuan": last.nama,
+        });
     }
-    return res.status(200).send({ message: listbarang });
+    return res.status(200).send({
+        status: 200,
+        result,
+    });
 };
 
 // RUBEN PUNYA
@@ -403,17 +418,25 @@ const terima_request = async (req, res) => {
             id_kota_tujuan: request.dataValues.id_kota_tujuan,
         },
     });
-    if (!perjalanan) {
+    if (!perjalanan || perjalanan.status != "ONGOING") {
         return res.status(400).json({
             status: 400,
             msg: "Tidak ada perjalanan yang sesuai dengan rute barang",
         });
     }
 
-    let result = await BarangPerjalanan.create({
+    let temp = await BarangPerjalanan.create({
         id_perjalanan: perjalanan.dataValues.id,
         id_barang: req.body.id_barang,
     });
+
+    request.update({ status: "ONGOING" });
+
+    let result = {
+        "ID Bagasi": temp.id,
+        "Nama Barang": (await Barang.findByPk(req.body.id_barang)).nama,
+        "Rute Perjalanan": (await Kota.findByPk(request.id_kota_keberangkatan)).nama + " - " + (await Kota.findByPk(request.id_kota_tujuan)).nama,
+    };
 
     return res.status(201).json({
         status: 201,
