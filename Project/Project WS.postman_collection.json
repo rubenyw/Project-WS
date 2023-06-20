@@ -176,7 +176,7 @@
 				{
 					"name": "Request Kirim Barang",
 					"request": {
-						"method": "PUT",
+						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
@@ -210,7 +210,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
+							"raw": "{{host}}/api/v1/sender/request/pay/kirim_barang",
 							"host": [
 								"{{host}}"
 							],
@@ -220,7 +220,7 @@
 								"sender",
 								"request",
 								"pay",
-								"edit_barang"
+								"kirim_barang"
 							]
 						}
 					},
@@ -643,14 +643,14 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/bug",
+							"raw": "{{host}}/api/v1/aviation",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"bug"
+								"aviation"
 							]
 						}
 					},
@@ -670,7 +670,8 @@
 								{
 									"key": "flight_code",
 									"value": "LH1101",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
