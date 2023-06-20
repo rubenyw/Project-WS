@@ -67,7 +67,11 @@ const set_perjalanan = async (req, res) => {
     const id_kota_keberangkatan = berangkat.dataValues.id;
     const id_kota_tujuan = tujuan.dataValues.id;
     const status = "ONGOING";
-    const durasi = temp.data.data[0].actual_runway;
+
+    const departureTime = new Date(temp.data.data[0].departure.scheduled);
+    const arrivalTime = new Date(temp.data.data[0].arrival.scheduled);
+
+    const durasi = (arrivalTime.getTime() - departureTime.getTime()) / (1000 * 60);
 
     const result = await Perjalanan.create({
         id_traveller,
