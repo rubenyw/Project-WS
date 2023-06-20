@@ -643,14 +643,14 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "{{host}}/api/v1/bug",
+							"raw": "{{host}}/api/v1/aviation",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"bug"
+								"aviation"
 							]
 						}
 					},
@@ -670,7 +670,8 @@
 								{
 									"key": "flight_code",
 									"value": "LH1101",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},

@@ -3,11 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 // Router untuk debuggin sementara
-const {
-    insertRajaOngkir,
-    insertAviation,
-    insertKota,
-} = require("../controllers/temp_createdatabase");
+const { insertRajaOngkir, insertAviation, insertKota } = require("../controllers/temp_createdatabase");
 router.get("/raja_ongkir", insertRajaOngkir);
 router.get("/aviation", insertAviation);
 router.get("/kota", insertKota);
