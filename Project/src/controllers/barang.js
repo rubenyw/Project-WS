@@ -74,14 +74,7 @@ const kirim_barang = async (req, res) => {
             key: KEY_RAJAONGKIR,
             "content-type": "application/x-www-form-urlencoded",
         },
-        data:
-            "origin=" +
-            asal_id +
-            "&destination=" +
-            tujuan_id +
-            "&weight=" +
-            berat_gram +
-            "&courier=jne",
+        data: "origin=" + asal_id + "&destination=" + tujuan_id + "&weight=" + berat_gram + "&courier=jne",
     };
 
     let harga_barang = 0;
@@ -91,8 +84,7 @@ const kirim_barang = async (req, res) => {
             const response = await axios(options);
             const parsedBody = response.data;
             console.log(response);
-            let harga_barang =
-                parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
 
             for (const x of parsedBody.rajaongkir.results[0].costs) {
                 if (harga_barang > x.cost[0].value) {
@@ -184,18 +176,10 @@ const edit_barang = async (req, res) => {
         },
     });
 
-    let nama_barang = req.body.nama_barang
-        ? req.body.nama_barang
-        : getBarang.nama;
-    let berat_barang = req.body.berat_barang
-        ? req.body.berat_barang
-        : getBarang.berat;
-    let asal_barang = req.body.asal_barang
-        ? req.body.asal_barang
-        : getPerjalanan.id_kota_keberangkatan;
-    let tujuan_barang = req.body.tujuan_barang
-        ? req.body.tujuan_barang
-        : getPerjalanan.id_kota_tujuan;
+    let nama_barang = req.body.nama_barang ? req.body.nama_barang : getBarang.nama;
+    let berat_barang = req.body.berat_barang ? req.body.berat_barang : getBarang.berat;
+    let asal_barang = req.body.asal_barang ? req.body.asal_barang : getPerjalanan.id_kota_keberangkatan;
+    let tujuan_barang = req.body.tujuan_barang ? req.body.tujuan_barang : getPerjalanan.id_kota_tujuan;
 
     if (req.body.asal_barang) {
         let asal_id = await Rajaongkir.findOne({
@@ -237,14 +221,7 @@ const edit_barang = async (req, res) => {
             key: KEY_RAJAONGKIR,
             "content-type": "application/x-www-form-urlencoded",
         },
-        data:
-            "origin=" +
-            asal_barang +
-            "&destination=" +
-            tujuan_barang +
-            "&weight=" +
-            berat_gram +
-            "&courier=jne",
+        data: "origin=" + asal_barang + "&destination=" + tujuan_barang + "&weight=" + berat_gram + "&courier=jne",
     };
 
     let harga_barang = 0;
@@ -254,8 +231,7 @@ const edit_barang = async (req, res) => {
             const response = await axios(options);
             const parsedBody = response.data;
             console.log(parsedBody);
-            let harga_barang =
-                parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
 
             for (const x of parsedBody.rajaongkir.results[0].costs) {
                 if (harga_barang > x.cost[0].value) {
@@ -304,7 +280,31 @@ const edit_barang = async (req, res) => {
 };
 
 // STEVEN PUNYA
-const lacak_barang = async (req, res) => {};
+const lacak_barang = async (req, res) => {
+    const { id_barang } = req.body;
+    let api_key = req.headers["x-auth-token"];
+
+    let getUser = await User.findOne({
+        where: {
+            api_key: api_key,
+        },
+    });
+
+    let getBarang = await Barang.findOne({
+        where: {
+            id: id_barang,
+        },
+    });
+    // Check If Barang milik user
+    if (getBarang.id_sender != getUser.id) {
+        return res.status(403).json({
+            status: 403,
+            msg: "Barang bukan milik user!",
+        });
+    }
+
+    // TODO : Cek Status
+};
 
 // RD PUNYA
 //sementara
@@ -399,9 +399,7 @@ const rating = async (req, res) => {
         });
     }
 
-    let perjalanan = await Perjalanan.findByPk(
-        cek_barang.dataValues.id_perjalanan
-    );
+    let perjalanan = await Perjalanan.findByPk(cek_barang.dataValues.id_perjalanan);
     if (perjalanan.dataValues.status == "ONGOING") {
         return res.status(400).json({
             status: 404,
