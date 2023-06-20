@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "67516ec3-c101-468d-b481-470425804d75",
+		"_postman_id": "0c37ab01-f771-41bd-997f-07cfe6d99b36",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -18,17 +18,17 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "test1",
+									"value": "rd123",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "654",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "test1@gmail.com",
+									"value": "red@gmail.com",
 									"type": "text"
 								},
 								{
@@ -63,12 +63,12 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "test1",
+									"value": "rd123",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "12345678",
+									"value": "654",
 									"type": "text"
 								}
 							]
@@ -98,7 +98,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "rubenyw",
+									"value": "stevenH",
 									"type": "default"
 								},
 								{
@@ -108,7 +108,7 @@
 								},
 								{
 									"key": "email",
-									"value": "rubenyasonwinarta@gmail.com",
+									"value": "stevenharianto@gmail.com",
 									"type": "default"
 								},
 								{
@@ -143,7 +143,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "rubenyw",
+									"value": "stevenH",
 									"type": "default"
 								},
 								{
@@ -239,7 +239,13 @@
 						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "id_barang",
+									"value": "1",
+									"type": "default"
+								}
+							]
 						},
 						"url": {
 							"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
@@ -253,49 +259,6 @@
 								"request",
 								"pay",
 								"edit_barang"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Request Rating",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "gSkyFoaX2X",
-								"type": "default"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "id_barang",
-									"value": "1",
-									"type": "default"
-								},
-								{
-									"key": "rating",
-									"value": "1",
-									"type": "default"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
-							"host": [
-								"{{HOST}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"sender",
-								"request",
-								"free",
-								"topup_kuota"
 							]
 						}
 					},
@@ -341,9 +304,18 @@
 				},
 				{
 					"name": "Request Lihat Request",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
-						"header": [],
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "gSkyFoaX2X",
+								"type": "default"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
 							"urlencoded": [
@@ -370,15 +342,17 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/register/sender",
+							"raw": "{{HOST}}/api/v1/sender/request/free/lihat_request",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"register",
-								"sender"
+								"sender",
+								"request",
+								"free",
+								"lihat_request"
 							]
 						}
 					},
@@ -387,7 +361,7 @@
 				{
 					"name": "Request Complete Request",
 					"request": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
@@ -406,7 +380,7 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/free/batalkan_barang",
+							"raw": "{{HOST}}/api/v1/sender/request/free/complete_request",
 							"host": [
 								"{{HOST}}"
 							],
@@ -416,7 +390,7 @@
 								"sender",
 								"request",
 								"free",
-								"batalkan_barang"
+								"complete_request"
 							]
 						}
 					},
@@ -443,7 +417,7 @@
 							"urlencoded": [
 								{
 									"key": "kota_keberangkatan",
-									"value": "Malang",
+									"value": "Denpasar",
 									"type": "default"
 								},
 								{
