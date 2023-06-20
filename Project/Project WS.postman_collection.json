@@ -94,26 +94,31 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "foto_ktp",
+									"type": "file",
+									"src": "/D:/Users/user/OneDrive/Pictures/bh3rd/2022-06-01-00-32-00_0.png"
+								},
 								{
 									"key": "username",
-									"value": "stevenH",
+									"value": "RD321",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "12345",
+									"value": "RD321",
 									"type": "default"
 								},
 								{
 									"key": "email",
-									"value": "stevenharianto@gmail.com",
+									"value": "richardgay@gmail.com",
 									"type": "default"
 								},
 								{
 									"key": "nomor_hp",
-									"value": "08111111111",
+									"value": "081121231213",
 									"type": "default"
 								}
 							]
@@ -162,6 +167,41 @@
 								"api",
 								"v1",
 								"login",
+								"traveller"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload KTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "foto_ktp",
+									"type": "file",
+									"src": "/D:/Users/user/OneDrive/Pictures/bh3rd/2022-06-01-00-32-00_0.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/upload/traveller",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"upload",
 								"traveller"
 							]
 						}
