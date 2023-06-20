@@ -176,7 +176,7 @@
 				{
 					"name": "Request Kirim Barang",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "x-auth-token",
@@ -190,14 +190,12 @@
 								{
 									"key": "nama_barang",
 									"value": "ha",
-									"type": "default",
-									"disabled": true
+									"type": "default"
 								},
 								{
 									"key": "berat_barang",
 									"value": "12",
-									"type": "default",
-									"disabled": true
+									"type": "default"
 								},
 								{
 									"key": "asal_barang",
@@ -212,9 +210,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/pay/kirim_barang",
+							"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
 							"host": [
-								"{{HOST}}"
+								"{{host}}"
 							],
 							"path": [
 								"api",
@@ -222,7 +220,7 @@
 								"sender",
 								"request",
 								"pay",
-								"kirim_barang"
+								"edit_barang"
 							]
 						}
 					},
@@ -239,6 +237,10 @@
 								"type": "default"
 							}
 						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
 							"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
 							"host": [
@@ -273,19 +275,17 @@
 								{
 									"key": "id_barang",
 									"value": "1",
-									"type": "default",
-									"disabled": true
+									"type": "default"
 								},
 								{
 									"key": "rating",
 									"value": "1",
-									"type": "default",
-									"disabled": true
+									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/free/rating",
+							"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
 							"host": [
 								"{{HOST}}"
 							],
@@ -295,7 +295,7 @@
 								"sender",
 								"request",
 								"free",
-								"rating"
+								"topup_kuota"
 							]
 						}
 					},
@@ -341,34 +341,44 @@
 				},
 				{
 					"name": "Request Lihat Request",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-auth-token",
-								"value": "gSkyFoaX2X",
-								"type": "default"
-							}
-						],
+						"method": "POST",
+						"header": [],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "nomor_hp",
+									"value": "0123456789",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/free/lihat_request",
+							"raw": "{{HOST}}/api/v1/register/sender",
 							"host": [
 								"{{HOST}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"sender",
-								"request",
-								"free",
-								"lihat_request"
+								"register",
+								"sender"
 							]
 						}
 					},
@@ -377,7 +387,7 @@
 				{
 					"name": "Request Complete Request",
 					"request": {
-						"method": "PUT",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "x-auth-token",
@@ -390,13 +400,13 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "",
+									"value": "1",
 									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/sender/request/free/complete_request",
+							"raw": "{{HOST}}/api/v1/sender/request/free/batalkan_barang",
 							"host": [
 								"{{HOST}}"
 							],
@@ -406,7 +416,7 @@
 								"sender",
 								"request",
 								"free",
-								"complete_request"
+								"batalkan_barang"
 							]
 						}
 					},
@@ -421,7 +431,28 @@
 					"name": "Request Set Perjalanan",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "kota_keberangkatan",
+									"value": "Malang",
+									"type": "default"
+								},
+								{
+									"key": "kota_tujuan",
+									"value": "Surabaya",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{HOST}}/api/v1/traveller/request/pay/set_perjalanan",
 							"host": [
@@ -452,7 +483,13 @@
 						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "id_perjalanan",
+									"value": "2",
+									"type": "default"
+								}
+							]
 						},
 						"url": {
 							"raw": "{{HOST}}/api/v1/traveller/request/free/complete_trip",
@@ -522,8 +559,43 @@
 				{
 					"name": "Tarik Saldo",
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "default"
+								},
+								{
+									"key": "jumlah",
+									"value": "5000",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/traveller/request/free/tarik_saldo",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"request",
+								"free",
+								"tarik_saldo"
+							]
+						}
 					},
 					"response": []
 				}
