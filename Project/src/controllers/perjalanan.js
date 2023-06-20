@@ -73,12 +73,15 @@ const set_perjalanan = async (req, res) => {
 
     const durasi = (arrivalTime.getTime() - departureTime.getTime()) / (1000 * 60);
 
+    const waktu_keberangkatan = departureTime;
+
     const result = await Perjalanan.create({
         id_traveller,
         id_kota_keberangkatan,
         id_kota_tujuan,
         status,
         durasi,
+        waktu_keberangkatan,
     });
 
     return res.status(200).json({

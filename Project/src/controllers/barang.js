@@ -269,7 +269,12 @@ const lacak_barang = async (req, res) => {
         });
     }
 
-    // TODO : Cek Status
+    /*
+        kode_barang
+        status (ONGOING)
+        durasi
+        lokasi
+    */
 };
 
 // RD PUNYA
@@ -281,9 +286,9 @@ const batalkan_barang = async (req, res) => {
             id: barang,
         },
     });
-    if(databarang){
+    if (databarang) {
         return res.status(400).send({ message: `kiriman sudah diambil traveller` });
-    }else{
+    } else {
         let barangnya = await Barang.findOne({
             where: {
                 id: barang,
@@ -292,9 +297,9 @@ const batalkan_barang = async (req, res) => {
         barangnya.update({
             status: "CANCELLED",
         });
-    
+
         return res.status(200).send({ message: `Kiriman dibatalkan` });
-    };
+    }
 };
 
 // RD PUNYA
