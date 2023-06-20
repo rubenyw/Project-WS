@@ -9,9 +9,78 @@ const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Aviation = require("../models/Aviation");
 const Rajaongkir = require("../models/Rajaongkir");
 const User = require("../models/User");
+const KEY_RAJAONGKIR = "151b960f3d5589e2784650bc5c992e89";
 
 // RD PUNYA
-const cek_harga_durasi = async (req, res) => {};
+const cek_harga_durasi = async (req, res) => {
+    const { asal_barang, tujuan_barang } = req.body;
+
+    // Find Kota
+    let asal_id = await Kota.findOne({
+        where: {
+            nama: asal_barang,
+        },
+        attributes: ["id_rajaongkir"],
+    });
+    let tujuan_id = await Kota.findOne({
+        where: {
+            nama: tujuan_barang,
+        },
+        attributes: ["id_rajaongkir"],
+    });
+
+    if (asal_id == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Kota Asal Barang tidak ditemukan",
+        });
+    }
+    if (tujuan_id == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Kota Tujuan Barang tidak ditemukan",
+        });
+    }
+    asal_id = asal_id.id_rajaongkir;
+    tujuan_id = tujuan_id.id_rajaongkir;
+
+    // Find Harga
+    const options = {
+        method: "post",
+        url: "https://api.rajaongkir.com/starter/cost",
+        headers: {
+            key: KEY_RAJAONGKIR,
+            "content-type": "application/x-www-form-urlencoded",
+        },
+        data: "origin=" + asal_id + "&destination=" + tujuan_id + "&weight=1000&courier=jne",
+    };
+
+    let harga_barang = 0;
+
+    async function fetchTotalHarga() {
+        try {
+            const response = await axios(options);
+            const parsedBody = response.data;
+            let harga_barang = parsedBody.rajaongkir.results[0].costs[0].cost[0].value;
+
+            for (const x of parsedBody.rajaongkir.results[0].costs) {
+                if (harga_barang > x.cost[0].value) {
+                    harga_barang = x.cost[0].value;
+                }
+            }
+
+            return harga_barang;
+        } catch (error) {
+            console.error("Error: " + error);
+        }
+    }
+    harga_barang = await fetchTotalHarga();
+
+    return res.status(200).json({
+        status: 200,
+        msg: "Harga dari " + asal_barang + " ke " + tujuan_barang + " adalah Rp " + harga_barang + " / kg",
+    });
+};
 
 // RUBEN PUNYA
 const set_perjalanan = async (req, res) => {
