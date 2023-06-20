@@ -332,16 +332,25 @@ const lacak_barang = async (req, res) => {
 //sementara
 const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
-    let databarang = await BarangPerjalanan.findOne({
+
+    const result = await Barang.findByPk(barang);
+    if (!result || result.dataValues.status == "CANCELLED") {
+        return res.status(404).json({
+            status: 404,
+            msg: "Barang tidak ada",
+        });
+    }
+
+    const databarang = await BarangPerjalanan.findOne({
         where: {
             id_barang: barang,
         },
     });
     if (databarang) {
-        return res.status(400).send({ message: `kiriman sudah diambil traveller` });
+        return res.status(400).send({ status: 200, message: `kiriman sudah diambil traveller` });
     }
-    const result = await Barang.update({ status: "CANCELLED" }, { where: { id: barang } });
 
+    result.update({ status: "CANCELLED" });
     return res.status(200).send({ message: `Kiriman dibatalkan` });
 };
 
