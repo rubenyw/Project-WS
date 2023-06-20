@@ -3,6 +3,7 @@ const Rating = require("../models/Rating");
 const Perjalanan = require("../models/Perjalanan");
 const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Rajaongkir = require("../models/Rajaongkir");
+const Kota = require("../models/Kota");
 const axios = require("axios");
 
 const { kirim, edit, terima, rate } = require("../validation/barang");
@@ -152,30 +153,17 @@ const edit_barang = async (req, res) => {
         });
     }
 
-    // Get BarangPerjalanan
-    let getBarangPerjalanan = await BarangPerjalanan.findOne({
-        where: {
-            id_barang: getBarang.id,
-        },
-    });
-    // Get Perjalanan
-    let getPerjalanan = await Perjalanan.findOne({
-        where: {
-            id: getBarangPerjalanan.id_perjalanan,
-        },
-    });
-
     let nama_barang = req.body.nama_barang ? req.body.nama_barang : getBarang.nama;
     let berat_barang = req.body.berat_barang ? req.body.berat_barang : getBarang.berat;
-    let asal_barang = req.body.asal_barang ? req.body.asal_barang : getPerjalanan.id_kota_keberangkatan;
-    let tujuan_barang = req.body.tujuan_barang ? req.body.tujuan_barang : getPerjalanan.id_kota_tujuan;
+    let asal_barang = req.body.asal_barang ? req.body.asal_barang : getBarang.id_kota_keberangkatan;
+    let tujuan_barang = req.body.tujuan_barang ? req.body.tujuan_barang : getBarang.id_kota_tujuan;
 
     if (req.body.asal_barang) {
-        let asal_id = await Rajaongkir.findOne({
+        let asal_id = await Kota.findOne({
             where: {
                 nama: asal_barang,
             },
-            attributes: ["id"],
+            attributes: ["id_rajaongkir"],
         });
         if (asal_id == null) {
             return res.status(404).json({
@@ -183,14 +171,14 @@ const edit_barang = async (req, res) => {
                 msg: "Kota Asal Barang tidak ditemukan",
             });
         }
-        asal_barang = asal_id.id;
+        asal_barang = asal_id.id_ongkir;
     }
     if (req.body.tujuan_barang) {
-        let tujuan_id = await Rajaongkir.findOne({
+        let tujuan_id = await Kota.findOne({
             where: {
                 nama: tujuan_barang,
             },
-            attributes: ["id"],
+            attributes: ["id_rajaongkir"],
         });
         if (tujuan_id == null) {
             return res.status(404).json({
@@ -198,7 +186,7 @@ const edit_barang = async (req, res) => {
                 msg: "Kota Tujuan Barang tidak ditemukan",
             });
         }
-        tujuan_barang = tujuan_id.id;
+        tujuan_barang = tujuan_id.id_rajaongkir;
     }
 
     let berat_gram = berat_barang * 1000;
@@ -241,23 +229,12 @@ const edit_barang = async (req, res) => {
             nama: nama_barang,
             berat: berat_barang,
             harga: harga_barang,
-        },
-        {
-            where: {
-                id: getBarang.id,
-            },
-        }
-    );
-
-    // Update Perjalanan
-    await Perjalanan.update(
-        {
             id_kota_keberangkatan: asal_barang,
             id_kota_tujuan: tujuan_barang,
         },
         {
             where: {
-                id: getPerjalanan.id,
+                id: getBarang.id,
             },
         }
     );
