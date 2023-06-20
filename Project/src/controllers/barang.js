@@ -334,7 +334,7 @@ const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
 
     const result = await Barang.findByPk(barang);
-    if (!result || result.dataValues.status == "CANCELLED") {
+    if (!result || result.status == "CANCELLED") {
         return res.status(404).json({
             status: 404,
             msg: "Barang tidak ada",
@@ -365,7 +365,7 @@ const lihat_request = async (req, res) => {
     let result = [];
     for (let index = 0; index < listbarang.length; index++) {
         const element = listbarang[index];
-        let user = await User.findByPk(element.dataValues.id_sender);
+        let user = await User.findByPk(element.id_sender);
         let awal = await Kota.findByPk(element.id_kota_keberangkatan);
         let last = await Kota.findByPk(element.id_kota_tujuan);
 
@@ -404,7 +404,7 @@ const terima_request = async (req, res) => {
             msg: "Barang tidak ada",
         });
     }
-    if (request.dataValues.status != "PENDING") {
+    if (request.status != "PENDING") {
         return res.status(400).json({
             status: 400,
             msg: "Barang sudah diambil traveller lain",
@@ -413,9 +413,9 @@ const terima_request = async (req, res) => {
 
     let perjalanan = await Perjalanan.findOne({
         where: {
-            id_traveller: req.pengguna.dataValues.id,
-            id_kota_keberangkatan: request.dataValues.id_kota_keberangkatan,
-            id_kota_tujuan: request.dataValues.id_kota_tujuan,
+            id_traveller: req.pengguna.id,
+            id_kota_keberangkatan: request.id_kota_keberangkatan,
+            id_kota_tujuan: request.id_kota_tujuan,
         },
     });
     if (!perjalanan || perjalanan.status != "ONGOING") {
@@ -426,7 +426,7 @@ const terima_request = async (req, res) => {
     }
 
     let temp = await BarangPerjalanan.create({
-        id_perjalanan: perjalanan.dataValues.id,
+        id_perjalanan: perjalanan.id,
         id_barang: req.body.id_barang,
     });
 
@@ -485,21 +485,21 @@ const rating = async (req, res) => {
             msg: `Tidak ditemukan barang dengan ID '${req.body.id_barang}`,
         });
     }
-    if (cek_barang.dataValues.id_sender != req.pengguna.dataValues.id) {
+    if (cek_barang.id_sender != req.pengguna.id) {
         return res.status(404).json({
             status: 404,
             msg: `Barang bukan milik anda`,
         });
     }
-    if (cek_barang.dataValues.status == "PENDING") {
+    if (cek_barang.status == "PENDING") {
         return res.status(404).json({
             status: 404,
             msg: `Barang belum diangkut dalam perjalanan`,
         });
     }
 
-    let perjalanan = await Perjalanan.findByPk(cek_barang.dataValues.id_perjalanan);
-    if (perjalanan.dataValues.status == "ONGOING") {
+    let perjalanan = await Perjalanan.findByPk(cek_barang.id_perjalanan);
+    if (perjalanan.status == "ONGOING") {
         return res.status(400).json({
             status: 404,
             msg: `Barang masih dalam perjalanan`,
@@ -507,8 +507,8 @@ const rating = async (req, res) => {
     }
 
     const result = await Rating.create({
-        id_sender: req.user.dataValues.id,
-        id_traveller: perjalanan.dataValues.id_traveller,
+        id_sender: req.user.id,
+        id_traveller: perjalanan.id_traveller,
         rate: req.body.rating,
     });
 
