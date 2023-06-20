@@ -8,6 +8,7 @@ const Rating = require("../models/Rating");
 const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Aviation = require("../models/Aviation");
 const Rajaongkir = require("../models/Rajaongkir");
+const User = require("../models/User");
 
 // RD PUNYA
 const cek_harga_durasi = async (req, res) => {};
@@ -98,8 +99,41 @@ const sender_lihat_riwayat = async (req, res) => {
     });
 };
 
-//BLM PUNYA
-const traveller_lihat_riwayat = async (req, res) => {};
+//RUBEN PUNYA
+const traveller_lihat_riwayat = async (req, res) => {
+    const perjalanan = await Perjalanan.findAll({
+        where: { id_traveller: req.pengguna.dataValues.id, status: "DONE" },
+    });
+
+    let result = [];
+    for (let i = 0; i < perjalanan.length; i++) {
+        const time = perjalanan[i].dataValues.waktu_keberangkatan.toISOString().split(".")[0].replace("T", " ");
+        const kota_berangkat = await Kota.findByPk(perjalanan[i].dataValues.id_kota_keberangkatan);
+        const kota_tujuan = await Kota.findByPk(perjalanan[i].dataValues.id_kota_tujuan);
+
+        result.push({
+            kota_berangkat: kota_berangkat.dataValues.nama,
+            kota_tujuan: kota_tujuan.dataValues.nama,
+            barang: [],
+        });
+
+        const barangperjalanan = await BarangPerjalanan.findAll({ where: { id_perjalanan: perjalanan[i].dataValues.id } });
+        for (let j = 0; j < barangperjalanan.length; j++) {
+            const barang = await Barang.findByPk(barangperjalanan[j].dataValues.id_barang);
+            const user = await User.findByPk(barang.dataValues.id_sender);
+            result[i].barang.push({
+                nama_barang: barang.dataValues.nama,
+                berat_barang: barang.dataValues.berat,
+                harga_barang: barang.dataValues.harga,
+                pengirim_barang: user.dataValues.username,
+            });
+        }
+    }
+    return res.status(201).json({
+        status: 201,
+        result,
+    });
+};
 
 // RUBEN PUNYA
 const complete_trip = async (req, res) => {
