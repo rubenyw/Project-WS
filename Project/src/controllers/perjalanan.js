@@ -228,9 +228,7 @@ const sender_lihat_riwayat = async (req, res) => {
     });
 };
 //RD
-const lihat_listbarang_traveller = async (req, res) => {
-    
-};
+const lihat_listbarang_traveller = async (req, res) => {};
 
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {
@@ -373,6 +371,7 @@ const traveller_lihat_request = async (req, res) => {
             },
         });
         arrBarang.push({
+            id_barang: x.id,
             nama_barang: x.nama,
             nama_user: getUserName ? getUserName.username : "-",
             berat: x.berat,

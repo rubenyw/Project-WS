@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "424c70b2-7502-4b29-b8b0-6ab7a10721f2",
+		"_postman_id": "174ebd66-8027-4e79-b6a6-4dfd0a0a9061",
 		"name": "Project WS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25979826"
 	},
 	"item": [
 		{
@@ -584,10 +585,24 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Request Lihat Request",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/v1/traveller/request/free/lihat_request",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"request",
+								"free",
+								"lihat_request"
+							]
+						}
 					},
 					"response": []
 				}
