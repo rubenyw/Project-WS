@@ -109,16 +109,6 @@ const topup_kuota = async (req, res) => {
 
 // RD PUNYA
 const cek_saldo = async (req, res) => {
-    const { error, value } = saldo.validate(req.body, {
-        abortEarly: false,
-    });
-    if (error) {
-        const validationErrors = error.details.map((detail) => detail.message);
-        return res.status(404).json({
-            status: 404,
-            msg: validationErrors,
-        });
-    }
     return res.status(201).json({
         status: 201,
         msg: {saldo: `Saldo anda sekarang ${req.pengguna.dataValues.saldo}`},

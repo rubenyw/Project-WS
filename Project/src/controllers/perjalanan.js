@@ -228,7 +228,9 @@ const sender_lihat_riwayat = async (req, res) => {
     });
 };
 //RD
-const lihat_listbarang_traveller = async (req, res) => {};
+const lihat_listbarang_traveller = async (req, res) => {
+    
+};
 
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {
