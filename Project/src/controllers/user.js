@@ -1,7 +1,7 @@
+const { registerSchema, loginSchema } = require("../validation/user");
+
 const User = require("../models/User");
 const Rating = require("../models/Rating");
-
-const { registerSchema, loginSchema } = require("../validation/user");
 
 // STEVEN PUNYA
 const registerSender = async (req, res) => {
@@ -206,8 +206,7 @@ module.exports = {
 
 // Functions
 function generateApiKey(length) {
-    const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let apiKey = "";
 
     for (let i = 0; i < length; i++) {

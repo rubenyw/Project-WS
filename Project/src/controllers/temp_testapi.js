@@ -66,12 +66,9 @@ const country = async (req, res) => {
         access_key: "7639c0479301fe4cb3fff6fc87308683",
         limit: 300,
     };
-    const result = await axios.get(
-        "http://api.aviationstack.com/v1/countries",
-        {
-            params,
-        }
-    );
+    const result = await axios.get("http://api.aviationstack.com/v1/countries", {
+        params,
+    });
     let hasil = [];
     result.data.data.forEach((element) => {
         if (element.country_name == "Indonesia") hasil = element;
