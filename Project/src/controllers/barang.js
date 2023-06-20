@@ -269,12 +269,53 @@ const lacak_barang = async (req, res) => {
         });
     }
 
-    /*
-        kode_barang
-        status (ONGOING)
-        durasi
-        lokasi
-    */
+    // Check Status
+    let status = getBarang.status;
+    let durasi = 0;
+    let strStatus = "";
+    let strDurasi = "-";
+    if (status == "PENDING") {
+        strStatus = "Barang belum diambil traveller";
+    } else if (status == "ONGOING") {
+        strStatus = "Barang telah diambil kurir";
+
+        // Get BarangPerjalanan
+        let getBarangPerjalanan = await BarangPerjalanan.findOne({
+            where: {
+                id_barang: getBarang.id,
+            },
+        });
+
+        // Get Perjalanan
+        let getPerjalanan = await Perjalanan.findOne({
+            where: {
+                id: getBarangPerjalanan.id_perjalanan,
+            },
+        });
+
+        let waktu_keberangkatan = new Date(getPerjalanan.waktu_keberangkatan);
+        const now = new Date();
+
+        const tempDurasi = Math.floor((now.getTime() - waktu_keberangkatan.getTime()) / 60000);
+
+        console.log("Waktu Keberangkatan: " + waktu_keberangkatan);
+        console.log("Perbedaan: " + tempDurasi);
+
+        durasi = getPerjalanan.durasi - tempDurasi;
+        strDurasi = "Barang akan sampai di tujuan dalam " + durasi + " menit";
+    } else {
+        // DONE
+        strStatus = "Barang telah sampai tujuan";
+    }
+
+    return res.status(200).json({
+        status: 200,
+        body: {
+            kode_barang: getBarang.id,
+            status: strStatus,
+            durasi: strDurasi,
+        },
+    });
 };
 
 // RD PUNYA

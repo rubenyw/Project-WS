@@ -24,7 +24,7 @@ router.post("/sender/request/pay/kirim_barang", kirim_barang);
 router.put("/sender/request/pay/edit_barang", edit_barang);
 router.post("/sender/request/free/topup_kuota", topup_kuota);
 router.post("/sender/request/free/topup_saldo", topup_saldo);
-router.post("/sender/request/free/lacak_barang", lacak_barang);
+router.get("/sender/request/free/lacak_barang", lacak_barang);
 router.get("/sender/request/free/lihat_request", lihat_request);
 router.delete("/sender/request/free/batalkan_barang", batalkan_barang);
 router.put("/sender/request/free/complete_request", complete_request);
