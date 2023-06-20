@@ -23,6 +23,12 @@ Barang.init(
         harga: {
             type: DataTypes.INTEGER,
         },
+        id_kota_keberangkatan: {
+            type: DataTypes.INTEGER,
+        },
+        id_kota_tujuan: {
+            type: DataTypes.INTEGER,
+        },
         status: {
             type: DataTypes.STRING,
             defaultValue: "PENDING",
