@@ -230,6 +230,10 @@ const sender_lihat_riwayat = async (req, res) => {
         result,
     });
 };
+//RD 
+const lihat_listbarang_traveller = async (req, res) => {
+    
+}
 
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {
