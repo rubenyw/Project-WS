@@ -1,13 +1,13 @@
+const axios = require("axios");
+const { kirim, edit, terima, rate } = require("../validation/barang");
+
+const User = require("../models/User");
+const Kota = require("../models/Kota");
 const Barang = require("../models/Barang");
 const Rating = require("../models/Rating");
 const Perjalanan = require("../models/Perjalanan");
-const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Rajaongkir = require("../models/Rajaongkir");
-const Kota = require("../models/Kota");
-const axios = require("axios");
-
-const { kirim, edit, terima, rate } = require("../validation/barang");
-const User = require("../models/User");
+const BarangPerjalanan = require("../models/BarangPerjalanan");
 
 const KEY_RAJAONGKIR = "151b960f3d5589e2784650bc5c992e89";
 
