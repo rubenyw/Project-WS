@@ -706,92 +706,159 @@
 			]
 		},
 		{
-			"name": "Test Bug",
+			"name": "Test",
 			"item": [
 				{
-					"name": "insert raja ongkir",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/raja_ongkir",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"raja_ongkir"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "insert aviation",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{host}}/api/v1/aviation",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"aviation"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "insert kota",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "flight_code",
-									"value": "LH1101",
-									"type": "text",
-									"disabled": true
+					"name": "Insert",
+					"item": [
+						{
+							"name": "insert raja ongkir",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/raja_ongkir",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"raja_ongkir"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{host}}/api/v1/kota",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"kota"
-							]
+						{
+							"name": "insert aviation",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/aviation",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"aviation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "insert kota",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "flight_code",
+											"value": "LH1101",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/kota",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"kota"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				},
+				{
+					"name": "Debug",
+					"item": [
+						{
+							"name": "test",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/test",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "city",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/city",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"city"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "country",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/api/v1/country",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"country"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
