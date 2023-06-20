@@ -251,14 +251,9 @@ CREATE TABLE `barang` (
   `id_kota_keberangkatan` int(11) NOT NULL,
   `id_kota_tujuan` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barang` */
-
-insert  into `barang`(`id`,`id_sender`,`nama`,`berat`,`harga`,`status`,`id_kota_keberangkatan`,`id_kota_tujuan`) values 
-(13,1,'Tepak',12,216000,'PENDING',444,114),
-(14,1,'Botol',12,216000,'PENDING',444,114),
-(15,1,'Botol',12,972000,'PENDING',444,14);
 
 /*Table structure for table `barangperjalanan` */
 
@@ -269,7 +264,7 @@ CREATE TABLE `barangperjalanan` (
   `id_perjalanan` int(11) DEFAULT NULL,
   `id_barang` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `barangperjalanan` */
 
@@ -355,7 +350,7 @@ CREATE TABLE `perjalanan` (
   `status` varchar(255) DEFAULT NULL,
   `waktu_keberangkatan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `perjalanan` */
 
