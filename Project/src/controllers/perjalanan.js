@@ -134,8 +134,8 @@ const set_perjalanan = async (req, res) => {
     }
     const pengguna = req.pengguna;
     const id_traveller = pengguna.dataValues.id;
-    const id_kota_keberangkatan = berangkat.dataValues.id;
-    const id_kota_tujuan = tujuan.dataValues.id;
+    const id_kota_keberangkatan = berangkat.dataValues.id_rajaongkir;
+    const id_kota_tujuan = tujuan.dataValues.id_rajaongkir;
     const status = "ONGOING";
 
     const departureTime = new Date(temp.data.data[0].departure.scheduled);
@@ -322,10 +322,75 @@ const complete_trip = async (req, res) => {
     });
 };
 
+const traveller_lihat_request = async (req, res) => {
+    let api_key = req.headers["x-auth-token"];
+
+    let getUser = await User.findOne({
+        where: {
+            api_key: api_key,
+        },
+    });
+
+    if (getUser == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "User not found",
+        });
+    }
+
+    if (getUser.role != "Traveller") {
+        return res.status(403).json({
+            status: 403,
+            msg: "User is not traveller",
+        });
+    }
+
+    let getPerjalanan = await Perjalanan.findOne({
+        where: {
+            id_traveller: getUser.id,
+            status: "ONGOING",
+        },
+    });
+    if (getPerjalanan == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Perjalanan isn't set",
+        });
+    }
+
+    let getBarang = await Barang.findAll({
+        where: {
+            id_kota_keberangkatan: getPerjalanan.id_kota_keberangkatan,
+            id_kota_tujuan: getPerjalanan.id_kota_tujuan,
+            status: "PENDING",
+        },
+    });
+    let arrBarang = [];
+    for (const x of getBarang) {
+        let getUserName = await User.findOne({
+            where: {
+                id: x.id_sender,
+            },
+        });
+        arrBarang.push({
+            nama_barang: x.nama,
+            nama_user: getUserName ? getUserName.username : "-",
+            berat: x.berat,
+            harga: x.harga,
+        });
+    }
+
+    return res.status(200).json({
+        status: 200,
+        body: arrBarang,
+    });
+};
+
 module.exports = {
     cek_harga_durasi,
     set_perjalanan,
     lihat_listbarang_traveller,
+    traveller_lihat_request,
     sender_lihat_riwayat,
     traveller_lihat_riwayat,
     complete_trip,
