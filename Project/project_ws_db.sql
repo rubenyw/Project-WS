@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 20, 2023 at 03:14 PM
+-- Generation Time: Jun 20, 2023 at 03:35 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -378,25 +378,26 @@ CREATE TABLE `perjalanan` (
   `id_kota_keberangkatan` int(11) DEFAULT NULL,
   `id_kota_tujuan` int(11) DEFAULT NULL,
   `durasi` int(11) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL
+  `status` varchar(255) DEFAULT NULL,
+  `waktu_keberangkatan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `perjalanan`
 --
 
-INSERT INTO `perjalanan` (`id`, `id_traveller`, `id_kota_keberangkatan`, `id_kota_tujuan`, `durasi`, `status`) VALUES
-(1, 4, 444, 51, NULL, 'PENDING'),
-(2, 4, 444, 51, NULL, 'DONE'),
-(3, 4, 444, 51, NULL, 'PENDING'),
-(4, 4, 444, 51, NULL, 'PENDING'),
-(5, 4, 444, 51, NULL, 'PENDING'),
-(6, 4, 84, 24, NULL, 'ONGOING'),
-(7, 4, 84, 24, NULL, 'ONGOING'),
-(8, 4, 84, 24, NULL, 'ONGOING'),
-(9, 4, 84, 24, 115, 'ONGOING'),
-(10, 4, 84, 24, 2147483647, 'ONGOING'),
-(11, 4, 84, 24, 115, 'ONGOING');
+INSERT INTO `perjalanan` (`id`, `id_traveller`, `id_kota_keberangkatan`, `id_kota_tujuan`, `durasi`, `status`, `waktu_keberangkatan`) VALUES
+(1, 4, 444, 51, NULL, 'PENDING', '2023-06-20 13:34:43'),
+(2, 4, 444, 51, NULL, 'DONE', '2023-06-20 13:34:43'),
+(3, 4, 444, 51, NULL, 'PENDING', '2023-06-20 13:34:43'),
+(4, 4, 444, 51, NULL, 'PENDING', '2023-06-20 13:34:43'),
+(5, 4, 444, 51, NULL, 'PENDING', '2023-06-20 13:34:43'),
+(6, 4, 84, 24, NULL, 'ONGOING', '2023-06-20 13:34:43'),
+(7, 4, 84, 24, NULL, 'ONGOING', '2023-06-20 13:34:43'),
+(8, 4, 84, 24, NULL, 'ONGOING', '2023-06-20 13:34:43'),
+(9, 4, 84, 24, 115, 'ONGOING', '2023-06-20 13:34:43'),
+(10, 4, 84, 24, 2147483647, 'ONGOING', '2023-06-20 13:34:43'),
+(11, 4, 84, 24, 115, 'ONGOING', '2023-06-20 13:34:43');
 
 -- --------------------------------------------------------
 

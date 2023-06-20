@@ -25,6 +25,9 @@ Perjalanan.init(
         status: {
             type: DataTypes.STRING,
         },
+        waktu_keberangkatan: {
+            type: DataTypes.TIME,
+        },
     },
     {
         sequelize: db,
