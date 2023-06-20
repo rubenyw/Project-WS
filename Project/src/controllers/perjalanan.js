@@ -134,8 +134,8 @@ const set_perjalanan = async (req, res) => {
     }
     const pengguna = req.pengguna;
     const id_traveller = pengguna.dataValues.id;
-    const id_kota_keberangkatan = berangkat.dataValues.id_rajaongkir;
-    const id_kota_tujuan = tujuan.dataValues.id_rajaongkir;
+    const id_kota_keberangkatan = berangkat.dataValues.id;
+    const id_kota_tujuan = tujuan.dataValues.id;
     const status = "ONGOING";
 
     const departureTime = new Date(temp.data.data[0].departure.scheduled);
