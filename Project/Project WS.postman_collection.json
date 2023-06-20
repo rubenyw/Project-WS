@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "424c70b2-7502-4b29-b8b0-6ab7a10721f2",
+		"_postman_id": "4aa27ac2-903d-4341-8e66-78982fceb061",
 		"name": "Project WS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25979826"
 	},
 	"item": [
 		{
@@ -359,14 +360,6 @@
 					"response": []
 				},
 				{
-					"name": "Request Terima Request",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "Request Complete Request",
 					"request": {
 						"method": "PUT",
@@ -528,6 +521,14 @@
 								"complete_trip"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Cek Harga Durasi",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
