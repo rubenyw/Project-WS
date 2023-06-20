@@ -1,14 +1,15 @@
 const { default: axios } = require("axios");
 const { set, checkFlight } = require("../validation/perjalanan");
 
+const User = require("../models/User");
 const Kota = require("../models/Kota");
-const Perjalanan = require("../models/Perjalanan");
 const Barang = require("../models/Barang");
 const Rating = require("../models/Rating");
-const BarangPerjalanan = require("../models/BarangPerjalanan");
 const Aviation = require("../models/Aviation");
 const Rajaongkir = require("../models/Rajaongkir");
-const User = require("../models/User");
+const Perjalanan = require("../models/Perjalanan");
+const BarangPerjalanan = require("../models/BarangPerjalanan");
+
 const KEY_RAJAONGKIR = "151b960f3d5589e2784650bc5c992e89";
 
 // STEVEN PUNYA

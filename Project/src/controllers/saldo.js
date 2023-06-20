@@ -1,6 +1,7 @@
-const { kuota, saldo } = require("../validation/saldo");
-const User = require("../models/User");
 const { literal } = require("sequelize");
+const { kuota, saldo } = require("../validation/saldo");
+
+const User = require("../models/User");
 
 // STEVEN PUNYA
 const topup_saldo = async (req, res) => {
@@ -111,9 +112,8 @@ const topup_kuota = async (req, res) => {
 const cek_saldo = async (req, res) => {
     return res.status(201).json({
         status: 201,
-        msg: {saldo: `Saldo anda sekarang ${req.pengguna.dataValues.saldo}`},
+        msg: { saldo: `Saldo anda sekarang ${req.pengguna.dataValues.saldo}` },
     });
-
 };
 
 // RUBEN PUNYA
