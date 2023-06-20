@@ -43,9 +43,7 @@ const set_perjalanan = async (req, res) => {
     }
 
     const arrival = await Aviation.findByPk(tujuan.dataValues.id_flightapi);
-    const departure = await Aviation.findByPk(
-        berangkat.dataValues.id_flightapi
-    );
+    const departure = await Aviation.findByPk(berangkat.dataValues.id_flightapi);
 
     const params = {
         access_key: "7639c0479301fe4cb3fff6fc87308683",
