@@ -11,7 +11,7 @@ const Rajaongkir = require("../models/Rajaongkir");
 const User = require("../models/User");
 const KEY_RAJAONGKIR = "151b960f3d5589e2784650bc5c992e89";
 
-// RD PUNYA
+// STEVEN PUNYA
 const cek_harga_durasi = async (req, res) => {
     const { asal_barang, tujuan_barang } = req.body;
 
@@ -160,30 +160,15 @@ const set_perjalanan = async (req, res) => {
     });
 };
 
-// RD PUNYA
-//blm selesai
-const lihat_listbarang_traveller = async (req, res) => { 
-    const tujuan = req.body.tujuan;
-    
-    const listbarang = await Barang.findAll({
-        attributes: ["id", "id_sender", "nama"],
-        where: {
-            status: tujuan,
-
-        },
-    });
-}
-
-// RD PUNYA
-//blm selesai
+// RUBEN PUNYA
 const sender_lihat_riwayat = async (req, res) => {
-<<<<<<< Updated upstream
+
     /**
      * barang yang sudah dikirim
      * barang yang sedang diambil
      * barang yang belum diambil
+     * barang yang dicancel
      */
-=======
     
     const listbarang = await Barang.findAll({
         attributes: ["id", "id_sender", "nama"],
@@ -192,7 +177,58 @@ const sender_lihat_riwayat = async (req, res) => {
         },
     });
 
->>>>>>> Stashed changes
+
+
+    const belum = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "PENDING" } });
+    const sedng = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "ONGOING" } });
+    const sudah = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "DONE" } });
+    const cancl = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "CANCELLED" } });
+
+    let result = {
+        nama: req.pengguna.dataValues.username,
+        "barang belum diangkut": [],
+        "barang sedang diangkut": [],
+        "barang sudah dikirim": [],
+    };
+
+    for (let i = 0; i < belum.length; i++) {
+        const element = belum[i];
+        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        result["barang belum diangkut"].push({
+            "nama barang": element.dataValues.nama,
+            "berat barang": element.dataValues.berat,
+            "harga barang": element.dataValues.berat,
+            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+        });
+    }
+    for (let i = 0; i < sedng.length; i++) {
+        const element = sedng[i];
+        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        result["barang sedang diangkut"].push({
+            "nama barang": element.dataValues.nama,
+            "berat barang": element.dataValues.berat,
+            "harga barang": element.dataValues.berat,
+            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+        });
+    }
+    for (let i = 0; i < sudah.length; i++) {
+        const element = sudah[i];
+        const tujuaaaan = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        const berangkat = await Kota.findByPk(element.dataValues.id_kota_tujuan);
+        result["barang sudah dikirim"].push({
+            "nama barang": element.dataValues.nama,
+            "berat barang": element.dataValues.berat,
+            "harga barang": element.dataValues.berat,
+            rute: berangkat.dataValues.nama + " -> " + tujuaaaan.dataValues.nama,
+        });
+    }
+
+    return res.status(201).json({
+        status: 201,
+        result,
+    });
 };
 
 //RUBEN PUNYA
