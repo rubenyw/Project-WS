@@ -332,6 +332,36 @@ const terima_request = async (req, res) => {
     }
 
     let request = await Barang.findOne({ where: { id: req.body.id_barang } });
+    if (request.dataValues.status != "PENDING") {
+        return res.status(400).json({
+            status: 400,
+            msg: "Barang sudah diambil traveller lain",
+        });
+    }
+
+    let perjalanan = await Perjalanan.findOne({
+        where: {
+            id_traveller: req.pengguna.dataValues.id,
+            id_kota_keberangkatan: request.dataValues.id_kota_keberangkatan,
+            id_kota_tujuan: request.dataValues.id_kota_tujuan,
+        },
+    });
+    if (!perjalanan) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Tidak ada perjalanan yang sesuai dengan rute barang",
+        });
+    }
+
+    let result = await BarangPerjalanan.create({
+        id_perjalanan: perjalanan.dataValues.id,
+        id_barang: req.body.id_barang,
+    });
+
+    return res.status(201).json({
+        status: 201,
+        result,
+    });
 };
 
 // RD PUNYA
