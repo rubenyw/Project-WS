@@ -334,23 +334,15 @@ const batalkan_barang = async (req, res) => {
     const barang = req.body.id_barang;
     let databarang = await BarangPerjalanan.findOne({
         where: {
-            id: barang,
+            id_barang: barang,
         },
     });
     if (databarang) {
         return res.status(400).send({ message: `kiriman sudah diambil traveller` });
-    } else {
-        let barangnya = await Barang.findOne({
-            where: {
-                id: barang,
-            },
-        });
-        barangnya.update({
-            status: "CANCELLED",
-        });
-
-        return res.status(200).send({ message: `Kiriman dibatalkan` });
     }
+    const result = await Barang.update({ status: "CANCELLED" }, { where: { id: barang } });
+
+    return res.status(200).send({ message: `Kiriman dibatalkan` });
 };
 
 // RD PUNYA
