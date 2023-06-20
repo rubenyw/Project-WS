@@ -162,22 +162,19 @@ const set_perjalanan = async (req, res) => {
 
 // RUBEN PUNYA
 const sender_lihat_riwayat = async (req, res) => {
-
     /**
      * barang yang sudah dikirim
      * barang yang sedang diambil
      * barang yang belum diambil
      * barang yang dicancel
      */
-    
+
     const listbarang = await Barang.findAll({
         attributes: ["id", "id_sender", "nama"],
         where: {
             id_sender: req.pengguna.dataValues.id,
         },
     });
-
-
 
     const belum = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "PENDING" } });
     const sedng = await Barang.findAll({ where: { id_sender: req.pengguna.dataValues.id, status: "ONGOING" } });
@@ -230,10 +227,8 @@ const sender_lihat_riwayat = async (req, res) => {
         result,
     });
 };
-//RD 
-const lihat_listbarang_traveller = async (req, res) => {
-    
-}
+//RD
+const lihat_listbarang_traveller = async (req, res) => {};
 
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {

@@ -261,6 +261,13 @@ const lacak_barang = async (req, res) => {
             id: id_barang,
         },
     });
+
+    if (getBarang == null) {
+        return res.status(404).json({
+            status: 404,
+            msg: "Barang tidak ditemukan!",
+        });
+    }
     // Check If Barang milik user
     if (getBarang.id_sender != getUser.id) {
         return res.status(403).json({
