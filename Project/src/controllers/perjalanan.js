@@ -250,11 +250,9 @@ const lihat_listbarang_traveller = async (req, res) => {
     });
 
     const listbarang = await Barang.findAll({
-        where: { id_kota_keberangkatan: namakotaasal.id, 
-                id_kota_tujuan: namakotatujuan.id,
-                status: "PENDING" },
+        where: { id_kota_keberangkatan: namakotaasal.id, id_kota_tujuan: namakotatujuan.id, status: "PENDING" },
     });
-    let result = []
+    let result = [];
     for (let i = 0; i < listbarang.length; i++) {
         const element = listbarang[i];
         const sender = await User.findByPk(element.id_sender);
@@ -271,7 +269,6 @@ const lihat_listbarang_traveller = async (req, res) => {
         status: 201,
         result,
     });
-
 };
 
 //RUBEN PUNYA
