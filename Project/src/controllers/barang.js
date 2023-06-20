@@ -43,13 +43,13 @@ const kirim_barang = async (req, res) => {
         where: {
             nama: asal_barang,
         },
-        attributes: ["id_rajaongkir"],
+        attributes: ["id", "id_rajaongkir"],
     });
     let tujuan_id = await Kota.findOne({
         where: {
             nama: tujuan_barang,
         },
-        attributes: ["id_rajaongkir"],
+        attributes: ["id", "id_rajaongkir"],
     });
 
     if (asal_id == null) {
@@ -64,6 +64,9 @@ const kirim_barang = async (req, res) => {
             msg: "Kota Tujuan Barang tidak ditemukan",
         });
     }
+    id_asal = asal_id.id;
+    id_tujuan = tujuan_id.id;
+
     asal_id = asal_id.id_rajaongkir;
     tujuan_id = tujuan_id.id_rajaongkir;
 
@@ -106,8 +109,8 @@ const kirim_barang = async (req, res) => {
         nama: nama_barang,
         berat: berat_barang,
         harga: harga_barang,
-        id_kota_keberangkatan: asal_id,
-        id_kota_tujuan: tujuan_id,
+        id_kota_keberangkatan: id_asal,
+        id_kota_tujuan: id_tujuan,
         status: "PENDING",
     });
 
@@ -353,7 +356,6 @@ const batalkan_barang = async (req, res) => {
 // RD PUNYA
 const lihat_request = async (req, res) => {
     const listbarang = await Barang.findAll({
-        attributes: ["id", "id_sender", "nama"],
         where: {
             status: "PENDING",
         },
