@@ -337,6 +337,10 @@ CREATE TABLE `ktp` (
 
 /*Data for the table `ktp` */
 
+insert  into `ktp`(`id_user`,`foto_ktp`,`status`) values 
+(2,'./src/uploads','OK'),
+(4,'4.png','DONE');
+
 /*Table structure for table `perjalanan` */
 
 DROP TABLE IF EXISTS `perjalanan`;
@@ -499,7 +503,7 @@ CREATE TABLE `user` (
   `role` varchar(255) NOT NULL,
   `saldo` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `user` */
 
@@ -508,7 +512,8 @@ insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hi
 (2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
 (3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
 (4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',780000),
-(5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0);
+(5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0),
+(6,'stevenH','12345','stevenharianto@gmail.com','08111111111','V5HDU1LQks',0,'Traveller',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
