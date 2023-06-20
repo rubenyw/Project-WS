@@ -205,7 +205,7 @@ const sender_lihat_riwayat = async (req, res) => {
         result["barang belum diangkut"].push({
             "nama barang": element.nama,
             "berat barang": element.berat,
-            "harga barang": element.berat,
+            "harga barang": element.harga,
             rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
@@ -216,7 +216,7 @@ const sender_lihat_riwayat = async (req, res) => {
         result["barang sedang diangkut"].push({
             "nama barang": element.nama,
             "berat barang": element.berat,
-            "harga barang": element.berat,
+            "harga barang": element.harga,
             rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
@@ -227,7 +227,7 @@ const sender_lihat_riwayat = async (req, res) => {
         result["barang sudah dikirim"].push({
             "nama barang": element.nama,
             "berat barang": element.berat,
-            "harga barang": element.berat,
+            "harga barang": element.harga,
             rute: berangkat.nama + " -> " + tujuaaaan.nama,
         });
     }
@@ -238,7 +238,41 @@ const sender_lihat_riwayat = async (req, res) => {
     });
 };
 //RD
-const lihat_listbarang_traveller = async (req, res) => {};
+const lihat_listbarang_traveller = async (req, res) => {
+    const tujuan = req.body.tujuan;
+    const asal = req.body.asal;
+
+    const namakotatujuan = await Kota.findOne({
+        where: { nama: tujuan.toUpperCase() },
+    });
+    const namakotaasal = await Kota.findOne({
+        where: { nama: asal.toUpperCase() },
+    });
+
+    const listbarang = await Barang.findAll({
+        where: { id_kota_keberangkatan: namakotaasal.id, 
+                id_kota_tujuan: namakotatujuan.id,
+                status: "PENDING" },
+    });
+    let result = []
+    for (let i = 0; i < listbarang.length; i++) {
+        const element = listbarang[i];
+        const sender = await User.findByPk(element.id_sender);
+        result.push({
+            "id barang": element.id,
+            "nama barang": element.nama,
+            "nama pengirim": sender.username,
+            "berat barang": element.berat,
+            "harga barang": element.harga,
+        });
+    }
+
+    return res.status(201).json({
+        status: 201,
+        result,
+    });
+
+};
 
 //RUBEN PUNYA
 const traveller_lihat_riwayat = async (req, res) => {
