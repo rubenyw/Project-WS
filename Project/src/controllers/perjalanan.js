@@ -162,12 +162,37 @@ const set_perjalanan = async (req, res) => {
 
 // RD PUNYA
 //blm selesai
+const lihat_listbarang_traveller = async (req, res) => { 
+    const tujuan = req.body.tujuan;
+    
+    const listbarang = await Barang.findAll({
+        attributes: ["id", "id_sender", "nama"],
+        where: {
+            status: tujuan,
+
+        },
+    });
+}
+
+// RD PUNYA
+//blm selesai
 const sender_lihat_riwayat = async (req, res) => {
+<<<<<<< Updated upstream
     /**
      * barang yang sudah dikirim
      * barang yang sedang diambil
      * barang yang belum diambil
      */
+=======
+    
+    const listbarang = await Barang.findAll({
+        attributes: ["id", "id_sender", "nama"],
+        where: {
+            id_sender: req.pengguna.dataValues.id,
+        },
+    });
+
+>>>>>>> Stashed changes
 };
 
 //RUBEN PUNYA
@@ -263,6 +288,7 @@ const complete_trip = async (req, res) => {
 module.exports = {
     cek_harga_durasi,
     set_perjalanan,
+    lihat_listbarang_traveller,
     sender_lihat_riwayat,
     traveller_lihat_riwayat,
     complete_trip,
