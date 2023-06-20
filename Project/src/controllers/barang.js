@@ -38,17 +38,17 @@ const kirim_barang = async (req, res) => {
     let berat_gram = berat_barang * 1000;
 
     // Find Kota
-    let asal_id = await Rajaongkir.findOne({
+    let asal_id = await Kota.findOne({
         where: {
             nama: asal_barang,
         },
-        attributes: ["id"],
+        attributes: ["id_rajaongkir"],
     });
-    let tujuan_id = await Rajaongkir.findOne({
+    let tujuan_id = await Kota.findOne({
         where: {
             nama: tujuan_barang,
         },
-        attributes: ["id"],
+        attributes: ["id_rajaongkir"],
     });
 
     if (asal_id == null) {
@@ -63,8 +63,8 @@ const kirim_barang = async (req, res) => {
             msg: "Kota Tujuan Barang tidak ditemukan",
         });
     }
-    asal_id = asal_id.id;
-    tujuan_id = tujuan_id.id;
+    asal_id = asal_id.id_rajaongkir;
+    tujuan_id = tujuan_id.id_rajaongkir;
 
     // Find Harga
     const options = {
@@ -105,20 +105,9 @@ const kirim_barang = async (req, res) => {
         nama: nama_barang,
         berat: berat_barang,
         harga: harga_barang,
-        status: "PENDING",
-    });
-
-    // Insert DB Perjalanan (Pending)
-    const newPerjalanan = await Perjalanan.create({
         id_kota_keberangkatan: asal_id,
         id_kota_tujuan: tujuan_id,
         status: "PENDING",
-    });
-
-    // Insert DB BarangPerjalanan
-    await BarangPerjalanan.create({
-        id_perjalanan: newPerjalanan.id,
-        id_barang: newBarang.id,
     });
 
     return res.status(202).json({
