@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "4aa27ac2-903d-4341-8e66-78982fceb061",
+		"_postman_id": "424c70b2-7502-4b29-b8b0-6ab7a10721f2",
 		"name": "Project WS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25979826"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -181,7 +180,7 @@
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "gSkyFoaX2X",
+								"value": "aw5w1QD044",
 								"type": "default"
 							}
 						],
@@ -190,12 +189,12 @@
 							"urlencoded": [
 								{
 									"key": "nama_barang",
-									"value": "ha",
+									"value": "Botol dan Tepak",
 									"type": "default"
 								},
 								{
 									"key": "berat_barang",
-									"value": "12",
+									"value": "124",
 									"type": "default"
 								},
 								{
@@ -205,7 +204,7 @@
 								},
 								{
 									"key": "tujuan_barang",
-									"value": "batu",
+									"value": "Ambon",
 									"type": "default"
 								}
 							]
@@ -319,28 +318,7 @@
 						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "username",
-									"value": "test1",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "12345678",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "test1@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "nomor_hp",
-									"value": "0123456789",
-									"type": "text"
-								}
-							]
+							"urlencoded": []
 						},
 						"url": {
 							"raw": "{{HOST}}/api/v1/sender/request/free/lihat_request",
@@ -354,6 +332,44 @@
 								"request",
 								"free",
 								"lihat_request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Terima Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_barang",
+									"value": "12",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/traveller/request/free/terima_request",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"traveller",
+								"request",
+								"free",
+								"terima_request"
 							]
 						}
 					},
@@ -433,6 +449,49 @@
 								"request",
 								"free",
 								"lacak_barang"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Rating",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "gSkyFoaX2X",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id_barang",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/v1/sender/request/free/rating",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sender",
+								"request",
+								"free",
+								"rating"
 							]
 						}
 					},
@@ -525,7 +584,7 @@
 					"response": []
 				},
 				{
-					"name": "Request Cek Harga Durasi",
+					"name": "New Request",
 					"request": {
 						"method": "GET",
 						"header": []

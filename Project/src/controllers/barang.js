@@ -373,6 +373,12 @@ const terima_request = async (req, res) => {
     }
 
     let request = await Barang.findOne({ where: { id: req.body.id_barang } });
+    if (!request) {
+        return res.status(400).json({
+            status: 400,
+            msg: "Barang tidak ada",
+        });
+    }
     if (request.dataValues.status != "PENDING") {
         return res.status(400).json({
             status: 400,
