@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "11fc5280-1df5-4ef8-a0f8-a608ad972524",
+		"_postman_id": "29feb576-ba0b-4e6a-93ad-273ca3a1bd5a",
 		"name": "Project WS",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27256043"
 	},
 	"item": [
 		{
@@ -178,17 +179,18 @@
 					"name": "Upload KTP",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "nuq6HfwMtx",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "id",
-									"value": "4",
-									"type": "text"
-								},
-								{
-									"key": "foto_ktp",
+									"key": "image",
 									"type": "file",
 									"src": "/D:/Users/user/OneDrive/Pictures/bh3rd/2022-06-01-00-32-00_0.png"
 								}
