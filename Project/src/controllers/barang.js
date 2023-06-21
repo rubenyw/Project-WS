@@ -504,7 +504,8 @@ const rating = async (req, res) => {
             msg: `Barang masih dalam perjalanan`,
         });
     }
-
+    const barangperjalanan = await BarangPerjalanan.findOne({ where: { id_barang: cek_barang.id } });
+    const perjalanan = await Perjalanan.findByPk(barangperjalanan.id_perjalanan);
     const result = await Rating.create({
         id_sender: req.pengguna.id,
         id_traveller: perjalanan.id_traveller,
