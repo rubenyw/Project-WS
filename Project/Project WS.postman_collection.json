@@ -94,32 +94,33 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "foto_ktp",
-									"type": "file",
-									"src": "/D:/Users/user/OneDrive/Pictures/bh3rd/2022-06-01-00-32-00_0.png"
-								},
+							"mode": "urlencoded",
+							"urlencoded": [
 								{
 									"key": "username",
-									"value": "RD321",
+									"value": "stevenH",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "RD321",
+									"value": "12345",
 									"type": "default"
 								},
 								{
 									"key": "email",
-									"value": "richardgay@gmail.com",
+									"value": "stevenharianto@gmail.com",
 									"type": "default"
 								},
 								{
 									"key": "nomor_hp",
-									"value": "081121231213",
+									"value": "08111111111",
 									"type": "default"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "default",
+									"disabled": true
 								}
 							]
 						},
