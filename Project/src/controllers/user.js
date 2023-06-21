@@ -1,12 +1,12 @@
 const { registerSchema, loginSchema } = require("../validation/user");
 
+const KTP = require("../models/KTP");
 const User = require("../models/User");
 const Rating = require("../models/Rating");
 
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-const KTP = require("../models/KTP");
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
         callback(null, folderName);
     },
     filename: (req, file, callback) => {
-        callback(null, `${req.body.id}.png`);
+        callback(null, `${req.pengguna.id}.png`);
     },
 });
 
@@ -35,11 +35,8 @@ const uploadKTP = async (req, res) => {
             message: "No image uploaded",
         });
     }
-
-    return res.status(201).json({
-        status: 201,
-        message: "Image uploaded and text input received",
-    });
+    const filePath = path.join(__dirname, "../uploads", req.pengguna.id + ".png");
+    return res.sendFile(filePath);
 };
 
 // STEVEN PUNYA
