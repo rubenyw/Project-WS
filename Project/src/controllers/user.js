@@ -19,66 +19,26 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, callback) => {
         callback(null, `${req.body.id}.png`);
-        req.foto_ktp = `${req.body.id}.png`;
     },
 });
 
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 5000000000, // dalam byte jadi 1000 = 1kb 1000000 = 1mb
-    },
-    fileFilter: (req, file, callback) => {
-        // buat aturan dalam bentuk regex, mengenai extension apa saja yang diperbolehkan
-        const rules = /jpeg|jpg|png|gif/;
-
-        const fileExtension = path.extname(file.originalname).toLowerCase();
-        const fileMimeType = file.mimetype;
-
-        const cekExt = rules.test(fileExtension);
-        const cekMime = rules.test(fileMimeType);
-
-        if (cekExt && cekMime) {
-            callback(null, true);
-        } else {
-            callback(null, false);
-            return callback(new multer.MulterError("Tipe file harus .gif, .png, .jpg atau .jpeg", file.fieldname));
-        }
-    },
-});
+const upload = multer({ storage: storage });
 
 const uploadKTP = async (req, res) => {
-    //     console.log(req.body);
-    //     const ktp = await KTP.findByPk(req.body);
-    //     const user = await User.findByPk(req.data.id);
-    //     console.log(req.body);
-    //     if (!user) {
-    //         return res.status(404).json({
-    //             status: 404,
-    //             msg: "SIAPA ANDA??",
-    //         });
-    //     }
-    // if (user && !ktp) {
-    const uploadingFile = upload.single("foto_ktp");
-    uploadingFile(req, res, async (err) => {
-        if (err) {
-            console.log(err);
-            return res.status(400).send((err.message || err.code) + " pada field " + err.field);
-        }
-        const body = req.body;
-        const user = await User.findByPk(req.body.id);
-        const ktp = await KTP.create({
-            id_user: req.body.id,
-            foto_ktp: req.foto_ktp,
-            status: "DONE",
-        });
-        return res.status(200).json(body);
-    });
-    // }
+    const image = req.file;
 
-    return res.status(400).json({
-        status: 400,
-        msg: "Anda sudah mengupload KTP anda!",
+    // Cek jika tidak ada gambar yang diunggah
+    if (!image) {
+        await KTP.destroy({ where: { id_user: req.pengguna.id } });
+        return res.status(400).json({
+            status: 404,
+            message: "No image uploaded",
+        });
+    }
+
+    return res.status(201).json({
+        status: 201,
+        message: "Image uploaded and text input received",
     });
 };
 
@@ -282,6 +242,7 @@ module.exports = {
     loginSender,
     loginTraveller,
     uploadKTP,
+    upload,
 };
 
 // Functions

@@ -1,3 +1,4 @@
+const KTP = require("../models/KTP");
 const User = require("../models/User");
 
 const checkApiKey = async (req, res, next) => {
@@ -26,7 +27,7 @@ const checkApiKey = async (req, res, next) => {
 
 const checkRoles = (roles) => {
     return (req, res, next) => {
-        if (roles != req.pengguna.dataValues.role) {
+        if (roles != req.pengguna.role) {
             return res.status(400).json({
                 status: 400,
                 msg: `NOT ${roles} roles`,
@@ -37,7 +38,7 @@ const checkRoles = (roles) => {
 };
 
 const checkKuota = async (req, res, next) => {
-    if (req.pengguna.dataValues.api_hit == 0) {
+    if (req.pengguna.api_hit == 0) {
         return res.status(400).json({
             status: 400,
             msg: "Maaf kuota anda habis",
@@ -47,4 +48,17 @@ const checkKuota = async (req, res, next) => {
     next();
 };
 
-module.exports = { checkApiKey, checkRoles, checkKuota };
+const checkUpload = async (req, res, next) => {
+    const ktp = await KTP.findByPk(req.pengguna.id);
+    if (ktp) {
+        return res.status(404).json({
+            status: 400,
+            msg: "Anda sudah upload KTP",
+        });
+    }
+
+    await KTP.create({ id_user: req.pengguna.id, status: "DONE", foto_ktp: `src/uploads/${req.pengguna.id}.png` });
+    next();
+};
+
+module.exports = { checkApiKey, checkRoles, checkKuota, checkUpload };

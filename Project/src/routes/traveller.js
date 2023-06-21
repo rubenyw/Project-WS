@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 // Middleware Init
-const { checkApiKey } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK APIKEY
+const { checkApiKey, checkUpload } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK APIKEY
 const { checkRoles } = require("../middleware/ApiKey"); // MIDDLEWARE CHECK ROLES
 
 // TRAVELLER
-const { registerTraveller, loginTraveller, uploadKTP } = require("../controllers/user");
+const { registerTraveller, loginTraveller, uploadKTP, upload } = require("../controllers/user");
 const { terima_request } = require("../controllers/barang");
 const {
     set_perjalanan,
@@ -17,13 +17,14 @@ const {
 } = require("../controllers/perjalanan");
 const { tarik_saldo, cek_saldo } = require("../controllers/saldo");
 
+// Middleware
+router.use("/upload", [checkApiKey, checkRoles("Traveller"), checkUpload, upload.single("image")]);
+router.use("/traveller/request", [checkApiKey, checkRoles("Traveller")]);
+
 // Router untuk Akun
 router.post("/upload/traveller", uploadKTP);
 router.post("/login/traveller", loginTraveller);
 router.post("/register/traveller", registerTraveller);
-
-// Middleware
-router.use("/traveller/request", [checkApiKey, checkRoles("Traveller")]);
 
 // Router untuk barang
 router.post("/traveller/request/free/terima_request", terima_request);
