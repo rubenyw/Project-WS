@@ -1,20 +1,4 @@
-/*
-SQLyog Community v13.1.9 (64 bit)
-MySQL - 10.4.28-MariaDB : Database - project_ws
-*********************************************************************
-*/
 
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`project_ws` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-
-USE `project_ws`;
 
 /*Table structure for table `aviation` */
 
@@ -515,7 +499,3 @@ insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hi
 (5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0),
 (6,'stevenH','12345','stevenharianto@gmail.com','08111111111','V5HDU1LQks',0,'Traveller',0);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
