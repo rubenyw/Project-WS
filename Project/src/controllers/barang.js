@@ -512,9 +512,14 @@ const rating = async (req, res) => {
         rate: req.body.rating,
     });
 
+    const hasil = {
+        "Nama Sender": req.pengguna.username,
+        "Nama Traveller": (await User.findByPk(perjalanan.id_traveller)).username,
+        "Rating Traveller": req.body.rating,
+    };
     return res.status(200).json({
         status: 200,
-        msg: result,
+        msg: hasil,
     });
 };
 
