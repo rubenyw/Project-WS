@@ -64,6 +64,13 @@ const registerSender = async (req, res) => {
     const saldo = 0;
     const role = "Sender";
 
+    const user = await User.findOne({ where: { username: username } });
+    if (user) {
+        return res.status(400).json({
+            status: 400,
+            msg: "USERNAME SUDAH DIPAKE",
+        });
+    }
     // Create a new user in the database
     const newUser = await User.create({
         username,
@@ -155,6 +162,13 @@ const registerTraveller = async (req, res) => {
     const saldo = 0;
     const role = "Traveller";
 
+    const user = await User.findOne({ where: { username: username } });
+    if (user) {
+        return res.status(400).json({
+            status: 400,
+            msg: "USERNAME SUDAH DIPAKE",
+        });
+    }
     // Create a new user in the database
     const newUser = await User.create({
         username,
