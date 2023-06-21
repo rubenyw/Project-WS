@@ -17,7 +17,7 @@ Rajaongkir.init(
     {
         sequelize: db,
         modelName: "Rajaongkir",
-        tableName: "Rajaongkir",
+        tableName: "rajaongkir",
         timestamps: false,
     }
 );
