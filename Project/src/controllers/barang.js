@@ -506,7 +506,7 @@ const rating = async (req, res) => {
     }
 
     const result = await Rating.create({
-        id_sender: req.user.id,
+        id_sender: req.pengguna.id,
         id_traveller: perjalanan.id_traveller,
         rate: req.body.rating,
     });
