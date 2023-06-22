@@ -19,17 +19,19 @@ router.post("/register/sender", registerSender);
 router.use("/sender/request", [checkApiKey, checkRoles("Sender")]);
 router.use("/sender/request/pay", [checkKuota]);
 
-// Router untuk request
+// Router untuk barang
 router.post("/sender/request/free/rating", rating);
 router.put("/sender/request/pay/edit_barang", edit_barang);
-router.post("/sender/request/free/topup_kuota", topup_kuota);
-router.post("/sender/request/free/topup_saldo", topup_saldo);
-router.get("/sender/request/free/lacak_barang", lacak_barang);
 router.post("/sender/request/pay/kirim_barang", kirim_barang);
+router.get("/sender/request/free/lacak_barang", lacak_barang);
 router.get("/sender/request/free/lihat_request", lihat_request);
-router.put("/sender/request/free/complete_request", complete_request);
 router.get("/sender/request/free/cek_harga_durasi", cek_harga_durasi);
+router.put("/sender/request/free/complete_request", complete_request);
 router.delete("/sender/request/free/batalkan_barang", batalkan_barang);
 router.get("/sender/request/free/sender_lihat_riwayat", sender_lihat_riwayat);
+
+// Router untuk kuota
+router.post("/sender/request/free/topup_kuota", topup_kuota);
+router.post("/sender/request/free/topup_saldo", topup_saldo);
 
 module.exports = router;

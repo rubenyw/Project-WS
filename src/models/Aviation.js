@@ -21,7 +21,7 @@ Aviation.init(
     {
         sequelize: db,
         modelName: "Aviation",
-        tableName: "Aviation",
+        tableName: "aviation",
         timestamps: false,
     }
 );

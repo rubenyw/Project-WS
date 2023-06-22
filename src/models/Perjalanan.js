@@ -32,7 +32,7 @@ Perjalanan.init(
     {
         sequelize: db,
         modelName: "Perjalanan",
-        tableName: "Perjalanan",
+        tableName: "perjalanan",
         timestamps: false,
     }
 );
