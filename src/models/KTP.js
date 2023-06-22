@@ -26,7 +26,7 @@ KTP.init(
     {
         sequelize: db,
         modelName: "KTP",
-        tableName: "ktp",
+        tableName: "KTP",
         timestamps: false,
     }
 );

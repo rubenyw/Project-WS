@@ -37,7 +37,7 @@ Barang.init(
     {
         sequelize: db,
         modelName: "Barang",
-        tableName: "barang",
+        tableName: "Barang",
         timestamps: false,
     }
 );

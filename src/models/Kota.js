@@ -26,7 +26,7 @@ Kota.init(
     {
         sequelize: db,
         modelName: "Kota",
-        tableName: "kota",
+        tableName: "Kota",
         timestamps: false,
     }
 );
