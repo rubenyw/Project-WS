@@ -1,3 +1,29 @@
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
+  `api_key` varchar(255) NOT NULL,
+  `api_hit` int(11) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  `saldo` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `user` */
+
+insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hit`,`role`,`saldo`) values 
+(1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',9310,'Sender',0),
+(2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
+(3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
+(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',780000),
+(5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0),
+(6,'stevenH','12345','stevenharianto@gmail.com','08111111111','V5HDU1LQks',0,'Traveller',0);
 
 
 /*Table structure for table `aviation` */
@@ -452,33 +478,6 @@ CREATE TABLE `rating` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `rating` */
-
-/*Table structure for table `user` */
-
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `no_hp` varchar(20) NOT NULL,
-  `api_key` varchar(255) NOT NULL,
-  `api_hit` int(11) NOT NULL,
-  `role` varchar(255) NOT NULL,
-  `saldo` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `user` */
-
-insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hit`,`role`,`saldo`) values 
-(1,'test1','12345678','test1@gmail.com','0123456789','gSkyFoaX2X',9310,'Sender',0),
-(2,'test1','12345678','test1@gmail.com','0123456789','aw5w1QD044',0,'Sender',0),
-(3,'test1','12345678','test1@gmail.com','0123456789','o5yY2FOrt8',0,'Sender',0),
-(4,'rubenyw','12345','rubenyasonwinarta@gmail.com','08111111111','FlKZoqcmWL',0,'Traveller',780000),
-(5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0),
-(6,'stevenH','12345','stevenharianto@gmail.com','08111111111','V5HDU1LQks',0,'Traveller',0);
 
 /*Table structure for table `ktp` */
 
