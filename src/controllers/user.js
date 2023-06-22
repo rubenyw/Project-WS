@@ -35,7 +35,11 @@ const uploadKTP = async (req, res) => {
             message: "No image uploaded",
         });
     }
-    const filePath = path.join(__dirname, "../uploads", req.pengguna.id + ".png");
+    const filePath = path.join(
+        __dirname,
+        "../uploads",
+        req.pengguna.id + ".png"
+    );
     return res.sendFile(filePath);
 };
 
@@ -258,7 +262,8 @@ module.exports = {
 
 // Functions
 function generateApiKey(length) {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let apiKey = "";
 
     for (let i = 0; i < length; i++) {

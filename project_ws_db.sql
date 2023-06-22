@@ -306,25 +306,6 @@ insert  into `kota`(`id`,`nama`,`id_rajaongkir`,`id_flightapi`) values
 (94,'TERNATE',477,7571),
 (98,'YOGYAKARTA',501,3406);
 
-/*Table structure for table `ktp` */
-
-DROP TABLE IF EXISTS `ktp`;
-
-CREATE TABLE `ktp` (
-  `id_user` int(11) NOT NULL,
-  `foto_ktp` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_user`),
-  KEY `id_user` (`id_user`),
-  CONSTRAINT `ktp_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `ktp` */
-
-insert  into `ktp`(`id_user`,`foto_ktp`,`status`) values 
-(2,'./src/uploads','OK'),
-(4,'4.png','DONE');
-
 /*Table structure for table `perjalanan` */
 
 DROP TABLE IF EXISTS `perjalanan`;
@@ -499,3 +480,21 @@ insert  into `user`(`id`,`username`,`password`,`email`,`no_hp`,`api_key`,`api_hi
 (5,'stevenH','12345','stevenharianto@gmail.com','08111111111','nuq6HfwMtx',0,'Traveller',0),
 (6,'stevenH','12345','stevenharianto@gmail.com','08111111111','V5HDU1LQks',0,'Traveller',0);
 
+/*Table structure for table `ktp` */
+
+DROP TABLE IF EXISTS `ktp`;
+
+CREATE TABLE `ktp` (
+  `id_user` int(11) NOT NULL,
+  `foto_ktp` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `ktp_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `ktp` */
+
+insert  into `ktp`(`id_user`,`foto_ktp`,`status`) values 
+(2,'./src/uploads','OK'),
+(4,'4.png','DONE');
