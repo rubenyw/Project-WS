@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "29feb576-ba0b-4e6a-93ad-273ca3a1bd5a",
+		"_postman_id": "2461fd72-c680-436a-8097-e5c67afd27ea",
 		"name": "Project WS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27256043"
+		"_exporter_id": "27256048"
 	},
 	"item": [
 		{
@@ -19,7 +19,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "rd123",
+									"value": "rd12345",
 									"type": "text"
 								},
 								{
@@ -50,9 +50,237 @@
 								"register",
 								"sender"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk mendaftarkan user yang memiliki role sabagai sender. Sender harus terlebih dahulu mengisi data diri pada body. Sender nantinya dapat mengirim request kirim barang sehingga barang yang ingin mereka kirim dapat diambil oleh traveller yang bersedia.\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/BODY | username | String |\n| POST/BODY | password | String |\n| POST/BODY | email | String |\n| POST/BODY | nomor_hp | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Username sudah terpakai",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd1234",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "654",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "red@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "nomor_hp",
+											"value": "0123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/register/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"sender"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:46:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2c-Q9lRtXeCYabg/xSb6R9xh2UDx5M\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"USERNAME SUDAH DIPAKE\"\n}"
+						},
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd1234",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "654",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "red@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "nomor_hp",
+											"value": "0123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/register/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"sender"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:46:46 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"37-D47UJZv/ACl0iFY6iFAJ+isZZVU\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": [\n        \"\\\"Email Pengguna\\\" harus diisi\"\n    ]\n}"
+						},
+						{
+							"name": "Register Berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd12345",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "654",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "red@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "nomor_hp",
+											"value": "0123456789",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/register/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"sender"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:47:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"46-OGwfEtiu3rBjl+eXUy3L8HCCra8\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"body\": {\n        \"username\": \"rd12345\",\n        \"api_key\": \"hOhnpSFhMM\",\n        \"role\": \"Sender\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Login Sender",
@@ -64,7 +292,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "rd123",
+									"value": "rd",
 									"type": "text"
 								},
 								{
@@ -85,9 +313,206 @@
 								"login",
 								"sender"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk user yang memiliki role sender agar dapat login sehingga mendapat API key yang dapat digunakan untuk mengakses endpoint lain\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/BODY | username | String |\n| POST/BODY | password | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Password salah",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd123",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "6",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/login/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"sender"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:48:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"71-5SwJPosKQ33boU30wUxR08sq9/c\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"password\\\" with value \\\"6\\\" fails to match the required pattern: /^[a-zA-Z0-9]{3,30}$/\"\n    ]\n}"
+						},
+						{
+							"name": "Login berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd123",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "654",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/login/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"sender"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:49:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"34-ZYogOtOiKtOqo7i+BNXeKPkfzeM\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"body\": {\n        \"username\": \"rd123\",\n        \"api_key\": \"XtmLR51s9W\"\n    }\n}"
+						},
+						{
+							"name": "Username salah",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "rd",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "654",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/login/sender",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"sender"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:49:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"41-WrpGpNQAIx8Wl3ul9p5sAMoEzqA\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"Username\\\" harus lebih dari 3 karakter\"\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Register Traveller",
@@ -99,7 +524,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "stevenH",
+									"value": "stevenH1",
 									"type": "default"
 								},
 								{
@@ -136,12 +561,258 @@
 								"register",
 								"traveller"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk mendaftarkan user yang memiliki role sabagai traveller. Traveller harus terlebih dahulu mengisi data diri pada body. Traveller nantinya dapat membawa barang kiriman yang dikirimkan pengirim barang.  \nTraveller dapat melakukan upload foto KTP untuk verifikasi agar dapat membawa barang kiriman\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/BODY | username | String |\n| POST/BODY | password | String |\n| POST/BODY | email | String |\n| POST/BODY | nomor_hp | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stevenH",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "stevenharianto@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "nomor_hp",
+											"value": "08111111111",
+											"type": "default"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/register/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"traveller"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:50:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"31-ibhMYPkf0pUIWQPHNURpDraYwg4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"password\\\" is required\"\n    ]\n}"
+						},
+						{
+							"name": "Username sudah ada",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stevenH",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "stevenharianto@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "nomor_hp",
+											"value": "08111111111",
+											"type": "default"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/register/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"traveller"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:50:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2c-Q9lRtXeCYabg/xSb6R9xh2UDx5M\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"USERNAME SUDAH DIPAKE\"\n}"
+						},
+						{
+							"name": "Register Berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stevenH1",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "stevenharianto@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "nomor_hp",
+											"value": "08111111111",
+											"type": "default"
+										},
+										{
+											"key": "",
+											"value": "",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/register/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"register",
+										"traveller"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:51:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"4a-JFOVGgums0kCg3CQYgu8ukFHH6U\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"body\": {\n        \"username\": \"stevenH1\",\n        \"api_key\": \"QPTED2Mnrh\",\n        \"role\": \"Traveller\"\n    }\n}"
+						}
+					]
 				},
 				{
-					"name": "Login Sender",
+					"name": "Login Traveller",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -150,7 +821,7 @@
 							"urlencoded": [
 								{
 									"key": "username",
-									"value": "stevenH",
+									"value": "stev",
 									"type": "default"
 								},
 								{
@@ -171,9 +842,206 @@
 								"login",
 								"traveller"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk user yang memiliki role traveller agar dapat login sehingga mendapat API key yang dapat digunakan untuk mengakses endpoint lain\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/BODY | username | String |\n| POST/BODY | password | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Login Berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stevenH",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/login/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"traveller"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:54:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "73"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"49-0pqs04OpslwAoj/kbq7wRehzmqI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"body\": {\n        \"username\": \"stevenH\",\n        \"api_key\": \"nuq6HfwMtx\",\n        \"average_rating\": 0\n    }\n}"
+						},
+						{
+							"name": "Password salah",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stevenH",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "1234",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/login/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"traveller"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:54:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "29"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1d-cSQOFsk5Fu0iNajJTqfJLIHoy7A\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Invalid password.\"\n}"
+						},
+						{
+							"name": "Username tidak ditemukan",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "stev",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/login/traveller",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"login",
+										"traveller"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:55:29 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1b-uQVUv96QRqq6/xLE9rzNrbPmSa4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"User not found.\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Upload KTP",
@@ -192,7 +1060,8 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/D:/Users/user/OneDrive/Pictures/bh3rd/2022-06-01-00-32-00_0.png"
+									"src": "/C:/Users/User/Downloads/WhatsApp Image 2023-06-19 at 02.01.54.jpeg",
+									"disabled": true
 								}
 							]
 						},
@@ -207,9 +1076,78 @@
 								"upload",
 								"traveller"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk upload foto KTP untuk user traveller, user dapat upload foto nya pada body\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | Image | Png |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Sudah upload ktp",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "nuq6HfwMtx",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/User/Downloads/WhatsApp Image 2023-06-19 at 02.01.54.jpeg",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/upload/traveller",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"upload",
+										"traveller"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:56:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "44"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2c-zb8S2gN77orn0grWk46aQSvzQQY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Anda sudah upload KTP\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -265,9 +1203,262 @@
 								"pay",
 								"kirim_barang"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk user sender agar dapat mengirim request kirim barang, sehingga barang nantinya dapat dibawa oleh traveller. sender harus terlebih dahulu mengisi data data barang dan login.\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/BODY | nama_barang | String |\n| POST/BODY | berat_barang | String |\n| POST/BODY | asal_barang | String |\n| POST/BODY | nomor_hp | Integer |\n| POST/HEAD | x-auth-token | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Request berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "nama_barang",
+											"value": "Botol dan Tepak dan Kangkung",
+											"type": "default"
+										},
+										{
+											"key": "berat_barang",
+											"value": "124",
+											"type": "default"
+										},
+										{
+											"key": "asal_barang",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "tujuan_barang",
+											"value": "Denpasar",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/kirim_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"kirim_barang"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:40:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "65"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"41-m46hEeoSsD9PRt56LibhJAsRgfQ\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 202,\n    \"msg\": \"Berhasil Menambahkan Barang Dengan ID : 24\"\n}"
+						},
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "nama_barang",
+											"value": "Botol dan Tepak dan Kangkung",
+											"type": "default"
+										},
+										{
+											"key": "berat_barang",
+											"value": "124",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "asal_barang",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "tujuan_barang",
+											"value": "Denpasar",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/kirim_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"kirim_barang"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:41:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"36-+vbobbiT+DDO/kvi5G4SqbB5IOA\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"Berat Barang\\\" Perlu di Isi\"\n    ]\n}"
+						},
+						{
+							"name": "API key salah",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "nama_barang",
+											"value": "Botol dan Tepak dan Kangkung",
+											"type": "default"
+										},
+										{
+											"key": "berat_barang",
+											"value": "124",
+											"type": "default"
+										},
+										{
+											"key": "asal_barang",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "tujuan_barang",
+											"value": "Denpasar",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/kirim_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"kirim_barang"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:41:51 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26-MOjqK79dNExLvkvRf8SZGKSuFiY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Invalid API Key\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Edit Barang",
@@ -277,7 +1468,8 @@
 							{
 								"key": "x-auth-token",
 								"value": "gSkyFoaX2X",
-								"type": "default"
+								"type": "default",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -285,7 +1477,7 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "1",
+									"value": "23",
 									"type": "default"
 								}
 							]
@@ -303,9 +1495,216 @@
 								"pay",
 								"edit_barang"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk user sender agar dapat mengirim request kirim barang, sehingga barang nantinya dapat dibawa oleh traveller. sender harus terlebih dahulu mengisi data data barang dan login.\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| PUT/HEADER | x-auth-token | String |\n| PUT/BODY | id_barang | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Barang tidak ditemukan",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"edit_barang"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:57:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2e-a8CaIRGsy6f/DVQbdoS2suRJFRc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": \"Barang tidak ditemukkan\"\n}"
+						},
+						{
+							"name": "Berhasil edit",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"edit_barang"
+									]
+								}
+							},
+							"status": "Accepted",
+							"code": 202,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:58:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2b-6inajtcB5VtNqeaucbPLMNCjtlY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 202,\n    \"msg\": \"Barang telah diubah!\"\n}"
+						},
+						{
+							"name": "APi key salah",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/sender/request/pay/edit_barang",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"pay",
+										"edit_barang"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 20:58:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26-MOjqK79dNExLvkvRf8SZGKSuFiY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Invalid API Key\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Batalkan Barang",
@@ -323,7 +1722,7 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "14",
+									"value": "22",
 									"type": "default"
 								}
 							]
@@ -341,9 +1740,216 @@
 								"free",
 								"batalkan_barang"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk membatalkan request kirim barang user yang telah dikirim. request yang dapat dibatalkan adalah request yang belum diambil oleh traveller\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| DEL/BODY | id_barang | Integer |\n| DEL/HEAD | x-auth-token | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Barang tidak ditemukan",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "14",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/batalkan_barang",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"batalkan_barang"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:00:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"27-FYJfKLBM7kYUvgyOg5FCt3nVofI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": \"Barang tidak ada\"\n}"
+						},
+						{
+							"name": "API key salah",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "14",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/batalkan_barang",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"batalkan_barang"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:02:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26-MOjqK79dNExLvkvRf8SZGKSuFiY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Invalid API Key\"\n}"
+						},
+						{
+							"name": "Berhasil batalkan kiriman",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "22",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/batalkan_barang",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"batalkan_barang"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:03:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "32"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"20-pQo84Mf8nb1CvfJB2KdujACAfwI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Kiriman dibatalkan\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Lihat Request",
@@ -376,9 +1982,73 @@
 								"free",
 								"lihat_request"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk melihat daftar barang yang di request oleh sender\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| GET/HEAD | x-auth-token | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Berhasil lihat request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/lihat_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"lihat_request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:04:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "436"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1b4-F0poY54PK8xI9FnHyPmoDuQa/lc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"result\": [\n        {\n            \"ID Barang\": 23,\n            \"nama\": \"Botol dan Tepak dan Kangkung\",\n            \"berat\": 124,\n            \"harga\": null,\n            \"Kota Keberangkatan\": \"SURABAYA\",\n            \"Kota Tujuan\": \"DENPASAR\"\n        },\n        {\n            \"ID Barang\": 24,\n            \"nama\": \"Botol dan Tepak dan Kangkung\",\n            \"berat\": 124,\n            \"harga\": null,\n            \"Kota Keberangkatan\": \"SURABAYA\",\n            \"Kota Tujuan\": \"DENPASAR\"\n        },\n        {\n            \"ID Barang\": 25,\n            \"nama\": \"Botol dan Tepak dan Kangkung\",\n            \"berat\": 124,\n            \"harga\": null,\n            \"Kota Keberangkatan\": \"SURABAYA\",\n            \"Kota Tujuan\": \"DENPASAR\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Terima Request",
@@ -396,7 +2066,7 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "19",
+									"value": "23",
 									"type": "default"
 								}
 							]
@@ -414,9 +2084,283 @@
 								"free",
 								"terima_request"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk menerima request barang dari sender. sehingga barang yang dikirimkan oleh sender dibawa oleh traveller\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | id_barang | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Barang sudah diambil traveller lain",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "22",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/terima_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"terima_request"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:05:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3a-Cdqu+Hdk/z+QHVV9R++EcuJNA84\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Barang sudah diambil traveller lain\"\n}"
+						},
+						{
+							"name": "Barang tidak ada",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "16",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/terima_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"terima_request"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:06:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"27-xuxxWRVYxpIIEdAvZJ6T9LP8G8U\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Barang tidak ada\"\n}"
+						},
+						{
+							"name": "Tidak sesuai rute",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/terima_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"terima_request"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:06:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"4a-DqEIppRfQ3fvFTuUmL3U5vIG7ug\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Tidak ada perjalanan yang sesuai dengan rute barang\"\n}"
+						},
+						{
+							"name": "Berhasil terima request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/terima_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"terima_request"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:10:02 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"7d-mdd5vEP7GrqK+V5Li/1o66S/CLA\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"result\": {\n        \"ID Bagasi\": 10,\n        \"Nama Barang\": \"Botol dan Tepak dan Kangkung\",\n        \"Rute Perjalanan\": \"SURABAYA - DENPASAR\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Complete Request",
@@ -434,7 +2378,7 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "1",
+									"value": "23",
 									"type": "default"
 								}
 							]
@@ -452,9 +2396,147 @@
 								"free",
 								"complete_request"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk menyelesaikan request kirim barang oleh sender, sehingga barang dianggap sudah terkirim\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| PUT/HEAD | x-auth-token | String |\n| PUT/BODY | id_barang | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Barang tidak ditemukan",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/complete_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"complete_request"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:10:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"27-IdraEhde9LMoLOGZKM07FhQnMRI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": \"Barang not found\"\n}"
+						},
+						{
+							"name": "Berhasil Complete Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/complete_request",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"complete_request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:11:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26-DEzkGNj8+yjUK0ETeB62vj4nz1U\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"23 telah selesai dikirim\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Lacak Barang",
@@ -475,7 +2557,7 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "11",
+									"value": "23",
 									"type": "text"
 								}
 							]
@@ -493,9 +2575,147 @@
 								"free",
 								"lacak_barang"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk sender untuk melacak barang yang mereka kirim sedang dalam status apa\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| GET/HEAD | x-auth-token | String |\n| GET/BODY | id_barang | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Barang tidak ditemukan",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/lacak_barang",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"lacak_barang"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:11:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2e-4HBNayc2+funFucFQAmicem3Fe4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": \"Barang tidak ditemukan!\"\n}"
+						},
+						{
+							"name": "Berhasil Lacak Barang",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/lacak_barang",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"lacak_barang"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:14:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"5b-7/Ok7+W5NGR13jf1WUoi1loDwjI\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"body\": {\n        \"kode_barang\": 23,\n        \"status\": \"Barang telah sampai tujuan\",\n        \"durasi\": \"-\"\n    }\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Rating",
@@ -513,12 +2733,12 @@
 							"urlencoded": [
 								{
 									"key": "id_barang",
-									"value": "14",
+									"value": "23",
 									"type": "default"
 								},
 								{
 									"key": "rating",
-									"value": "5",
+									"value": "4",
 									"type": "default"
 								}
 							]
@@ -536,9 +2756,158 @@
 								"free",
 								"rating"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk memberikan rating kepada traveller yang telah membawa barang kiriman sender.\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | id_barang | Integer |\n| POST/BODY | rating | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "22",
+											"type": "default"
+										},
+										{
+											"key": "rating",
+											"value": "4",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/rating",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"rating"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:15:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "83"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"53-MaAx1eT5S1nY2FM+SdvMWmKA6LE\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"Mohon \\\"Rating Barang\\\" Barang untuk diisi terlebih dahulu\"\n    ]\n}"
+						},
+						{
+							"name": "Berhasil request rating",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_barang",
+											"value": "23",
+											"type": "default"
+										},
+										{
+											"key": "rating",
+											"value": "4",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/rating",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"rating"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:21:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"5e-AygIIa2YNLNimJSHh06Py2jBRlU\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"msg\": {\n        \"Nama Sender\": \"test1\",\n        \"Nama Traveller\": \"rubenyw\",\n        \"Rating Traveller\": \"4\"\n    }\n}"
+						}
+					]
 				}
 			]
 		},
@@ -584,12 +2953,235 @@
 								"pay",
 								"set_perjalanan"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk memajang perjalanan yang dimiliki oleh traveller.\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | kota_kebarangkatan | String |\n| POST/BODY | kota_tujuan | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Set perjalanan berhasil",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "kota_keberangkatan",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "kota_tujuan",
+											"value": "Denpasar",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/pay/set_perjalanan",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"pay",
+										"set_perjalanan"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:08:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "177"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"b1-kqgisOyU5Dq3NFz6x0OUVV2yUsc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"result\": {\n        \"ID Penerbangan\": 28,\n        \"Departure\": \"SURABAYA\",\n        \"Arrival\": \"DENPASAR\",\n        \"Estimasi Perjalanan\": \"115 menit\",\n        \"Waktu Keberangkatan\": \"Thu, 22 Jun 2023 08:20:00 GMT\"\n    }\n}"
+						},
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "kota_keberangkatan",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "kota_tujuan",
+											"value": "Denpasar",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/pay/set_perjalanan",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"pay",
+										"set_perjalanan"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:08:46 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"34-tP7uXbZoFfurzF4mTATCcC29izM\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"Kota Tujuan\\\" perlu diisi\"\n    ]\n}"
+						},
+						{
+							"name": "Invalid API key",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "kota_keberangkatan",
+											"value": "Surabaya",
+											"type": "default"
+										},
+										{
+											"key": "kota_tujuan",
+											"value": "Denpasar",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/pay/set_perjalanan",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"pay",
+										"set_perjalanan"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:09:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26-MOjqK79dNExLvkvRf8SZGKSuFiY\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Invalid API Key\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Request Complete Trip",
+					"name": "Request Complete Perjalanan",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -604,7 +3196,7 @@
 							"urlencoded": [
 								{
 									"key": "id_perjalanan",
-									"value": "18",
+									"value": "2",
 									"type": "default"
 								}
 							]
@@ -622,9 +3214,147 @@
 								"free",
 								"complete_trip"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk menyelesaikan perjalanan traveller dimana secara otomatis menyelesaikan kiriman barang sender yang dibawa oleh traveller\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| PUT/HEAD | x-auth-token | String |\n| PUT/BODY | id_perjalanan | Integer |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Berhasil Request Complete Trip",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_perjalanan",
+											"value": "28",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/complete_trip",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"complete_trip"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:23:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "345"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"159-paa0sIIQcR8TNhSd2ZruXRjem68\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"body\": {\n        \"result\": {\n            \"id\": 28,\n            \"id_traveller\": 4,\n            \"id_kota_keberangkatan\": 84,\n            \"id_kota_tujuan\": 24,\n            \"durasi\": 115,\n            \"status\": \"DONE\",\n            \"waktu_keberangkatan\": \"2023-06-22T08:20:00.000Z\"\n        },\n        \"update\": [\n            {\n                \"id\": 23,\n                \"id_sender\": 1,\n                \"nama\": \"Botol dan Tepak dan Kangkung\",\n                \"berat\": 124,\n                \"harga\": null,\n                \"id_kota_keberangkatan\": 84,\n                \"id_kota_tujuan\": 24,\n                \"status\": \"DONE\"\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Perjalanan tidak terdaftar",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id_perjalanan",
+											"value": "2",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/complete_trip",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"complete_trip"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:30:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"31-OHIiw5Wzpy2sLS03CHdvheSto/Q\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": \"Perjalanan tidak terdaftar\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Request Lihat Request",
@@ -633,13 +3363,31 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "urlencoded",
-							"urlencoded": []
+							"urlencoded": [
+								{
+									"key": "tujuan",
+									"value": "Surabaya",
+									"type": "text"
+								},
+								{
+									"key": "asal",
+									"value": "Denpasar",
+									"type": "text",
+									"disabled": true
+								}
+							]
 						},
 						"url": {
-							"raw": "{{HOST}}/api/v1/traveller/request/free/lihat_request",
+							"raw": "{{HOST}}/api/v1/traveller/request/free/lihat_listbarang_traveller",
 							"host": [
 								"{{HOST}}"
 							],
@@ -649,11 +3397,160 @@
 								"traveller",
 								"request",
 								"free",
-								"lihat_request"
+								"lihat_listbarang_traveller"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan untuk user traveller untuk melihat daftar request kirim barang yang belum dibawa oleh traveller dan memiliki tujuan serta destinasi yang sama\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| GET/HEAD | x-auth-token | String |\n| GET/BODY | tujuan | String |\n| GET/BODY | asal | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Berhasil Lihat Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "tujuan",
+											"value": "Denpasar",
+											"type": "text"
+										},
+										{
+											"key": "asal",
+											"value": "Surabaya",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/lihat_listbarang_traveller",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"lihat_listbarang_traveller"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:35:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "400"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"190-L8OBVwEgKtbG9Ny5Bu6o3Kmj69Q\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"result\": [\n        {\n            \"id barang\": 24,\n            \"nama barang\": \"Botol dan Tepak dan Kangkung\",\n            \"nama pengirim\": \"test1\",\n            \"berat barang\": 124,\n            \"harga barang\": null\n        },\n        {\n            \"id barang\": 25,\n            \"nama barang\": \"Botol dan Tepak dan Kangkung\",\n            \"nama pengirim\": \"test1\",\n            \"berat barang\": 124,\n            \"harga barang\": null\n        },\n        {\n            \"id barang\": 26,\n            \"nama barang\": \"Botol dan Tepak dan Kangkung\",\n            \"nama pengirim\": \"test1\",\n            \"berat barang\": 124,\n            \"harga barang\": null\n        }\n    ]\n}"
+						},
+						{
+							"name": "Tidak ada perjalanan",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "tujuan",
+											"value": "Surabaya",
+											"type": "text"
+										},
+										{
+											"key": "asal",
+											"value": "Denpasar",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/lihat_listbarang_traveller",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"lihat_listbarang_traveller"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:40:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "26"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1a-WqrHxCK4OxWtf+Uj8pkNlWeXtzg\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"result\": []\n}"
+						}
+					]
 				}
 			]
 		},
@@ -661,13 +3558,13 @@
 			"name": "Saldo",
 			"item": [
 				{
-					"name": "Topup Kuota Sender",
+					"name": "Topup Saldo Sender",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "x-auth-token",
-								"value": "gSkyFoaX2X",
+								"value": "FlKZoqcmWL",
 								"type": "default"
 							}
 						],
@@ -681,7 +3578,7 @@
 								},
 								{
 									"key": "jumlah",
-									"value": "8",
+									"value": "1",
 									"type": "default"
 								}
 							]
@@ -699,9 +3596,231 @@
 								"free",
 								"topup_kuota"
 							]
-						}
+						},
+						"description": "Endpoint ini digunakan oleh sender untuk melakukan top up kuota agar dapat menggunakan endpoint di web service ini dengan lebih banyak\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | jumlah | Integer |\n| POST/BODY | password | String |"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Saldo tidak cukup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default"
+										},
+										{
+											"key": "jumlah",
+											"value": "8",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"topup_kuota"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:44:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "82"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"52-oVyqC0vFYa8qkU3LdLhAB1lfXI8\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"Saldo tidak cukup, tolong lakukan isi ulang terlebih dahulu\"\n}"
+						},
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "gSkyFoaX2X",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "jumlah",
+											"value": "8",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"topup_kuota"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:45:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"36-RylceBYYIZh5C1XOdXLuOApLXxE\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"User Password\\\" perlu diisi\"\n    ]\n}"
+						},
+						{
+							"name": "Bukan sender",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "default"
+										},
+										{
+											"key": "jumlah",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/sender/request/free/topup_kuota",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sender",
+										"request",
+										"free",
+										"topup_kuota"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:56:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"27-QXD9ER4Zbk0uongQGjjK51ieB7w\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 400,\n    \"msg\": \"NOT Sender roles\"\n}"
+						}
+					]
 				},
 				{
 					"name": "Tarik Saldo",
@@ -742,7 +3861,232 @@
 								"free",
 								"tarik_saldo"
 							]
+						},
+						"description": "Endpoint ini digunakan oleh traveller untuk menarik saldo hasil dari membawa barang yang di request sender\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | jumlah | Integer |\n| POST/BODY | password | String |"
+					},
+					"response": [
+						{
+							"name": "Data tidak lengkap",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										},
+										{
+											"key": "jumlah",
+											"value": "5000",
+											"type": "default",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/tarik_saldo",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"tarik_saldo"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:48:07 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"2f-cNNm86Vp2iY4YQbUgz7SCgSdMbo\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 404,\n    \"msg\": [\n        \"\\\"jumlah\\\" perlu diisi\"\n    ]\n}"
+						},
+						{
+							"name": "Berhasil tarik saldo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "FlKZoqcmWL",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "12345",
+											"type": "default"
+										},
+										{
+											"key": "jumlah",
+											"value": "5000",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{HOST}}/api/v1/traveller/request/free/tarik_saldo",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"traveller",
+										"request",
+										"free",
+										"tarik_saldo"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Jun 2023 21:49:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "Express"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"6e-UxrlFzfmT1wxyTesX72SJlrcTd4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 201,\n    \"msg\": {\n        \"message\": \"Berhasil menarik saldo sebesar Rp 5000\",\n        \"saldo\": \"Saldo anda sekarang 775000\"\n    }\n}"
 						}
+					]
+				},
+				{
+					"name": "top up saldo sender",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								},
+								{
+									"key": "jumlah",
+									"value": "100000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/sender/request/free/topup_saldo",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"sender",
+								"request",
+								"free",
+								"topup_saldo"
+							]
+						},
+						"description": "Endpoint ini digunakan oleh sender untuk menambah saldo mereka\n\n## Request Type\n\n| Method | key | tipe |\n| --- | --- | --- |\n| POST/HEAD | x-auth-token | String |\n| POST/BODY | jumlah | Integer |\n| POST/BODY | password | String |"
+					},
+					"response": []
+				},
+				{
+					"name": "cek saldo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "FlKZoqcmWL",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{HOST}}/traveller/request/free/cek_saldo",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"traveller",
+								"request",
+								"free",
+								"cek_saldo"
+							]
+						},
+						"description": "Endpoint ini digunakan oleh user traveller yang ingin mengecek saldo mereka"
 					},
 					"response": []
 				}
